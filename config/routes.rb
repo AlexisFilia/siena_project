@@ -1,43 +1,23 @@
 Rails.application.routes.draw do
-  get 'game_map/show'
-  get 'messages/show'
-  get 'messages/index'
-  get 'messages/new'
-  get 'messages/create'
-  get 'poll_user_links/show'
-  get 'poll_user_links/index'
-  get 'poll_user_links/new'
-  get 'poll_user_links/create'
-  get 'polls/show'
-  get 'polls/new'
-  get 'polls/create'
-  get 'polls/edit'
-  get 'polls/update'
-  get 'polls/delete'
-  get 'votes/index'
-  get 'votes/new'
-  get 'votes/create'
-  get 'user_role_links/index'
-  get 'user_role_links/show'
-  get 'roles/index'
-  get 'roles/show'
-  get 'quest_tag_links/index'
-  get 'quest_tag_links/new'
-  get 'quest_tag_links/create'
-  get 'tags/index'
-  get 'quests/show'
-  get 'quests/index'
-  get 'levels/show'
-  get 'levels/index'
-  get 'teams/show'
-  get 'teams/index'
-  get 'users/show'
-  get 'users/index'
-  get 'users/edit'
-  get 'users/update'
+
   devise_for :users
-  root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'game_map#show'
+
+  resources :users, only: [:index, :show, :edit, :update], shallow: true do
+    resources :messages, only: [:index, :show, :new, :create]
+    resources :polls, only: [:show, :new, :create, :edit, :update, :delete], shallow: true do
+      resources :poll_user_links, only: [:index, :show, :new, :create]
+    end
+    resources :roles, only: [:index, :show]
+    resources :teams, only: [:index, :show], shallow: true do
+      resources :team_quest_links, only: [:index]
+      resources :votes, only: [:index, :new, :create]
+    end
+    resources :levels, only: [:index, :show]
+    resources :quests, only: [:index, :show]
+    resources :tags, only: [:index]
+    resources :user_role_links, only: [:index, :show]
+  end
 
   get '/tim_tests', to: 'pages#tim_tests'
 end
