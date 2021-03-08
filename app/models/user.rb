@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  belongs_to :team
+
   has_many :likes, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :messages, dependent: :destroy

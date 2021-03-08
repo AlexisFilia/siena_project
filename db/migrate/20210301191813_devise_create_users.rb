@@ -9,7 +9,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.boolean :image_rights
       t.boolean :on_boarding
       t.text :description
-      t.references :compagny, null: false, foreign_key: true
       t.references :team, null: false, foreign_key: true
 
       ## Database authenticatable
