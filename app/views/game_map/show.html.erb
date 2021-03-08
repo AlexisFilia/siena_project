@@ -1,2 +1,9 @@
 <h1>GameMap#show</h1>
 <p>Find me in app/views/game_map/show.html.erb</p>
+
+<%= link_to "Tinder Quest", tinder_quests_path, class: "btn btn-primary" %>
+<%= link_to "All Quests", user_quests_path(current_user), class: "btn btn-primary" %>
+<%= link_to "Tableau des scores", teams_path, class: "btn btn-primary" %>
+<%= link_to "Chat & Poll", user_messages_path(current_user), class: "btn btn-primary" %>
+<%= link_to "My team", team_path(current_user.team), class: "btn btn-primary" %>
+<%= link_to "My profile", user_path(current_user), class: "btn btn-primary" %>
