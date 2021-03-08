@@ -23,6 +23,10 @@ const stolenCode = () => {
   let desiredWidth = 1920 / 1.2; // determiner le max zoom sur ca?
   let desiredHeight = 1080 / 1.2; // determiner le max zoom sur ca?
 
+  let clickX = 0;
+  let clickY = 0;
+
+
 
   // Objectif 1 : de la mer bleu partout autours peut importe la vue - ok ==> Le faire avant les phases de transformations/ Le canvas se réinitialise!
   // Objectif 2 : redéfinir le zoom max et min pour pas aller trop loin ==> Annulé car mer bleue ok / A voir si intéressant plus tard
@@ -52,6 +56,7 @@ const stolenCode = () => {
 
       // En fait on dessine toujours la même chose avec la même taille et les mêmes coordonnées, c´est notre vue qui change
       ctx.drawImage(island,-window.innerWidth / 2 ,-window.innerHeight / 2 , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
+      ctx.drawImage(island,-window.innerWidth * 2 ,-window.innerHeight * 2  , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
 
       // ctx.fillStyle = "#991111"
       // Quel est le centre?
@@ -60,6 +65,10 @@ const stolenCode = () => {
 
 
       drawGrid()
+
+      ctx.fillStyle = "#EA3424";
+
+      drawRect(getTranslatedLocation({x: clickX, y: clickY}).x, getTranslatedLocation({x: clickX, y: clickY}).y, 50,50);
 
       requestAnimationFrame( draw ) // Ca veut dire que ca tourne en boucle/ On redraw à chaque FPS
   }
@@ -86,8 +95,8 @@ const stolenCode = () => {
     drawText(`(0,0)`, 0, 0,32, "courier")
 
 
-    ctx.fillStyle = "#45C4C7";
-    ctx.fillRect(0,0, 50, 50);
+    // ctx.fillStyle = "#45C4C7";
+    // ctx.fillRect(0,0, 50, 50);
 
 
     ctx.fillStyle = "#000000";
@@ -119,28 +128,34 @@ const stolenCode = () => {
     }
   }
 
-  // function getTranslatedLocation(coord){
-  //   // Fonction de Tim pour retourner un hash x et y avec les coordoonnées translatée à partir de coordonnées du monde réel
-  //   // Je veux que si je donne 0,0 ca me donne les coordonnées translatées qui correspondent à mon 0,0 dans le monde réel
-  //   // Il ne faut pas que ca bouge quand je zoom
-  //   // Il ne faut aps que ca bouge quand je drag
+  function getTranslatedLocation(coord){
+    // Fonction de Tim pour retourner un hash x et y avec les coordoonnées translatée à partir de coordonnées du monde réel
+    // Je veux que si je donne 0,0 ca me donne les coordonnées translatées qui correspondent à mon 0,0 dans le monde réel
+    // Il ne faut pas que ca bouge quand je zoom
+    // Il ne faut aps que ca bouge quand je drag
 
-  //   let x = coord.x - cameraOffset.x // sans le scale applied
-  //   let y = coord.y - cameraOffset.y // sans le scale applied
 
-  //   // On scale par rapport à cameraZoom en x et y ==> déterminer la translation que ca représente et l´inverser
+    // La base - à partir d´ici, tous les points clickés sur l´ écran sont retransmis sur l´image
+    let x = coord.x - window.innerWidth / 2
+    let y = coord.y - window.innerHeight / 2
 
-  //   x = x / cameraZoom; // Tout simplement car x' = kx
-  //   y = y / cameraZoom;
+    // let x = coord.x - cameraOffset.x // sans le scale applied
+    // let y = coord.y - cameraOffset.y // sans le scale applied
 
-  //   // Manque le drag
-  //   // x = x + dragStart.x
-  //   // y = y + dragStart.y
+    // On scale par rapport à cameraZoom en x et y ==> déterminer la translation que ca représente et l´inverser
+    x = x / cameraZoom; // Tout simplement car x' = kx
+    y = y / cameraZoom;
 
-  //   // Donc en gros (hash.x - cameraOffset.x) / cameraZoom mais je garde les étapes pour m´en souvenir
+    // Manque le drag
+    // x = x - dragStart.x * cameraOffset.x
+    // y = y - dragStart.y * cameraOffset.y
+    // x = (x - cameraOffset.x) / cameraZoom
+    // y = (y - cameraOffset.y) / cameraZoom
 
-  //   return{x: x, y: y}
-  // }
+    // Donc en gros (hash.x - cameraOffset.x) / cameraZoom mais je garde les étapes pour m´en souvenir
+
+    return{x: x, y: y}
+  }
 
   // function getTranslatedSize(size){
   //   // Fonction Tim pour avoir une size dans le monde réel
@@ -191,7 +206,14 @@ const stolenCode = () => {
 
 
     if(e.shiftKey){
-      setToLevel(1);
+      // setToLevel(1);
+
+      clickX = getEventLocation(e).x;
+      clickY = getEventLocation(e).y;
+
+      console.log(`Click x : ${clickX} - Click y : ${clickY}`);
+      console.log(`Translated x : ${getTranslatedLocation({x: clickX, y: clickY}).x}-  Translated y : ${getTranslatedLocation({x: clickX, y: clickY}).y} `);
+      console.log(`DragStart x : ${dragStart.x}-  DragStart y : ${dragStart.y} `);
     }
 
 
