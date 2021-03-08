@@ -4,7 +4,7 @@ class CreateTeams < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :description
       t.string :values
-      t.references :compagny, null: false, foreign_key: true
+      t.references :company, null: false, foreign_key: true
 
       t.timestamps
     end
