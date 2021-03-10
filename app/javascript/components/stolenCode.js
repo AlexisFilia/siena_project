@@ -4,6 +4,7 @@ const stolenCode = () => {
 
   let canvas = document.getElementById("my-canvas")
   let ctx = canvas.getContext('2d')
+  console.log(ctx.getTransform())
 
   let cameraOffset = { x: window.innerWidth/2, y: window.innerHeight/2 }
   let cameraZoom = 1
@@ -20,17 +21,21 @@ const stolenCode = () => {
   let treasure = new Image();
   island.src = "/assets/bigpic.png";
   treasure.src = "/assets/treasure.png";
-  let desiredWidth = 1920 / 1.2; // determiner le max zoom sur ca?
-  let desiredHeight = 1080 / 1.2; // determiner le max zoom sur ca?
+  let imageWidth = window.innerWidth;
+  let imageHeight = (imageWidth * 1080) / 1920;
 
   let clickX = 0;
   let clickY = 0;
-
-
+  let currentLevel = 0;
 
   // Objectif 1 : de la mer bleu partout autours peut importe la vue - ok ==> Le faire avant les phases de transformations/ Le canvas se réinitialise!
   // Objectif 2 : redéfinir le zoom max et min pour pas aller trop loin ==> Annulé car mer bleue ok / A voir si intéressant plus tard
   // Objectif 3 : Determiner les zooms qui correspondent aux niveaux
+    // Commencer par selectionner un point au milieu du niveau 1
+    // Determiner comment faire pour que ce point soit au milieu de l´écran
+      // L´image ne doit pas bouger de sa position
+      // C´est notre regard sur elle qui doit changer
+      // On peut zoomer qu´à la fin
   // Objectif 4 : Faire une fonction qui zoom sur le niveau qui nous intéresse
   // Objectif 5 : Ajouter une image en 2D clickable avec système de coordonnées clair du coup (click)
 
@@ -38,8 +43,6 @@ const stolenCode = () => {
 
   function draw()
   {
-
-
 
       // Ca c´est cool ca veut dire qu´ on adapte en temps réel le canvas par rapport à la taille de l´ecran
       canvas.width = window.innerWidth
@@ -55,20 +58,15 @@ const stolenCode = () => {
 
 
       // En fait on dessine toujours la même chose avec la même taille et les mêmes coordonnées, c´est notre vue qui change
-      ctx.drawImage(island,-window.innerWidth / 2 ,-window.innerHeight / 2 , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
-      ctx.drawImage(island,-window.innerWidth * 2 ,-window.innerHeight * 2  , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
+      ctx.drawImage(island,-window.innerWidth / 2 ,-window.innerHeight / 2 , imageWidth , imageHeight) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
+      // ctx.drawImage(island,-window.innerWidth * 2 ,-window.innerHeight * 2  , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
 
-      // ctx.fillStyle = "#991111"
-      // Quel est le centre?
-      // drawRect(0,0, getTranslatedSize(100),getTranslatedSize(100)) // ok
-      // drawRect(getTranslatedLocation({x: 0, y: 0}).x,getTranslatedLocation({x: 0, y: 0}).y, getTranslatedSize(100),getTranslatedSize(100)) // ok
+      // drawGrid()
+      drawLines()
 
-
-      drawGrid()
-
-      ctx.fillStyle = "#EA3424";
-
-      drawRect(getTranslatedLocation({x: clickX, y: clickY}).x, getTranslatedLocation({x: clickX, y: clickY}).y, 50,50);
+      // ctx.fillStyle = "#EA3424";
+      // drawRect(transformedPoint.x, transformedPoint.y, 50, 50)
+      // drawRect(getTranslatedLocation({x: clickX, y: clickY}).x, getTranslatedLocation({x: clickX, y: clickY}).y, 50,50);
 
       requestAnimationFrame( draw ) // Ca veut dire que ca tourne en boucle/ On redraw à chaque FPS
   }
@@ -85,6 +83,26 @@ const stolenCode = () => {
       {
           return { x: e.clientX, y: e.clientY }
       }
+  }
+
+  function drawLines(){
+
+    let pointLeft = new DOMPoint(0,window.innerHeight / 2 )
+    let pointRight = new DOMPoint(window.innerWidth ,window.innerHeight / 2)
+    let pointTop = new DOMPoint(window.innerWidth / 2 , 0)
+    let pointDown = new DOMPoint(window.innerWidth / 2 , window.innerHeight)
+
+    ctx.fillStyle = "#EA3424";
+    ctx.beginPath();
+    ctx.moveTo(translateFromRealToCanvas(pointLeft).x, translateFromRealToCanvas(pointLeft).y);
+    ctx.lineTo(translateFromRealToCanvas(pointRight).x, translateFromRealToCanvas(pointRight).y);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(translateFromRealToCanvas(pointTop).x, translateFromRealToCanvas(pointTop).y);
+    ctx.lineTo(translateFromRealToCanvas(pointDown).x, translateFromRealToCanvas(pointDown).y);
+    ctx.stroke();
+
   }
 
 
@@ -128,33 +146,23 @@ const stolenCode = () => {
     }
   }
 
-  function getTranslatedLocation(coord){
-    // Fonction de Tim pour retourner un hash x et y avec les coordoonnées translatée à partir de coordonnées du monde réel
-    // Je veux que si je donne 0,0 ca me donne les coordonnées translatées qui correspondent à mon 0,0 dans le monde réel
-    // Il ne faut pas que ca bouge quand je zoom
-    // Il ne faut aps que ca bouge quand je drag
+  function translateFromRealToCanvas(point){
+    // Donne moi un point avec des coordonnées dans le monde réel et je te rend un point avec des coordonnées dans le monde du canvas
+    // (Si je click je peux faire apparaitre ton click au bon endroit)
+    let matrix = ctx.getTransform().invertSelf()
+    let transformedPoint = point.matrixTransform(matrix);
 
+    return transformedPoint
+  }
 
-    // La base - à partir d´ici, tous les points clickés sur l´ écran sont retransmis sur l´image
-    let x = coord.x - window.innerWidth / 2
-    let y = coord.y - window.innerHeight / 2
+  function translateFromCanvasToReal(point){
 
-    // let x = coord.x - cameraOffset.x // sans le scale applied
-    // let y = coord.y - cameraOffset.y // sans le scale applied
+    // Donne moi un point avec des coordonnées dans le monde canvas et je te rend un point avec des coordonnées dans le monde réel
+    let matrix = ctx.getTransform()
+    let transformedPoint = point.matrixTransform(matrix);
 
-    // On scale par rapport à cameraZoom en x et y ==> déterminer la translation que ca représente et l´inverser
-    x = x / cameraZoom; // Tout simplement car x' = kx
-    y = y / cameraZoom;
+    return transformedPoint
 
-    // Manque le drag
-    // x = x - dragStart.x * cameraOffset.x
-    // y = y - dragStart.y * cameraOffset.y
-    // x = (x - cameraOffset.x) / cameraZoom
-    // y = (y - cameraOffset.y) / cameraZoom
-
-    // Donc en gros (hash.x - cameraOffset.x) / cameraZoom mais je garde les étapes pour m´en souvenir
-
-    return{x: x, y: y}
   }
 
   // function getTranslatedSize(size){
@@ -173,6 +181,25 @@ const stolenCode = () => {
       ctx.fillText(text, x, y)
   }
 
+  function keyDown(e){
+
+    if(e.key == "ArrowRight"){
+      cameraOffset.x -= 10
+            console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
+    }else if(e.key == "ArrowLeft"){
+      cameraOffset.x += 10
+            console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
+    }else if(e.key == "ArrowDown"){
+      cameraOffset.y -= 10
+            console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
+
+    }else if(e.key == "ArrowUp"){
+      cameraOffset.y += 10
+            console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
+
+    }
+  }
+
 
 
   function setToLevel(level){
@@ -189,11 +216,62 @@ const stolenCode = () => {
 
 
     switch(level){
+
+      case 0:
+        cameraZoom = 0.8 ;
+        cameraOffset = {x: 0.5  * imageWidth , y: 0.5 * imageHeight + (window.innerHeight - imageHeight)};
+        break;
       case 1:
-        cameraZoom = 2.3 ;
-        cameraOffset = {x: 0.23 * window.innerWidth, y: 0.3 * window.innerHeight};
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.20473970473970474 * imageWidth, y: 0.10075110075110075 * imageHeight + (window.innerHeight - imageHeight)};
         break;
       case 2:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.22804972804972806 * imageWidth, y: 0.252697919364586 * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 3:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.3368298368298368 * imageWidth, y: 0.22507122507122507 * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 4:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.46114996114996115 * imageWidth, y: 0.23888457221790554  * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 5:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.43006993006993005 * imageWidth, y: 0.37701804368471037 * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 6:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.40675990675990675 * imageWidth, y: 0.5842182508849175 * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 7:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.5155400155400155 * imageWidth, y: 0.6118449451782785  * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 8:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.5932400932400932 * imageWidth, y: 0.5289648622981956  * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 9:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.6787101787101787 * imageWidth, y: 0.5289648622981956 * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      // case 10:
+      //   cameraZoom = 4 ;
+      //   cameraOffset = {x: 0.771950271950272 * imageWidth, y: 0.598031598031598 * imageHeight + (window.innerHeight - imageHeight)};
+      //   break;
+      case 10:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.7641802641802642 * imageWidth, y: 0.6118449451782785 * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 11:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.6631701631701632 * imageWidth, y: 0.7223517223517224 * imageHeight + (window.innerHeight - imageHeight)};
+        break;
+      case 12:
+        cameraZoom = 4 ;
+        cameraOffset = {x: 0.8108003108003108 * imageWidth, y: 0.8052318052318053 * imageHeight + (window.innerHeight - imageHeight)};
         break;
 
     }
@@ -206,14 +284,26 @@ const stolenCode = () => {
 
 
     if(e.shiftKey){
+
+
+      // console.log(ctx.getTransform())
+
       // setToLevel(1);
 
-      clickX = getEventLocation(e).x;
-      clickY = getEventLocation(e).y;
+      // clickX = getEventLocation(e).x;
+      // clickY = getEventLocation(e).y;
+      // let point = new DOMPoint(clickX, clickY)
 
-      console.log(`Click x : ${clickX} - Click y : ${clickY}`);
-      console.log(`Translated x : ${getTranslatedLocation({x: clickX, y: clickY}).x}-  Translated y : ${getTranslatedLocation({x: clickX, y: clickY}).y} `);
-      console.log(`DragStart x : ${dragStart.x}-  DragStart y : ${dragStart.y} `);
+      setToLevel(currentLevel)
+      currentLevel += 1
+      // console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
+
+      // console.log(cameraOffset.x - (window.innerWidth/2));
+
+      // console.log(`Click x : ${clickX} - Click y : ${clickY}`);
+      // getTranslatedLocation(point)
+      // console.log(`Translated x : ${getTranslatedLocation({x: clickX, y: clickY}).x}-  Translated y : ${getTranslatedLocation({x: clickX, y: clickY}).y} `);
+      // console.log(`DragStart x : ${dragStart.x}-  DragStart y : ${dragStart.y} `);
     }
 
 
@@ -227,7 +317,7 @@ const stolenCode = () => {
     // console.log(`Camera Zoom ==> ${cameraZoom}`);
     // console.log(`Camera Offset x ==> ${cameraOffset.x / window.innerWidth}`);
     // console.log(`Camera Offset y ==> ${cameraOffset.y / window.innerHeight}`);
-    console.log(`Camera Offset y ==> ${getEventLocation(e).x / window.innerWidth}`);
+    // console.log(`Camera Offset y ==> ${getEventLocation(e).x / window.innerWidth}`);
 
 
   }
@@ -321,6 +411,7 @@ const stolenCode = () => {
   canvas.addEventListener('mousemove', onPointerMove)
   canvas.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove))
   canvas.addEventListener( 'wheel', (e) => adjustZoom(e.deltaY*SCROLL_SENSITIVITY))
+  document.addEventListener("keydown", (e) => keyDown(e));
 
   // Ready, set, go
   draw()
