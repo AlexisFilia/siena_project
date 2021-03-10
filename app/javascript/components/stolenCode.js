@@ -26,19 +26,18 @@ const stolenCode = () => {
 
   let clickX = 0;
   let clickY = 0;
+  let mousePoint = new DOMPoint(0,0);
+
+  let gridIncrement = 10
+  let gridLinesSize = 10000
+
   let currentLevel = 0;
 
   // Objectif 1 : de la mer bleu partout autours peut importe la vue - ok ==> Le faire avant les phases de transformations/ Le canvas se réinitialise!
   // Objectif 2 : redéfinir le zoom max et min pour pas aller trop loin ==> Annulé car mer bleue ok / A voir si intéressant plus tard
-  // Objectif 3 : Determiner les zooms qui correspondent aux niveaux
-    // Commencer par selectionner un point au milieu du niveau 1
-    // Determiner comment faire pour que ce point soit au milieu de l´écran
-      // L´image ne doit pas bouger de sa position
-      // C´est notre regard sur elle qui doit changer
-      // On peut zoomer qu´à la fin
-  // Objectif 4 : Faire une fonction qui zoom sur le niveau qui nous intéresse
+  // Objectif 3 : Determiner les zooms qui correspondent aux niveaux ==> OK!!!
+  // Objectif 4 : Faire une fonction qui zoom sur le niveau qui nous intéresse ==> OK!!
   // Objectif 5 : Ajouter une image en 2D clickable avec système de coordonnées clair du coup (click)
-
 
 
   function draw()
@@ -60,16 +59,49 @@ const stolenCode = () => {
       // En fait on dessine toujours la même chose avec la même taille et les mêmes coordonnées, c´est notre vue qui change
       ctx.drawImage(island,-window.innerWidth / 2 ,-window.innerHeight / 2 , imageWidth , imageHeight) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
       // ctx.drawImage(island,-window.innerWidth * 2 ,-window.innerHeight * 2  , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
+      drawGrid()
+      // drawLines()
 
-      // drawGrid()
-      drawLines()
+      ctx.fillStyle = "#EA3424";
+      drawMouseRec()
 
-      // ctx.fillStyle = "#EA3424";
-      // drawRect(transformedPoint.x, transformedPoint.y, 50, 50)
       // drawRect(getTranslatedLocation({x: clickX, y: clickY}).x, getTranslatedLocation({x: clickX, y: clickY}).y, 50,50);
 
       requestAnimationFrame( draw ) // Ca veut dire que ca tourne en boucle/ On redraw à chaque FPS
   }
+
+  function translateFromRealToCanvas(point){
+    // Donne moi un point avec des coordonnées dans le monde réel et je te rend un point avec des coordonnées dans le monde du canvas
+    // (Si je click je peux faire apparaitre ton click au bon endroit)
+    let matrix = ctx.getTransform().invertSelf()
+    let transformedPoint = point.matrixTransform(matrix);
+
+    return transformedPoint
+  }
+
+  function translateFromCanvasToReal(point){
+
+    // Donne moi un point avec des coordonnées dans le monde canvas et je te rend un point avec des coordonnées dans le monde réel
+    let matrix = ctx.getTransform()
+    let transformedPoint = point.matrixTransform(matrix);
+
+    return transformedPoint
+
+  }
+
+  function drawMouseRec(){
+
+    let mouseTranslated = translateFromRealToCanvas(mousePoint)
+
+    drawRect(Math.round(mouseTranslated.x / gridIncrement) * gridIncrement, Math.round(mouseTranslated.y / gridIncrement) * gridIncrement, gridIncrement, gridIncrement)
+  }
+
+  // function drawImageAtRealCoordinates(img, x, y, sizeX, sizeY){
+  //   let point = new DOMPoint(x,y)
+  //   let transformedPoint = translateFromRealToCanvas(point)
+
+  //   ctx.drawImage(img, transformedPoint.x, transformedPoint.y, sizeX, sizeY)
+  // }
 
   // Gets the relevant location from a mouse or single touch event
     // Retourne un hash avec des coordonnées x et y de la souris ou du touch DANS LE MONDE RÉEL
@@ -108,61 +140,45 @@ const stolenCode = () => {
 
   function drawGrid() {
 
-
-    ctx.fillStyle = "#EA3424";
-    drawText(`(0,0)`, 0, 0,32, "courier")
+    // ctx.fillStyle = "#EA3424";
+    // drawText(`(0,0)`, 0, 0,32, "courier")
 
 
     // ctx.fillStyle = "#45C4C7";
     // ctx.fillRect(0,0, 50, 50);
 
 
+
+    // ctx.fillStyle = "#EA3424";
+    // ctx.beginPath();
+    // ctx.moveTo(0, 0);
+    // ctx.lineTo(10000, 0);
+    // ctx.stroke();
+
+    // ctx.beginPath();
+    // ctx.moveTo(0, 0);
+    // ctx.lineTo(0, 10000);
+    // ctx.stroke();
+
     ctx.fillStyle = "#000000";
 
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(10000, 0);
-    ctx.stroke();
+    for(let i = -gridLinesSize; i < 10000;  i += gridIncrement){
 
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(0, 10000);
-    ctx.stroke();
-
-    for(let i = 100; i < 10000;  i += 100){
+      // if(i == 0) ctx.fillStyle = "#EA3424";
       ctx.beginPath();
-      ctx.moveTo(i, -100);
-      ctx.lineTo(i, 10000);
+      ctx.moveTo(i, - gridLinesSize);
+      ctx.lineTo(i, gridLinesSize);
       ctx.stroke();
-      drawText(`${i}`, i, -150,32, "courier")
+      // drawText(`${i}`, i, -150,32, "courier")
     }
 
-    for(let j = 100; j < 10000;  j += 100){
+    for(let j = -gridLinesSize; j < 10000;  j += gridIncrement){
       ctx.beginPath();
-      ctx.moveTo(-100, j);
-      ctx.lineTo(10000, j);
+      ctx.moveTo(-gridLinesSize, j);
+      ctx.lineTo(gridLinesSize, j);
       ctx.stroke();
-      drawText(`${j}`, -150, j,32, "courier")
+      // drawText(`${j}`, -150, j,32, "courier")
     }
-  }
-
-  function translateFromRealToCanvas(point){
-    // Donne moi un point avec des coordonnées dans le monde réel et je te rend un point avec des coordonnées dans le monde du canvas
-    // (Si je click je peux faire apparaitre ton click au bon endroit)
-    let matrix = ctx.getTransform().invertSelf()
-    let transformedPoint = point.matrixTransform(matrix);
-
-    return transformedPoint
-  }
-
-  function translateFromCanvasToReal(point){
-
-    // Donne moi un point avec des coordonnées dans le monde canvas et je te rend un point avec des coordonnées dans le monde réel
-    let matrix = ctx.getTransform()
-    let transformedPoint = point.matrixTransform(matrix);
-
-    return transformedPoint
-
   }
 
   // function getTranslatedSize(size){
@@ -332,6 +348,8 @@ const stolenCode = () => {
   function onPointerMove(e)
   {
 
+      mousePoint.x = getEventLocation(e).x
+      mousePoint.y = getEventLocation(e).y
 
 
       if (isDragging)

@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "companies", force: :cascade do |t|
+  create_table "compagnies", force: :cascade do |t|
     t.string "name"
     t.string "logo"
     t.datetime "created_at", precision: 6, null: false
@@ -110,11 +110,11 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.string "type_of"
     t.string "result"
     t.string "perimeter"
-    t.bigint "company_id", null: false
+    t.bigint "compagny_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_id"], name: "index_polls_on_company_id"
+    t.index ["compagny_id"], name: "index_polls_on_compagny_id"
     t.index ["user_id"], name: "index_polls_on_user_id"
   end
 
@@ -168,10 +168,10 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.string "name"
     t.text "description"
     t.string "values"
-    t.bigint "company_id", null: false
+    t.bigint "compagny_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_id"], name: "index_teams_on_company_id"
+    t.index ["compagny_id"], name: "index_teams_on_compagny_id"
   end
 
   create_table "user_role_links", force: :cascade do |t|
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.boolean "image_rights"
     t.boolean "on_boarding"
     t.text "description"
+    t.bigint "compagny_id", null: false
     t.bigint "team_id", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -199,6 +200,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["compagny_id"], name: "index_users_on_compagny_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["team_id"], name: "index_users_on_team_id"
@@ -225,16 +227,17 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   add_foreign_key "poll_user_links", "options"
   add_foreign_key "poll_user_links", "polls"
   add_foreign_key "poll_user_links", "users"
-  add_foreign_key "polls", "companies"
+  add_foreign_key "polls", "compagnies"
   add_foreign_key "polls", "users"
   add_foreign_key "quest_tag_links", "quests"
   add_foreign_key "quest_tag_links", "tags"
   add_foreign_key "quests", "levels"
   add_foreign_key "team_quest_links", "quests"
   add_foreign_key "team_quest_links", "teams"
-  add_foreign_key "teams", "companies"
+  add_foreign_key "teams", "compagnies"
   add_foreign_key "user_role_links", "roles"
   add_foreign_key "user_role_links", "users"
+  add_foreign_key "users", "compagnies"
   add_foreign_key "users", "teams"
   add_foreign_key "votes", "team_quest_links"
   add_foreign_key "votes", "users"
