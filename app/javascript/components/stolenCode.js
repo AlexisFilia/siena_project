@@ -1,8 +1,10 @@
 const stolenCode = () => {
 
   // https://codepen.io/chengarda/pen/wRxoyB
-
+  let redSquareInfo = document.querySelector("#redSquareInfo");
   let canvas = document.getElementById("my-canvas")
+  if(!canvas) return;
+
   let ctx = canvas.getContext('2d')
   console.log(ctx.getTransform())
 
@@ -21,8 +23,10 @@ const stolenCode = () => {
   let treasure = new Image();
   island.src = "/assets/bigpic.png";
   treasure.src = "/assets/treasure.png";
-  let imageWidth = window.innerWidth;
-  let imageHeight = (imageWidth * 1080) / 1920;
+  // let imageWidth = window.innerWidth;
+  // let imageHeight = (imageWidth * 1080) / 1920;
+  let imageWidth = 3840;
+  let imageHeight = 2160;
 
   let clickX = 0;
   let clickY = 0;
@@ -33,15 +37,35 @@ const stolenCode = () => {
 
   let currentLevel = 0;
 
+  let movingItemsFactor = 0;
+  let movingItemsFactorIncrement = 0.08;
+
+
   // Objectif 1 : de la mer bleu partout autours peut importe la vue - ok ==> Le faire avant les phases de transformations/ Le canvas se réinitialise!
   // Objectif 2 : redéfinir le zoom max et min pour pas aller trop loin ==> Annulé car mer bleue ok / A voir si intéressant plus tard
   // Objectif 3 : Determiner les zooms qui correspondent aux niveaux ==> OK!!!
+    // REVISION LUNDI 15 MARS: IL VAUT MIEUX CHANGER LE LEVEL AU DEBUT ET GARDER L´IMAGE SANS RAPPORT AVEC LA TAILLE DE L´ECRAN
+    // COMME CA ON POURRA AVOIR UNE IMAGE QUADRILLÉE CHACUN AVEC DES CARÉS DE 10 PAR 10 ET POSITIONNER FACILEMENT LES QUETES
+    // LES COORDONNÉES SERONT BEAUCOUP PLUS CLAIRES
   // Objectif 4 : Faire une fonction qui zoom sur le niveau qui nous intéresse ==> OK!!
   // Objectif 5 : Ajouter une image en 2D clickable avec système de coordonnées clair du coup (click)
+    // Commencer par faire un petit quadrillage
+    // Les carrés doivent se colorier en rouge quand passe dedans
+    // On veut les coordonnées du carré quand on click
+    // Ca nous permettra de positionner nos éléments d´UI plus facilement
+    // Dans un deuxieme temps on va vouloir utiliser la fonction incircle pour encercler ces coordonnées
+    // Notre encerclement devra être fait avec un radius minimal (24px? Voir material design google)
+
+  // Objectif 6 : mettre les images sur cloudinary
+  // Obejctif 7 : Loading stuff?
 
 
   function draw()
   {
+
+      // Fait monter et descendre le mooving item factor
+      movingItemsFactor += movingItemsFactorIncrement
+
 
       // Ca c´est cool ca veut dire qu´ on adapte en temps réel le canvas par rapport à la taille de l´ecran
       canvas.width = window.innerWidth
@@ -57,13 +81,16 @@ const stolenCode = () => {
 
 
       // En fait on dessine toujours la même chose avec la même taille et les mêmes coordonnées, c´est notre vue qui change
-      ctx.drawImage(island,-window.innerWidth / 2 ,-window.innerHeight / 2 , imageWidth , imageHeight) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
+      // ctx.drawImage(island,-window.innerWidth / 2 ,-window.innerHeight / 2 , imageWidth , imageHeight) // CAS OU ON PREND LA WIDTH DE L´ECRAN COMME BASE
+      ctx.drawImage(island,0 ,0 , imageWidth , imageHeight) // CAS OU ON GARDE L´IMAGE A UNE TAILLE FIXE ET REDIMMENSIONNE DIRECT APRES
       // ctx.drawImage(island,-window.innerWidth * 2 ,-window.innerHeight * 2  , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
       drawGrid()
       // drawLines()
 
       ctx.fillStyle = "#EA3424";
       drawMouseRec()
+
+      ctx.drawImage(treasure, 2940, 1600 + Math.sin(movingItemsFactor) * 10, 10,10)
 
       // drawRect(getTranslatedLocation({x: clickX, y: clickY}).x, getTranslatedLocation({x: clickX, y: clickY}).y, 50,50);
 
@@ -91,9 +118,16 @@ const stolenCode = () => {
 
   function drawMouseRec(){
 
+    // Le mouse point est calculé à chaque mouvement de souris
     let mouseTranslated = translateFromRealToCanvas(mousePoint)
 
-    drawRect(Math.round(mouseTranslated.x / gridIncrement) * gridIncrement, Math.round(mouseTranslated.y / gridIncrement) * gridIncrement, gridIncrement, gridIncrement)
+    let paintedX = Math.floor(mouseTranslated.x / gridIncrement) * gridIncrement
+    let paintedY = Math.round(mouseTranslated.y / gridIncrement) * gridIncrement
+
+    drawRect( paintedX, paintedY, gridIncrement , gridIncrement)
+
+    redSquareInfo.innerHTML = `<p>Red Square Position :</p><p>(x , y) => (${paintedX}, ${paintedY})</p>`
+
   }
 
   // function drawImageAtRealCoordinates(img, x, y, sizeX, sizeY){
@@ -217,6 +251,12 @@ const stolenCode = () => {
   }
 
 
+  function focusOnObject(x, y, zoom, additionalOffset = 0){
+    // si on veut offset pour centrer sur l´objet on peut mais c´est un argument optionnel
+    cameraZoom = zoom
+    cameraOffset = {x: - x + window.innerWidth / 2 - additionalOffset , y: - y + window.innerHeight / 2 - additionalOffset}
+  }
+
 
   function setToLevel(level){
 
@@ -231,66 +271,106 @@ const stolenCode = () => {
       // Hypothese : Comme pour le produit en croix, je peux donner un cameraOffset relatif au window.innerWidth
 
 
+    // LEVELS DETERMINED IF THE IMAGE IS PAINTED ALWAYS AT SAME SIZE AND SAME COORDINATES WHATEVER THE SCREEN
     switch(level){
-
       case 0:
-        cameraZoom = 0.8 ;
-        cameraOffset = {x: 0.5  * imageWidth , y: 0.5 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(0.5  * imageWidth , 0.5 * imageHeight, 0.2)
         break;
       case 1:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.20473970473970474 * imageWidth, y: 0.10075110075110075 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(3040,1910,1)
         break;
       case 2:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.22804972804972806 * imageWidth, y: 0.252697919364586 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(2954,1602,1)
         break;
       case 3:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.3368298368298368 * imageWidth, y: 0.22507122507122507 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(2550,1670,1)
         break;
       case 4:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.46114996114996115 * imageWidth, y: 0.23888457221790554  * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(2060,1660,1)
         break;
       case 5:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.43006993006993005 * imageWidth, y: 0.37701804368471037 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(2190,1340,1)
         break;
       case 6:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.40675990675990675 * imageWidth, y: 0.5842182508849175 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(2290,930,1)
         break;
       case 7:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.5155400155400155 * imageWidth, y: 0.6118449451782785  * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(1870,820,1)
         break;
       case 8:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.5932400932400932 * imageWidth, y: 0.5289648622981956  * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(1570,1030,1)
         break;
       case 9:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.6787101787101787 * imageWidth, y: 0.5289648622981956 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(1230,1020,1)
         break;
-      // case 10:
-      //   cameraZoom = 4 ;
-      //   cameraOffset = {x: 0.771950271950272 * imageWidth, y: 0.598031598031598 * imageHeight + (window.innerHeight - imageHeight)};
-      //   break;
       case 10:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.7641802641802642 * imageWidth, y: 0.6118449451782785 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(890,860,1)
         break;
       case 11:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.6631701631701632 * imageWidth, y: 0.7223517223517224 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(1280,590,1)
         break;
       case 12:
-        cameraZoom = 4 ;
-        cameraOffset = {x: 0.8108003108003108 * imageWidth, y: 0.8052318052318053 * imageHeight + (window.innerHeight - imageHeight)};
+        focusOnObject(750,440,1)
         break;
-
     }
+
+
+
+    // LEVELS DETERMINED IF THE IMAGE IS PAINTED BASED ON THE WIDTH OF THE SCREEN
+    // switch(level){
+    //   case 0:
+    //     cameraZoom = 0.8 ;
+    //     cameraOffset = {x: 0.5  * imageWidth , y: 0.5 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 1:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.20473970473970474 * imageWidth, y: 0.10075110075110075 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 2:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.22804972804972806 * imageWidth, y: 0.252697919364586 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 3:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.3368298368298368 * imageWidth, y: 0.22507122507122507 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 4:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.46114996114996115 * imageWidth, y: 0.23888457221790554  * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 5:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.43006993006993005 * imageWidth, y: 0.37701804368471037 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 6:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.40675990675990675 * imageWidth, y: 0.5842182508849175 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 7:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.5155400155400155 * imageWidth, y: 0.6118449451782785  * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 8:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.5932400932400932 * imageWidth, y: 0.5289648622981956  * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 9:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.6787101787101787 * imageWidth, y: 0.5289648622981956 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 10:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.7641802641802642 * imageWidth, y: 0.6118449451782785 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 11:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.6631701631701632 * imageWidth, y: 0.7223517223517224 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    //   case 12:
+    //     cameraZoom = 4 ;
+    //     cameraOffset = {x: 0.8108003108003108 * imageWidth, y: 0.8052318052318053 * imageHeight + (window.innerHeight - imageHeight)};
+    //     break;
+    // }
   }
 
 
@@ -312,6 +392,9 @@ const stolenCode = () => {
 
       setToLevel(currentLevel)
       currentLevel += 1
+//
+      // console.log(`offset x : ${cameraOffset.x - (window.innerWidth / 2)} - offset y : ${cameraOffset.y - (window.innerHeight / 2)}`);
+
       // console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
 
       // console.log(cameraOffset.x - (window.innerWidth/2));
@@ -433,6 +516,32 @@ const stolenCode = () => {
 
   // Ready, set, go
   draw()
+  // focusOnObject(2940, 1600, 3, 5)
+  setToLevel(0)
+}
+
+function inCircle(xRef,yRef,radiusRef){
+  if(Math.pow((relativeX-xRef),2)+Math.pow((relativeY-yRef), 2)<Math.pow(radiusRef,2)){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function inSquare(xRef,yRef,radiusRef){
+
+  // Checker si adaptée en négatif
+  let  horiS=false;
+  let  vertiS=false;
+
+  let leftS = xRef-radiusRef;
+  let rightS = xRef+radiusRef;
+  let topS = yRef-radiusRef;
+  let bottomS = yRef+radiusRef;
+
+  if((relativeX>=leftS) && (relativeX<=rightS)){horiS=true;}else{horiS=false;}
+  if((relativeY>=topS) && (relativeY<=bottomS)){vertiS=true;}else{vertiS=false;}
+  if((horiS==true)&&(vertiS==true)){return true;}else{return false;}
 }
 
 export{stolenCode};
