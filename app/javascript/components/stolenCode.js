@@ -1,9 +1,13 @@
+import { Quest } from '../models/questModel';
+
 const stolenCode = () => {
 
   // https://codepen.io/chengarda/pen/wRxoyB
   let redSquareInfo = document.querySelector("#redSquareInfo");
   let canvas = document.getElementById("my-canvas")
   if(!canvas) return;
+
+  let questsRepo = [];
 
   let ctx = canvas.getContext('2d')
   console.log(ctx.getTransform())
@@ -41,6 +45,16 @@ const stolenCode = () => {
   let movingItemsFactorIncrement = 0.08;
 
 
+  let a = new Quest(questsRepo, 1640, 1080);
+  let b = new Quest(questsRepo, 1540, 1180);
+  let c = new Quest(questsRepo, 640, 1280);
+  let d = new Quest(questsRepo, 1540, 1090);
+  let e = new Quest(questsRepo, 1440, 1080);
+  console.log(questsRepo);
+
+
+
+
   // Objectif 1 : de la mer bleu partout autours peut importe la vue - ok ==> Le faire avant les phases de transformations/ Le canvas se réinitialise!
   // Objectif 2 : redéfinir le zoom max et min pour pas aller trop loin ==> Annulé car mer bleue ok / A voir si intéressant plus tard
   // Objectif 3 : Determiner les zooms qui correspondent aux niveaux ==> OK!!!
@@ -75,22 +89,27 @@ const stolenCode = () => {
       drawRect(0,0, window.innerWidth, window.innerHeight)
 
       // Translate to the canvas centre before zooming - so you'll always zoom on what you're looking directly at
-      ctx.translate( window.innerWidth / 2, window.innerHeight / 2 ) // Le point d´origine du canvas est au centre de la window
-      ctx.scale(cameraZoom, cameraZoom)
-      ctx.translate( -window.innerWidth / 2 + cameraOffset.x, -window.innerHeight / 2 + cameraOffset.y ) // reajustement après scale
+      ctx.translate( window.innerWidth / 2, window.innerHeight / 2 ); // Le point d´origine du canvas est au centre de la window
+      ctx.scale(cameraZoom, cameraZoom);
+      ctx.translate( -window.innerWidth / 2 + cameraOffset.x, -window.innerHeight / 2 + cameraOffset.y ); // reajustement après scale
 
 
       // En fait on dessine toujours la même chose avec la même taille et les mêmes coordonnées, c´est notre vue qui change
       // ctx.drawImage(island,-window.innerWidth / 2 ,-window.innerHeight / 2 , imageWidth , imageHeight) // CAS OU ON PREND LA WIDTH DE L´ECRAN COMME BASE
-      ctx.drawImage(island,0 ,0 , imageWidth , imageHeight) // CAS OU ON GARDE L´IMAGE A UNE TAILLE FIXE ET REDIMMENSIONNE DIRECT APRES
+      ctx.drawImage(island,0 ,0 , imageWidth , imageHeight); // CAS OU ON GARDE L´IMAGE A UNE TAILLE FIXE ET REDIMMENSIONNE DIRECT APRES
       // ctx.drawImage(island,-window.innerWidth * 2 ,-window.innerHeight * 2  , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
-      drawGrid()
+      drawGrid();
       // drawLines()
 
       ctx.fillStyle = "#EA3424";
-      drawMouseRec()
+      drawMouseRec();
 
-      ctx.drawImage(treasure, 2940, 1600 + Math.sin(movingItemsFactor) * 10, 10,10)
+      // ctx.drawImage(treasure, 2940, 1600 + Math.sin(movingItemsFactor) * 10, 10,10);
+
+
+      questsRepo.forEach(quest => quest.drawSelfAndMove(ctx, treasure, movingItemsFactor));
+      questsRepo.forEach(quest => quest.drawSurroundingCircle(ctx));
+
 
       // drawRect(getTranslatedLocation({x: clickX, y: clickY}).x, getTranslatedLocation({x: clickX, y: clickY}).y, 50,50);
 
@@ -441,7 +460,7 @@ const stolenCode = () => {
           cameraOffset.y = getEventLocation(e).y/cameraZoom - dragStart.y
       }else{
         // Section ajoutée par Tim pour déterminer les coordonnées du monde réel
-
+        questsRepo.forEach(quest => quest.isUnderMouse(translateFromRealToCanvas(mousePoint).x, translateFromRealToCanvas(mousePoint).y, ctx));
         // console.log(getEventLocation(e).y);
       }
   }
@@ -469,7 +488,7 @@ const stolenCode = () => {
       let touch2 = { x: e.touches[1].clientX, y: e.touches[1].clientY }
 
       // This is distance squared, but no need for an expensive sqrt as it's only used in ratio
-      let currentDistance = (touch1.x - touch2.x)**2 + (touch1.y - touch2.y)**2
+      let currentDistance = (touch1.x - touch2.x)**2 + (touch1.y - touch2.y)**2;
 
       if (initialPinchDistance == null)
       {
