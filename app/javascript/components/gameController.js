@@ -1,10 +1,10 @@
 import { Quest } from '../models/questModel';
 
-const stolenCode = () => {
+const gameController = () => {
 
   // https://codepen.io/chengarda/pen/wRxoyB
   let redSquareInfo = document.querySelector("#redSquareInfo");
-  let canvas = document.getElementById("my-canvas-tests")
+  let canvas = document.getElementById("my-canvas")
   if(!canvas) return;
 
   let questsRepo = [];
@@ -56,25 +56,6 @@ const stolenCode = () => {
 
 
 
-  // Objectif 1 : de la mer bleu partout autours peut importe la vue - ok ==> Le faire avant les phases de transformations/ Le canvas se réinitialise!
-  // Objectif 2 : redéfinir le zoom max et min pour pas aller trop loin ==> Annulé car mer bleue ok / A voir si intéressant plus tard
-  // Objectif 3 : Determiner les zooms qui correspondent aux niveaux ==> OK!!!
-    // REVISION LUNDI 15 MARS: IL VAUT MIEUX CHANGER LE LEVEL AU DEBUT ET GARDER L´IMAGE SANS RAPPORT AVEC LA TAILLE DE L´ECRAN
-    // COMME CA ON POURRA AVOIR UNE IMAGE QUADRILLÉE CHACUN AVEC DES CARÉS DE 10 PAR 10 ET POSITIONNER FACILEMENT LES QUETES
-    // LES COORDONNÉES SERONT BEAUCOUP PLUS CLAIRES
-  // Objectif 4 : Faire une fonction qui zoom sur le niveau qui nous intéresse ==> OK!!
-  // Objectif 5 : Ajouter une image en 2D clickable avec système de coordonnées clair du coup (click)
-    // Commencer par faire un petit quadrillage
-    // Les carrés doivent se colorier en rouge quand passe dedans
-    // On veut les coordonnées du carré quand on click
-    // Ca nous permettra de positionner nos éléments d´UI plus facilement
-    // Dans un deuxieme temps on va vouloir utiliser la fonction incircle pour encercler ces coordonnées
-    // Notre encerclement devra être fait avec un radius minimal (24px? Voir material design google)
-
-  // Objectif 6 : mettre les images sur cloudinary
-  // Obejctif 7 : Loading stuff?
-
-
   function draw()
   {
 
@@ -94,25 +75,14 @@ const stolenCode = () => {
       ctx.scale(cameraZoom, cameraZoom);
       ctx.translate( -window.innerWidth / 2 + cameraOffset.x, -window.innerHeight / 2 + cameraOffset.y ); // reajustement après scale
 
-
-      // En fait on dessine toujours la même chose avec la même taille et les mêmes coordonnées, c´est notre vue qui change
-      // ctx.drawImage(island,-window.innerWidth / 2 ,-window.innerHeight / 2 , imageWidth , imageHeight) // CAS OU ON PREND LA WIDTH DE L´ECRAN COMME BASE
       ctx.drawImage(island,0 ,0 , imageWidth , imageHeight); // CAS OU ON GARDE L´IMAGE A UNE TAILLE FIXE ET REDIMMENSIONNE DIRECT APRES
-      // ctx.drawImage(island,-window.innerWidth * 2 ,-window.innerHeight * 2  , window.innerWidth , (window.innerWidth * 1080)/ 1920) // Obligé de dessiner l´image avec des coordonnées négatives par rapport au centre qui est l´origine
       drawGrid();
-      // drawLines()
 
       ctx.fillStyle = "#EA3424";
       drawMouseRec();
 
-      // ctx.drawImage(treasure, 2940, 1600 + Math.sin(movingItemsFactor) * 10, 10,10);
-
-
       questsRepo.forEach(quest => quest.drawSelfAndMove(ctx, treasure, movingItemsFactor));
       questsRepo.forEach(quest => quest.drawSurroundingCircle(ctx));
-
-
-      // drawRect(getTranslatedLocation({x: clickX, y: clickY}).x, getTranslatedLocation({x: clickX, y: clickY}).y, 50,50);
 
       requestAnimationFrame( draw ) // Ca veut dire que ca tourne en boucle/ On redraw à chaque FPS
   }
@@ -150,14 +120,7 @@ const stolenCode = () => {
 
   }
 
-  // function drawImageAtRealCoordinates(img, x, y, sizeX, sizeY){
-  //   let point = new DOMPoint(x,y)
-  //   let transformedPoint = translateFromRealToCanvas(point)
 
-  //   ctx.drawImage(img, transformedPoint.x, transformedPoint.y, sizeX, sizeY)
-  // }
-
-  // Gets the relevant location from a mouse or single touch event
     // Retourne un hash avec des coordonnées x et y de la souris ou du touch DANS LE MONDE RÉEL
   function getEventLocation(e)
   {
@@ -194,36 +157,14 @@ const stolenCode = () => {
 
   function drawGrid() {
 
-    // ctx.fillStyle = "#EA3424";
-    // drawText(`(0,0)`, 0, 0,32, "courier")
-
-
-    // ctx.fillStyle = "#45C4C7";
-    // ctx.fillRect(0,0, 50, 50);
-
-
-
-    // ctx.fillStyle = "#EA3424";
-    // ctx.beginPath();
-    // ctx.moveTo(0, 0);
-    // ctx.lineTo(10000, 0);
-    // ctx.stroke();
-
-    // ctx.beginPath();
-    // ctx.moveTo(0, 0);
-    // ctx.lineTo(0, 10000);
-    // ctx.stroke();
-
     ctx.fillStyle = "#000000";
 
     for(let i = -gridLinesSize; i < 10000;  i += gridIncrement){
 
-      // if(i == 0) ctx.fillStyle = "#EA3424";
       ctx.beginPath();
       ctx.moveTo(i, - gridLinesSize);
       ctx.lineTo(i, gridLinesSize);
       ctx.stroke();
-      // drawText(`${i}`, i, -150,32, "courier")
     }
 
     for(let j = -gridLinesSize; j < 10000;  j += gridIncrement){
@@ -231,14 +172,8 @@ const stolenCode = () => {
       ctx.moveTo(-gridLinesSize, j);
       ctx.lineTo(gridLinesSize, j);
       ctx.stroke();
-      // drawText(`${j}`, -150, j,32, "courier")
     }
   }
-
-  // function getTranslatedSize(size){
-  //   // Fonction Tim pour avoir une size dans le monde réel
-  //   return size / cameraZoom
-  // }
 
   function drawRect(x, y, width, height)
   {
@@ -279,16 +214,6 @@ const stolenCode = () => {
 
 
   function setToLevel(level){
-
-    // Peu importe où on est, gérer cameraZoom et offset nous amenera au même endroit
-    // Le problème à résoudre c´ est la taille du canvas : Selon la taille ca zoom aps au meme endroit
-
-
-    // L´objectif est:
-      // Définir des points sur l`image de base
-      // Ces points sont au milieu des niveaux
-      // Quand on demande a la fonction d´aller à un niveau, ces points sont au milieu de l´écran avec un zoom adapté
-      // Hypothese : Comme pour le produit en croix, je peux donner un cameraOffset relatif au window.innerWidth
 
 
     // LEVELS DETERMINED IF THE IMAGE IS PAINTED ALWAYS AT SAME SIZE AND SAME COORDINATES WHATEVER THE SCREEN
@@ -334,63 +259,6 @@ const stolenCode = () => {
         break;
     }
 
-
-
-    // LEVELS DETERMINED IF THE IMAGE IS PAINTED BASED ON THE WIDTH OF THE SCREEN
-    // switch(level){
-    //   case 0:
-    //     cameraZoom = 0.8 ;
-    //     cameraOffset = {x: 0.5  * imageWidth , y: 0.5 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 1:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.20473970473970474 * imageWidth, y: 0.10075110075110075 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 2:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.22804972804972806 * imageWidth, y: 0.252697919364586 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 3:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.3368298368298368 * imageWidth, y: 0.22507122507122507 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 4:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.46114996114996115 * imageWidth, y: 0.23888457221790554  * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 5:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.43006993006993005 * imageWidth, y: 0.37701804368471037 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 6:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.40675990675990675 * imageWidth, y: 0.5842182508849175 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 7:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.5155400155400155 * imageWidth, y: 0.6118449451782785  * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 8:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.5932400932400932 * imageWidth, y: 0.5289648622981956  * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 9:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.6787101787101787 * imageWidth, y: 0.5289648622981956 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 10:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.7641802641802642 * imageWidth, y: 0.6118449451782785 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 11:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.6631701631701632 * imageWidth, y: 0.7223517223517224 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    //   case 12:
-    //     cameraZoom = 4 ;
-    //     cameraOffset = {x: 0.8108003108003108 * imageWidth, y: 0.8052318052318053 * imageHeight + (window.innerHeight - imageHeight)};
-    //     break;
-    // }
   }
 
 
@@ -429,15 +297,6 @@ const stolenCode = () => {
     isDragging = true
     dragStart.x = getEventLocation(e).x/cameraZoom - cameraOffset.x
     dragStart.y = getEventLocation(e).y/cameraZoom - cameraOffset.y
-
-
-    // console.log(`Coordonnées du monde réel ==> x : ${getEventLocation(e).x}, y : ${getEventLocation(e).y}`);
-    // console.log(`Coordonnées du monde translated ==> x : ${ getTranslatedLocation(getEventLocation(e)).x}, y : ${getTranslatedLocation(getEventLocation(e)).y}`);
-    // console.log(`Camera Zoom ==> ${cameraZoom}`);
-    // console.log(`Camera Offset x ==> ${cameraOffset.x / window.innerWidth}`);
-    // console.log(`Camera Offset y ==> ${cameraOffset.y / window.innerHeight}`);
-    // console.log(`Camera Offset y ==> ${getEventLocation(e).x / window.innerWidth}`);
-
 
   }
 
@@ -564,5 +423,5 @@ function inSquare(xRef,yRef,radiusRef){
   if((horiS==true)&&(vertiS==true)){return true;}else{return false;}
 }
 
-export{stolenCode};
+export{gameController};
 
