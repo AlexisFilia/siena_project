@@ -1,9 +1,14 @@
-<h1>GameMap#show</h1>
-<p>Find me in app/views/game_map/show.html.erb</p>
+<%#= link_to "Tinder Quest", tinder_quests_path, class: "btn btn-primary" %>
+<%#= link_to "All Quests", user_quests_path(current_user), class: "btn btn-primary" %>
+<%#= link_to "Tableau des scores", teams_path, class: "btn btn-primary" %>
+<%#= link_to "Chat & Poll", user_messages_path(current_user), class: "btn btn-primary" %>
+<%#= link_to "My team", team_path(current_user.team), class: "btn btn-primary" %>
+<%#= link_to "My profile", user_path(current_user), class: "btn btn-primary" %>
 
-<%= link_to "Tinder Quest", tinder_quests_path, class: "btn btn-primary" %>
-<%= link_to "All Quests", user_quests_path(current_user), class: "btn btn-primary" %>
-<%= link_to "Tableau des scores", teams_path, class: "btn btn-primary" %>
-<%= link_to "Chat & Poll", user_messages_path(current_user), class: "btn btn-primary" %>
-<%= link_to "My team", team_path(current_user.team), class: "btn btn-primary" %>
-<%= link_to "My profile", user_path(current_user), class: "btn btn-primary" %>
+<div class="game" style="width: 100vw; height: 100vh; position: relative;">
+  <div id="redSquareInfo" style="position: absolute; top: 0; left: 0; z-index: 2; background-color: white; padding: 10px; border-radius: 4px;">
+    <p>Red Square Position :</p>
+    <p>(x , y) => (0, 0)</p>
+  </div>
+  <canvas id="my-canvas" style="width: 100vw; height: 100vh; border: 1px solid red;"></canvas>
+</div>

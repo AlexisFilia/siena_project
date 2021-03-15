@@ -15,7 +15,7 @@ class Quest {
   };
 
   drawSelf(ctx,img){
-    ctx.drawImage(img, this.x, this.y, 10,10);
+    ctx.drawImage(img, this.x, this.y, this.width ,this.height);
   };
 
   drawSelfAndMove(ctx,img, movingFactor){
