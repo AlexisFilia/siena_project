@@ -23,14 +23,52 @@ const gameController = () => {
   let initialPinchDistance = null
   let lastZoom = cameraZoom
 
-  let island = new Image();
+
+  // Division de l´île en 16 images de 1920 x 1080 = 7680 x 4320 image de base
+  let island_00 = new Image();
+  let island_01 = new Image();
+  let island_02 = new Image();
+  let island_03 = new Image();
+  let island_10 = new Image();
+  let island_11 = new Image();
+  let island_12 = new Image();
+  let island_13 = new Image();
+  let island_20 = new Image();
+  let island_21 = new Image();
+  let island_22 = new Image();
+  let island_23 = new Image();
+  let island_30 = new Image();
+  let island_31 = new Image();
+  let island_32 = new Image();
+  let island_33 = new Image();
+
+  island_00.src = "/assets/00.png";
+  island_01.src = "/assets/01.png";
+  island_02.src = "/assets/02.png";
+  island_03.src = "/assets/03.png";
+  island_10.src = "/assets/10.png";
+  island_11.src = "/assets/11.png";
+  island_12.src = "/assets/12.png";
+  island_13.src = "/assets/13.png";
+  island_20.src = "/assets/20.png";
+  island_21.src = "/assets/21.png";
+  island_22.src = "/assets/22.png";
+  island_23.src = "/assets/23.png";
+  island_30.src = "/assets/30.png";
+  island_31.src = "/assets/31.png";
+  island_32.src = "/assets/32.png";
+  island_33.src = "/assets/33.png";
+
+
+  let imageWidth = 960;
+  let imageHeight = 540;
+
+
   let treasure = new Image();
-  island.src = "/assets/bigpic.png";
   treasure.src = "/assets/treasure.png";
   // let imageWidth = window.innerWidth;
   // let imageHeight = (imageWidth * 1080) / 1920;
-  let imageWidth = 3840;
-  let imageHeight = 2160;
+
 
   let clickX = 0;
   let clickY = 0;
@@ -75,8 +113,31 @@ const gameController = () => {
       ctx.scale(cameraZoom, cameraZoom);
       ctx.translate( -window.innerWidth / 2 + cameraOffset.x, -window.innerHeight / 2 + cameraOffset.y ); // reajustement après scale
 
-      ctx.drawImage(island,0 ,0 , imageWidth , imageHeight); // CAS OU ON GARDE L´IMAGE A UNE TAILLE FIXE ET REDIMMENSIONNE DIRECT APRES
-      drawGrid();
+      // ctx.drawImage(island,0 ,0 , imageWidth , imageHeight); // CAS OU ON GARDE L´IMAGE A UNE TAILLE FIXE ET REDIMMENSIONNE DIRECT APRES
+
+      // On peint les 16 images de l´île---------
+      ctx.drawImage(island_00, 0 ,0 , imageWidth , imageHeight);
+      ctx.drawImage(island_01, imageWidth , 0 , imageWidth , imageHeight);
+      ctx.drawImage(island_02, imageWidth * 2, 0 , imageWidth , imageHeight);
+      ctx.drawImage(island_03, imageWidth * 3, 0 , imageWidth , imageHeight);
+
+      ctx.drawImage(island_10, 0, imageHeight , imageWidth , imageHeight);
+      ctx.drawImage(island_11, imageWidth, imageHeight , imageWidth , imageHeight);
+      ctx.drawImage(island_12, imageWidth * 2, imageHeight , imageWidth , imageHeight);
+      ctx.drawImage(island_13, imageWidth * 3, imageHeight , imageWidth , imageHeight);
+
+      ctx.drawImage(island_20, 0, imageHeight * 2 , imageWidth , imageHeight);
+      ctx.drawImage(island_21, imageWidth, imageHeight * 2, imageWidth , imageHeight);
+      ctx.drawImage(island_22, imageWidth * 2, imageHeight * 2, imageWidth , imageHeight);
+      ctx.drawImage(island_23, imageWidth * 3, imageHeight * 2, imageWidth , imageHeight);
+
+      ctx.drawImage(island_30, 0, imageHeight * 3 , imageWidth , imageHeight);
+      ctx.drawImage(island_31, imageWidth, imageHeight * 3, imageWidth , imageHeight);
+      ctx.drawImage(island_32, imageWidth * 2, imageHeight * 3, imageWidth , imageHeight);
+      ctx.drawImage(island_33, imageWidth * 3, imageHeight * 3, imageWidth , imageHeight);
+
+
+      // drawGrid();
 
       ctx.fillStyle = "#EA3424";
       drawMouseRec();
@@ -186,24 +247,6 @@ const gameController = () => {
       ctx.fillText(text, x, y)
   }
 
-  function keyDown(e){
-
-    if(e.key == "ArrowRight"){
-      cameraOffset.x -= 10
-            console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
-    }else if(e.key == "ArrowLeft"){
-      cameraOffset.x += 10
-            console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
-    }else if(e.key == "ArrowDown"){
-      cameraOffset.y -= 10
-            console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
-
-    }else if(e.key == "ArrowUp"){
-      cameraOffset.y += 10
-            console.log(`relative offsetX : ${cameraOffset.x / imageWidth} - relativeOffsetY : ${(cameraOffset.y - (window.innerHeight - imageHeight)) / imageHeight} `) ;
-
-    }
-  }
 
 
   function focusOnObject(x, y, zoom, additionalOffset = 0){
@@ -219,7 +262,7 @@ const gameController = () => {
     // LEVELS DETERMINED IF THE IMAGE IS PAINTED ALWAYS AT SAME SIZE AND SAME COORDINATES WHATEVER THE SCREEN
     switch(level){
       case 0:
-        focusOnObject(0.5  * imageWidth , 0.5 * imageHeight, 0.2)
+        focusOnObject(0.5  * 3840 , 0.5 * 2160, 0.2)
         break;
       case 1:
         focusOnObject(3040,1910,1)
@@ -391,11 +434,9 @@ const gameController = () => {
   canvas.addEventListener('mousemove', onPointerMove)
   canvas.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove))
   canvas.addEventListener( 'wheel', (e) => adjustZoom(e.deltaY*SCROLL_SENSITIVITY))
-  document.addEventListener("keydown", (e) => keyDown(e));
 
   // Ready, set, go
   draw()
-  // focusOnObject(2940, 1600, 3, 5)
   setToLevel(0)
 }
 
