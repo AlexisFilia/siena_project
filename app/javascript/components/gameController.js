@@ -1,4 +1,5 @@
 import { Quest } from '../models/questModel';
+import i00 from '../../assets/images/00.png'
 
 const gameController = () => {
 
@@ -42,22 +43,25 @@ const gameController = () => {
   let island_32 = new Image();
   let island_33 = new Image();
 
-  island_00.src = "/assets/00.png";
-  island_01.src = "/assets/01.png";
-  island_02.src = "/assets/02.png";
-  island_03.src = "/assets/03.png";
-  island_10.src = "/assets/10.png";
-  island_11.src = "/assets/11.png";
-  island_12.src = "/assets/12.png";
-  island_13.src = "/assets/13.png";
-  island_20.src = "/assets/20.png";
-  island_21.src = "/assets/21.png";
-  island_22.src = "/assets/22.png";
-  island_23.src = "/assets/23.png";
-  island_30.src = "/assets/30.png";
-  island_31.src = "/assets/31.png";
-  island_32.src = "/assets/32.png";
-  island_33.src = "/assets/33.png";
+  console.log(island_00);
+  island_00.src = i00;
+  // console.log(url("/../../assets/images/00.png"));
+  // island_00.src = "/assets/00.png";
+  // island_01.src = "/assets/01.png";
+  // island_02.src = "/assets/02.png";
+  // island_03.src = "/assets/03.png";
+  // island_10.src = "/assets/10.png";
+  // island_11.src = "/assets/11.png";
+  // island_12.src = "/assets/12.png";
+  // island_13.src = "/assets/13.png";
+  // island_20.src = "/assets/20.png";
+  // island_21.src = "/assets/21.png";
+  // island_22.src = "/assets/22.png";
+  // island_23.src = "/assets/23.png";
+  // island_30.src = "/assets/30.png";
+  // island_31.src = "/assets/31.png";
+  // island_32.src = "/assets/32.png";
+  // island_33.src = "/assets/33.png";
 
 
   let imageWidth = 960;
@@ -117,24 +121,24 @@ const gameController = () => {
 
       // On peint les 16 images de l´île---------
       ctx.drawImage(island_00, 0 ,0 , imageWidth , imageHeight);
-      ctx.drawImage(island_01, imageWidth , 0 , imageWidth , imageHeight);
-      ctx.drawImage(island_02, imageWidth * 2, 0 , imageWidth , imageHeight);
-      ctx.drawImage(island_03, imageWidth * 3, 0 , imageWidth , imageHeight);
+      // ctx.drawImage(island_01, imageWidth , 0 , imageWidth , imageHeight);
+      // ctx.drawImage(island_02, imageWidth * 2, 0 , imageWidth , imageHeight);
+      // ctx.drawImage(island_03, imageWidth * 3, 0 , imageWidth , imageHeight);
 
-      ctx.drawImage(island_10, 0, imageHeight , imageWidth , imageHeight);
-      ctx.drawImage(island_11, imageWidth, imageHeight , imageWidth , imageHeight);
-      ctx.drawImage(island_12, imageWidth * 2, imageHeight , imageWidth , imageHeight);
-      ctx.drawImage(island_13, imageWidth * 3, imageHeight , imageWidth , imageHeight);
+      // ctx.drawImage(island_10, 0, imageHeight , imageWidth , imageHeight);
+      // ctx.drawImage(island_11, imageWidth, imageHeight , imageWidth , imageHeight);
+      // ctx.drawImage(island_12, imageWidth * 2, imageHeight , imageWidth , imageHeight);
+      // ctx.drawImage(island_13, imageWidth * 3, imageHeight , imageWidth , imageHeight);
 
-      ctx.drawImage(island_20, 0, imageHeight * 2 , imageWidth , imageHeight);
-      ctx.drawImage(island_21, imageWidth, imageHeight * 2, imageWidth , imageHeight);
-      ctx.drawImage(island_22, imageWidth * 2, imageHeight * 2, imageWidth , imageHeight);
-      ctx.drawImage(island_23, imageWidth * 3, imageHeight * 2, imageWidth , imageHeight);
+      // ctx.drawImage(island_20, 0, imageHeight * 2 , imageWidth , imageHeight);
+      // ctx.drawImage(island_21, imageWidth, imageHeight * 2, imageWidth , imageHeight);
+      // ctx.drawImage(island_22, imageWidth * 2, imageHeight * 2, imageWidth , imageHeight);
+      // ctx.drawImage(island_23, imageWidth * 3, imageHeight * 2, imageWidth , imageHeight);
 
-      ctx.drawImage(island_30, 0, imageHeight * 3 , imageWidth , imageHeight);
-      ctx.drawImage(island_31, imageWidth, imageHeight * 3, imageWidth , imageHeight);
-      ctx.drawImage(island_32, imageWidth * 2, imageHeight * 3, imageWidth , imageHeight);
-      ctx.drawImage(island_33, imageWidth * 3, imageHeight * 3, imageWidth , imageHeight);
+      // ctx.drawImage(island_30, 0, imageHeight * 3 , imageWidth , imageHeight);
+      // ctx.drawImage(island_31, imageWidth, imageHeight * 3, imageWidth , imageHeight);
+      // ctx.drawImage(island_32, imageWidth * 2, imageHeight * 3, imageWidth , imageHeight);
+      // ctx.drawImage(island_33, imageWidth * 3, imageHeight * 3, imageWidth , imageHeight);
 
 
       // drawGrid();
