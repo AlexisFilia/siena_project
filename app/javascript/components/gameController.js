@@ -1,4 +1,5 @@
 import { Quest } from '../models/questModel';
+import treasure_src from '../../assets/images/treasure.png'
 import i00 from '../../assets/images/00.png'
 
 const gameController = () => {
@@ -69,7 +70,7 @@ const gameController = () => {
 
 
   let treasure = new Image();
-  treasure.src = "/assets/treasure.png";
+  treasure.src = treasure_src;
   // let imageWidth = window.innerWidth;
   // let imageHeight = (imageWidth * 1080) / 1920;
 
