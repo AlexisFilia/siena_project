@@ -105,11 +105,10 @@ const gameController = () => {
   let c = new Quest(questsRepo, 640, 1280);
   let d = new Quest(questsRepo, 1540, 1090);
   let e = new Quest(questsRepo, 1440, 1080);
-  let f = new Quest(questsRepo, 3080, 1740);
+  let f = new Quest(questsRepo, 3070, 1720);
   console.log(questsRepo);
 
-
-
+  let dpi = window.devicePixelRatio;
 
   function draw()
   {
@@ -164,6 +163,17 @@ const gameController = () => {
 
       requestAnimationFrame( draw ) // Ca veut dire que ca tourne en boucle/ On redraw à chaque FPS
   }
+
+
+  const fix_dpi = () => {
+    // https://medium.com/wdstack/fixing-html5-2d-canvas-blur-8ebe27db07da
+    //get CSS height //the + prefix casts it to an integer //the slice method gets rid of "px" //get CSS width //scale the canvas
+    let style_height = +getComputedStyle(canvas).getPropertyValue("height").slice(0, -2);
+    let style_width = +getComputedStyle(canvas).getPropertyValue("width").slice(0, -2);
+    canvas.setAttribute('height', style_height * dpi);
+    canvas.setAttribute('width', style_width * dpi);
+  }
+
 
   function translateFromRealToCanvas(point){
     // Donne moi un point avec des coordonnées dans le monde réel et je te rend un point avec des coordonnées dans le monde du canvas
@@ -453,6 +463,7 @@ const gameController = () => {
   canvas.addEventListener( 'wheel', (e) => adjustZoom(e.deltaY*SCROLL_SENSITIVITY))
 
   // Ready, set, go
+  fix_dpi()
   draw()
   setToLevel(0)
 }

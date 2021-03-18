@@ -4,10 +4,10 @@ class Quest {
     this.index = questsRepo.length;
     this.x = x;
     this.y = y;
-    this.width = 10;
-    this.height = 10;
+    this.width = 30;
+    this.height = 30;
     this.center = new DOMPoint(this.x + this.width / 2, this.y + this.height /2);
-    this.radius = 20;
+    this.radius = 40;
     this.mouseOver = false;
 
     questsRepo.push(this); // Adding self to the repository(array) of quests
