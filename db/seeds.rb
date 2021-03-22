@@ -31,20 +31,20 @@ puts "Some users have been created"
 
 puts "Creating levels"
 
-level_1 = Level.create!(name: "The Harbor")
-level_2 = Level.create!(name: "The High Seas")
-level_3 = Level.create!(name: "The Reefs")
-level_4 = Level.create!(name: "The Hallucinogenic Forest")
-level_5 = Level.create!(name: "The Desert")
-level_6 = Level.create!(name: "The Oasis")
-level_7 = Level.create!(name: "The Flying Rocks")
-level_8 = Level.create!(name: "Moonlike Peak")
-level_9 = Level.create!(name: "The Verdant Valley")
-level_10 = Level.create!(name: "The Black Forest")
-level_11 = Level.create!(name: "The Maze Canyon")
-level_12 = Level.create!(name: "The Frozen Lands")
-level_13 = Level.create!(name: "The Blizzard")
-level_14 = Level.create!(name: "The Golden Pinguin")
+level_1 = Level.create!(name: "The Harbor", next_level_id: 2)
+level_2 = Level.create!(name: "The High Seas", next_level_id: 3)
+level_3 = Level.create!(name: "The Reefs", next_level_id: 4)
+level_4 = Level.create!(name: "The Hallucinogenic Forest", next_level_id: 5)
+level_5 = Level.create!(name: "The Desert", next_level_id: 6)
+level_6 = Level.create!(name: "The Oasis", next_level_id: 7)
+level_7 = Level.create!(name: "The Flying Rocks", next_level_id: 8)
+level_8 = Level.create!(name: "Moonlike Peak", next_level_id: 9)
+level_9 = Level.create!(name: "The Verdant Valley", next_level_id: 10)
+level_10 = Level.create!(name: "The Black Forest", next_level_id: 11)
+level_11 = Level.create!(name: "The Maze Canyon", next_level_id: 12)
+level_12 = Level.create!(name: "The Frozen Lands", next_level_id: 13)
+level_13 = Level.create!(name: "The Blizzard", next_level_id: 14)
+level_14 = Level.create!(name: "The Golden Pinguin", next_level_id: 15)
 
 puts "Levels have been created"
 
