@@ -26,7 +26,7 @@ const gameController = () => {
 
   let questsRepo = [];
 
-  let ctx = canvas.getContext('2d')
+  let ctx = canvas.getContext('2d', { alpha: false })
   console.log(ctx.getTransform())
 
   let cameraOffset = { x: window.innerWidth/2, y: window.innerHeight/2 }
