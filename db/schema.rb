@@ -132,7 +132,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.text "description"
     t.text "criteria"
     t.string "type_of"
-    t.string "map_position"
     t.string "roulette"
     t.bigint "level_id", null: false
     t.datetime "created_at", precision: 6, null: false

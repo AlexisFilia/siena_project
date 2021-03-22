@@ -5,7 +5,7 @@ class CreateQuests < ActiveRecord::Migration[6.1]
       t.text :description
       t.text :criteria
       t.string :type_of
-      t.string :map_position
+      # t.string :map_position
       t.string :roulette
       t.references :level, null: false, foreign_key: true
 
