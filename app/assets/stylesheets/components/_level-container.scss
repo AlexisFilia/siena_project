@@ -1,0 +1,139 @@
+#levels-container{
+  margin-top: 15vh;
+  margin-bottom: 15vh;
+
+  #divider-left{
+    position: absolute;
+    width: calc(50% + 1px);
+    height: 100%;
+    top: 20vh;
+    left:0;
+    border-right: 1px dotted white;
+  }
+
+  #divider-right{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left:50%;
+    border-left: 1px solid white;
+  }
+
+  .level-container{
+    z-index: 1;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh 0;
+    max-width: 500px;
+    text-decoration: none;
+    // background-color: $background-color;
+    // border: 1px dotted white;
+
+    .upper-part{
+      width: 100%;
+      margin-bottom: 2vh;
+
+      .mandatory-indication{
+
+        width: 30%;
+        color: $secondary-color;
+
+        p{
+          font-size: 0.5em;
+          margin: 0;
+          &.percent{
+          font-size: 1em;
+          color: $menu-items-color;
+          }
+        }
+
+      }
+
+      .level-index{
+        background-color: $secondary-color;
+        color: white;
+        font-family: $special-font;
+        font-size: 2em;
+        border-radius: 10px;
+        // padding: 0.5em;
+        width: 2em;
+        height: 2em;
+
+        p{
+          margin: 0;
+        }
+
+        i{
+          display: none;
+        }
+
+      }
+
+      .optional-indication{
+        width: 30%;
+        color: $secondary-color;
+
+        p{
+          font-size: 0.5em;
+          margin: 0;
+          &.percent{
+          font-size: 1em;
+          color: $menu-items-color;
+          }
+        }
+      }
+    }
+
+    .level-name-part{
+      width: 90%;
+      padding: 0.5em;
+      background-color: white;
+      // background-color: $secondary-color;
+      color: black;
+      // color: $secondary-color;
+      // color: white;
+      font-family: $special-font;
+      font-size: 1em;
+      // border-radius: 10px;
+    }
+
+
+    &.locked{
+
+      .upper-part{
+
+        .mandatory-indication{
+          display: none;
+        }
+
+        .level-index{
+          background-color: $gray;
+          p{
+            display: none;
+          }
+          i{
+            display: block;
+          }
+        }
+
+        .optional-indication{
+          display: none;
+        }
+
+      }
+
+      .level-name-part{
+        background-color: $gray;
+        color: white;
+      }
+    }
+  }
+
+
+}
+
+
