@@ -1,0 +1,63 @@
+.quests-container{
+  width: 100%;
+  margin-bottom: 15vh;
+
+  .title{
+    color: white;
+    margin: 5vh 0;
+  }
+
+
+  .quest-container{
+    position: relative;
+
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    margin: 2vh 0;
+
+    .round-item{
+      position: absolute;
+      left: -3vh;
+      top: -2vh;
+      border-radius: 50%;
+      height: 8vh;
+      width: 8vh;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+
+      i{
+        font-size: 2em;
+      }
+    }
+
+    .quest-title{
+      width: 100%;
+      border-radius: 10px;
+      color: white;
+      padding: 0.5em 0;
+      font-size: 0.8em;
+      // height: 80%;
+    }
+
+    &.open{
+      .round-item{color: $gray; }
+      .quest-title{background-color: $gray;}
+    }
+
+    &.validation{
+      .round-item{color: #F9A500; }
+      .quest-title{background-color: #F9A500;}
+    }
+
+    &.completed{
+      .round-item{color: #6FC240; }
+      .quest-title{background-color: #6FC240;}
+    }
+
+    &.rejected{
+      .round-item{color: #ED2B37; }
+      .quest-title{background-color: #ED2B37;}
+    }
+  }
+}

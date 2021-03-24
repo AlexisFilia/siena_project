@@ -1,0 +1,40 @@
+.container-below-top-bar{
+  margin-top: 10vh;
+  padding: 5vh 5vw;
+  // height: 10vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .level-details{
+    color: $secondary-color;
+    font-family: $special-font;
+
+    p{
+      margin: 0;
+
+      &.level-number{
+        font-size: 2em;
+      }
+
+      &.title{
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  .rounded-div{
+    border-radius: 50%;
+    height: 8vh;
+    width: 8vh;
+    background-color: white;
+    color: $background-color;
+    text-decoration: none;
+
+    p{
+      margin: 0;
+    }
+  }
+}

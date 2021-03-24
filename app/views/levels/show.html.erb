@@ -1,2 +1,65 @@
-<h1>Levels#show</h1>
-<p>Find me in app/views/levels/show.html.erb</p>
+<%= render 'shared/top-bar' %>
+
+<div class="container-below-top-bar">
+  <%= link_to :back, class: "rounded-div centered" do %>
+    <i class="fas fa-chevron-left"></i>
+  <% end %>
+
+  <div class="level-details centered-vertically">
+    <p class="level-number"><%= @level.id %> </p>
+    <p class="title"><%= @level.name.upcase %> </p>
+  </div>
+
+  <div class="rounded-div centered"><p>10%</p></div>
+
+</div>
+
+<%= render 'shared/bottom-bar' %>
+
+<div class="quests-container centered-vertically">
+  <div class="title">MANDATORY QUESTS</div>
+  <% @quests.select{|q| q[:quest].type_of == "mandatory"}.each do |q| %>
+    <%= link_to quest_path(q[:quest]), class: "quest-container #{q[:status]}" do %>
+      <div class="round-item centered">
+        <!-- <i class="far fa-gem"></i> -->
+        <!-- <i class="far fa-star"></i> -->
+        <% case q[:status] %>
+        <% when "open" %>
+          <i class="fas fa-crosshairs" class=""></i>
+        <% when "validation" %>
+          <i class="far fa-clock"></i>
+        <% when "completed" %>
+          <i class="fas fa-award"></i>
+        <% when "rejected" %>
+          <i class="fas fa-skull-crossbones"></i>
+        <% end %>
+      </div>
+      <div class="quest-title centered"><%= q[:quest].name.upcase %> </div>
+    <% end %>
+  <% end %>
+
+
+  <% if !@quests.select{|q| q[:quest].type_of == "optional"}.empty? %>
+    <div class="title">OPTIONAL QUESTS</div>
+    <% @quests.select{|q| q[:quest].type_of == "optional"}.each do |q| %>
+      <%= link_to quest_path(q[:quest]), class: "quest-container #{q[:status]}" do %>
+        <div class="round-item centered">
+          <!-- <i class="far fa-gem"></i> -->
+          <!-- <i class="far fa-star"></i> -->
+          <% case q[:status] %>
+          <% when "open" %>
+            <i class="fas fa-crosshairs" class=""></i>
+          <% when "validation" %>
+            <i class="far fa-clock"></i>
+          <% when "completed" %>
+            <i class="fas fa-award"></i>
+          <% when "rejected" %>
+            <i class="fas fa-skull-crossbones"></i>
+          <% end %>
+        </div>
+        <div class="quest-title centered"><%= q[:quest].name.upcase %> </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+</div>
