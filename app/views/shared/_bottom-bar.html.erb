@@ -1,0 +1,23 @@
+<%= render 'shared/sideNav' %>
+
+<div id="bottom-bar">
+
+  <div class="divider centered">
+    <%= link_to new_vote_path do %>
+      <i class="far fa-check-circle"></i>
+    <% end %>
+  </div>
+
+  <div id="bottom-bar-button-plus-rounded-div" class="centered">
+    <div id="bottom-bar-button-plus-rounded-div-inner" class="centered">
+      <i id="bottom-bar-button-plus" class="fas fa-plus"></i>
+      <i id="bottom-bar-button-back" class="fas fa-chevron-left invisible"></i>
+    </div>
+  </div>
+
+  <div class="divider centered">
+    <%= link_to messages_path do %>
+      <i class="far fa-comment-dots"></i>
+    <% end %>
+  </div>
+</div>
