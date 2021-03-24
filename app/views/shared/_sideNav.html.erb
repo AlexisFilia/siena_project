@@ -1,0 +1,21 @@
+<div id="sideNav-background">
+</div>
+<div id="sideNav" data-id= <%= @sideNav_id %>>
+
+
+  <div id="sideNav-profile-container">
+    <div id="sideNav-profile-picture"></div>
+    <div id="sideNav-profile-name"><%= current_user.first_name.upcase %> </div>
+  </div>
+
+  <div id="sideNav-links">
+    <%= link_to "QUESTS", levels_path, data: {id: 1}  %>
+    <%= link_to "EDIT MY PROFILE", edit_user_path(current_user), data: {id: 2}  %>
+    <%= link_to "MY TEAM", team_path(current_user.team), data: {id: 3}  %>
+    <%= link_to "GALLERY", team_quest_links_path, data: {id: 4}  %>
+    <%= link_to "SCORES BOARD", teams_path, data: {id: 5}  %>
+    <%= link_to "QUESTS VALIDATION", teams_path, data: {id: 6}  %>
+    <%= link_to "TCHAT", messages_path, data: {id: 7}  %>
+  </div>
+
+</div>

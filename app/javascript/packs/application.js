@@ -23,14 +23,18 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { timTests } from '../components/timTests';
-import { gameController } from '../components/gameController';
-import { stolenCode } from '../components/stolenCode';
+// import { timTests } from '../components/timTests';
+// import { gameController } from '../components/gameController';
+// import { stolenCode } from '../components/stolenCode';
+import { sideNav } from '../components/sideNav';
+import { sideNavLinks } from '../components/sideNavLinks';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   // timTests();
-  gameController();
-  stolenCode();
+  // gameController();
+  // stolenCode();
+  sideNav();
+  sideNavLinks();
 });
