@@ -2,6 +2,12 @@ class LevelsController < ApplicationController
 
 
   def show
+    @level = Level.find(params[:id])
+    @team = current_user.team
+
+    # on se crée un mapping des quetes en fonction du status du team_quest_link de l´equipe
+    @quests = @level.quests.map{|q| {quest: q , status: get_team_quest_status(@team, q)}}
+    pp @quests
   end
 
   def index
@@ -46,7 +52,13 @@ class LevelsController < ApplicationController
 
   def team_has_completed_quest?(team, quest)
 
-    return TeamQuestLink.find_by(team: team, status: "completed", quest: quest).nil? ? false : true
+    return get_team_quest_status(team, quest) == "completed" ? true : false
+
+  end
+
+  def get_team_quest_status(team, quest)
+    tql = TeamQuestLink.find_by(team: team, quest: quest)
+    return tql.nil? ? "open" : tql.status
   end
 
   def team_percentage_of_level_completion(team, level, quest_type = "all")
