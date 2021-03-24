@@ -1,2 +1,21 @@
-<h1>Votes#new</h1>
-<p>Find me in app/views/votes/new.html.erb</p>
+<div class="container bg-light mt-4">
+  <div class="row p-4">
+    <div class="col col-12">
+      <h1>Votes#new</h1>
+      <p>Find me in app/views/votes/new.html.erb</p>
+
+
+      <% if @tql_to_vote.blank? %>
+        <p>There is not more quests to vote for.</p>
+        <p>Go and have a look into the quest GALLERY</p>
+        <%= link_to "GALLERY", team_quest_links_path %>
+      <% else %>
+        <h3><%= @tql_to_vote.quest.name %></h3>
+        <p><%= @tql_to_vote.quest.criteria %></p>
+
+        <%= link_to "Vote NO", votes_path(vote: false), method: :post %>
+        <%= link_to "Vote Yes", votes_path(vote: true), method: :post %>
+      <% end %>
+    </div>
+  </div>
+</div>

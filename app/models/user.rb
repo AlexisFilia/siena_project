@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :team
+  has_one :company, through: :team
 
   has_one_attached :photo
 

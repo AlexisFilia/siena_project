@@ -1,0 +1,17 @@
+<div class="container bg-light mt-4">
+  <div class="row p-4">
+    <div class="col col-12">
+      <h2>All the validated quests</h2>
+
+      <% @validated_tqls.each do |tql| %>
+        <p>------------------------</p>
+        <h3><%= tql.quest.name %> for <%= tql.team.name %></h3>
+        <% if !tql.medias.blank? %>
+          <%= image_tag tql.medias.first.url %>
+        <% end %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+

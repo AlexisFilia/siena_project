@@ -2,6 +2,7 @@ class Team < ApplicationRecord
   belongs_to :company
 
   has_many :users, dependent: :destroy
+  has_many :messages, through: :users
   has_many :team_quest_links, dependent: :destroy
   has_many :quests, through: :team_quest_links
 
