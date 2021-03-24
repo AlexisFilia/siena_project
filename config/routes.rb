@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'levels#index'
 
-  resources :messages, only: [:index, :show, :new, :create]
+  resources :messages, only: [:index, :create]
   resources :levels, only: [:index, :show]
   resources :quests, only: [:index, :show]
   resources :team_quest_links, only: [:index]
