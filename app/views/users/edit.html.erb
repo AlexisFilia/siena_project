@@ -1,2 +1,17 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container bg-light mt-4">
+  <div class="row p-4">
+    <div class="col col-12">
+
+      <h2>Edit Profile user</h2>
+
+      <%= simple_form_for current_user do |f| %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <% f.input :description  %>
+        <%= f.input :photo, as: :file %>
+        <%= f.button :submit, class: "btn btn-primary", name: 'type_of',value: 'general' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

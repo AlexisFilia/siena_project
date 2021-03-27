@@ -5,7 +5,7 @@
 
   <div id="sideNav-profile-container">
     <div id="sideNav-profile-picture"></div>
-    <div id="sideNav-profile-name"><%= current_user.first_name.upcase %> </div>
+    <%= link_to current_user.first_name.upcase, user_path(current_user), id: "sideNav-profile-name" %>
   </div>
 
   <div id="sideNav-links">
