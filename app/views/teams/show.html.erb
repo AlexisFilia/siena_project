@@ -1,2 +1,24 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<div class="container bg-light mt-4">
+  <div class="row p-4">
+    <div class="col col-12">
+
+      <h1>Teams#show</h1>
+      <p>Find me in app/views/teams/show.html.erb</p>
+
+      <p>Name : <%= @team.name %></p>
+      <p>Description : <%= @team.description %></p>
+      <p>Values : <%= @team.values %></p>
+
+      <h2>Crewmates :</h2>
+
+      <% @team_members.each do |user| %>
+        <p>Username : <%= user.username %></p>
+        <p>Name : <%= user.first_name %> <%= user.last_name %></p>
+
+      <% end %>
+
+      <%= link_to "Back", root_path %>
+
+    </div>
+  </div>
+</div>
