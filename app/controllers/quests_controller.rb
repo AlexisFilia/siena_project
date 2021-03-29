@@ -21,7 +21,6 @@ class QuestsController < ApplicationController
     @quests = @level.quests.map{|q| {quest: q , status: @team.get_quest_status(q)}}
   end
 
-
 end
 
 

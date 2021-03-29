@@ -7,7 +7,6 @@ class LevelsController < ApplicationController
     # je pourrai faire les calculs dans le vue... à discuter
     @levels = Level.all.map{|l| {level: l, mandatory_completion: @team.get_percentage_of_level_completion(l)[:mandatory],  optional_completion: @team.get_percentage_of_level_completion(l)[:optional]}}
 
-    puts @team.update_points(Quest.first)
   end
 
   def show
