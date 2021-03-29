@@ -167,6 +167,9 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.string "name"
     t.text "description"
     t.string "values"
+    t.integer "points_level"
+    t.integer "points_optional"
+    t.integer "points_votes"
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

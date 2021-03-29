@@ -43,14 +43,15 @@ class Team < ApplicationRecord
 
   def get_level
 
-    team_level = Level.first
+    team_level = Level.first # pb de la logique avec next_level_id
+
     team_completed_quests = self.get_completed_quests
 
     if !team_completed_quests.empty?
       levels = Level.all
 
       #determine highest level of quest achieved by the team
-      highest_level = team_completed_quests.max {|a,b| a.level.id <=> b.level.id }.level
+      highest_level = team_completed_quests.max {|a,b| a.level.id <=> b.level.id }.level # pb de la logique avec next_level_id
 
       #check if all mandatory are done in this level and allocate team_level accordingly
       highest_level_quests = highest_level.quests
@@ -113,8 +114,19 @@ class Team < ApplicationRecord
     # truc qui devrait se trigger quand on vote (action = "vote"), quand on realise une quete (action = quete), quand on fait autre chose...
     # ca permettrait d´updater le score d´une team en dur dans la team et donc de calculer le ranking tres rapidement (et autres actions)
     # update points_level", "points_optional", "points_vote" et autres choses qu´on voudrait
+
+    return action.class
+    # if(action )
+
+    # CAS LEVEL
+    # CAS OPTIONAL
+    # CAS VOTE
+
+
   end
 
 
 end
+
+
 

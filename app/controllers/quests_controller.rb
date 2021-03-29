@@ -1,5 +1,4 @@
 class QuestsController < ApplicationController
-  before_action :load_team_main_variables
 
 
   def show
@@ -22,14 +21,8 @@ class QuestsController < ApplicationController
     @quests = @level.quests.map{|q| {quest: q , status: @team.get_quest_status(q)}}
   end
 
-  private
-
-  def load_team_main_variables
-    @team = current_user.team
-    @team_current_level = @team.get_level
-    @team_current_level_completion = @team.get_percentage_of_level_completion(@team_current_level)
-  end
 
 end
+
 
 
