@@ -1,18 +1,23 @@
-<div class="container bg-light mt-4">
-  <div class="row p-4">
-    <div class="col col-12">
-      <h2>All the validated quests</h2>
+<%= render 'shared/top-bar' %>
+<%= render 'shared/bottom-bar' %>
 
-      <%= link_to "Back", root_path %>
+<div class="main-container">
 
-      <% @validated_tqls.each do |tql| %>
-        <p>------------------------</p>
-        <h3><%= tql.quest.name %> for <%= tql.team.name %></h3>
-        <% if !tql.medias.blank? %>
-          <%= image_tag tql.medias.first.url %>
+  <div class="container bg-light mt-4">
+    <div class="row p-4">
+      <div class="col col-12">
+        <h2>All the validated quests</h2>
+
+        <%= link_to "Back", root_path %>
+
+        <% @validated_tqls.each do |tql| %>
+          <p>------------------------</p>
+          <h3><%= tql.quest.name %> for <%= tql.team.name %></h3>
+          <% if !tql.medias.blank? %>
+            <%= image_tag tql.medias.first.url %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
-
