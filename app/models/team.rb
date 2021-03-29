@@ -104,10 +104,23 @@ class Team < ApplicationRecord
 
     # compare les total_points de toutes les équipes et retourne le rang
 
+    my_rank = 1 # assigne 1 de base
+    my_points = self.get_total_points
+
+    # crée un array avec les teams
+    teams = Team.all
+
+    teams.each do |team|
+      my_rank += 1 if team != self && team.get_total_points > my_points # on aura le meme rank minimum ex aeco
+    end
+
+    return my_rank
+
   end
 
   def get_total_points
     # cummule les points stockés en dur dans la team
+    return self.points_level + self.points_optional + self.points_votes
   end
 
   def update_points(action)
@@ -115,16 +128,41 @@ class Team < ApplicationRecord
     # ca permettrait d´updater le score d´une team en dur dans la team et donc de calculer le ranking tres rapidement (et autres actions)
     # update points_level", "points_optional", "points_vote" et autres choses qu´on voudrait
 
-    return action.class
-    # if(action )
+    if action.class == Quest
 
-    # CAS LEVEL
-    # CAS OPTIONAL
-    # CAS VOTE
+      completed_quest = action
 
+    # CAS LEVEL ------------------------------------------------------------------------------------
+      if completed_quest.type_of == "mandatory"
+
+        #choppe le level de la team
+        team_level = self.get_level
+
+        # definit le nombres de points en fonction
+        points_level = 0
+        (1..team_level.id).each do |counter|
+          points_level += (counter * 100) # 100 + 200 + 300 + 400
+        end
+
+        self.update(points_level: points_level)
+
+    # CAS OPTIONAL ------------------------------------------------------------------------------------
+      elsif completed_quest.type_of == "optional"
+
+        # compte le nombre de quetes optionnelles faites
+        team_completed_optional_quests = self.get_completed_quests.select{ |q| q.type_of == "optional"} # forcément au moins une
+        # defini le nombres de points en fonction
+        self.update(points_optional: team_completed_optional_quests.count * 100)
+
+      end
+
+    # CAS VOTE ------------------------------------------------------------------------------------
+    elsif action == "vote"
+      # + 5 points / vote pour l´instant mais normalement on doit gérer avec le nombre de votes / equipe et tout
+      self.update(points_votes: self.points_votes + 5)
+    end
 
   end
-
 
 end
 
