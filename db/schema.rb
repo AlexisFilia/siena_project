@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.string "vote"
+    t.boolean "vote"
     t.string "criteria"
     t.bigint "team_quest_link_id", null: false
     t.bigint "user_id", null: false

@@ -80,7 +80,14 @@ tql_6 = TeamQuestLink.create!(team: team_1, quest: quest_6, status: "rejected")
 tql_7 = TeamQuestLink.create!(team: team_1, quest: quest_7, status: "completed")
 
 
-
 puts "Team Quests Links for Team 1 have been created"
+
+puts "Creating some Team Quests Links for others teams"
+
+tql_8 = TeamQuestLink.create!(team: team_2, quest: quest_8, status: "validation")
+tql_9 = TeamQuestLink.create!(team: team_3, quest: quest_9, status: "validation")
+tql_10 = TeamQuestLink.create!(team: team_4, quest: quest_10, status: "validation")
+
+puts "Team Quests Links for others teams have been created"
 
 puts "The new seeded DB has been created"
