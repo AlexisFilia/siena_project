@@ -3,6 +3,7 @@
     <div class="col col-12">
       <h1>Votes#new</h1>
       <p>Find me in app/views/votes/new.html.erb</p>
+      <%= link_to "Back", root_path %>
 
 
       <% if @tql_to_vote.blank? %>
@@ -13,8 +14,8 @@
         <h3><%= @tql_to_vote.quest.name %></h3>
         <p><%= @tql_to_vote.quest.criteria %></p>
 
-        <%= link_to "Vote NO", votes_path(vote: false), method: :post %>
-        <%= link_to "Vote Yes", votes_path(vote: true), method: :post %>
+        <%= link_to "Vote NO", votes_path(vote: false, tql: @tql_to_vote), method: :post %>
+        <%= link_to "Vote Yes", votes_path(vote: true, tql: @tql_to_vote), method: :post %>
       <% end %>
     </div>
   </div>

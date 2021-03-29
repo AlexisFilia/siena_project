@@ -4,15 +4,28 @@ class VotesController < ApplicationController
 
   def new
     @tql_to_vote = TeamQuestLink.joins(:team)
-                                .where(status: 'pending')
                                 .where(teams: { company_id: current_user.company.id })
-                                .joins(:votes)
-                                .where.not(votes: { user_id: current_user })
-                                .order("created_at ASC")
+                                .where(status: 'validation')
+                                .left_outer_joins(:votes)
+                                .where.not(votes: { user_id: current_user.id })
+                                .or(TeamQuestLink.left_outer_joins(:votes)
+                                                 .where(votes: { user_id: nil}))
+                                .order('created_at ASC')
                                 .first
   end
 
   def create
-    raise
+    tql = TeamQuestLink.find(params[:tql])
+    vote = Vote.new(vote_params)
+    vote.user = current_user
+    vote.team_quest_link = tql
+    vote.save!
+    redirect_to new_vote_path
+  end
+
+  private
+
+  def vote_params
+    params.permit(:criteria, :vote)
   end
 end
