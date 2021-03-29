@@ -36,5 +36,9 @@
     p{
       margin: 0;
     }
+
+    &.transparent{
+      background-color: transparent;
+    }
   }
 }

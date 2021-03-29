@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   root to: 'levels#index'
 
   resources :messages, only: [:index, :create]
-  resources :levels, only: [:index, :show]
-  resources :quests, only: [:index, :show]
+
+  resources :levels, only: [:index, :show], shallow: true do
+    resources :quests, only: [:index, :show]
+  end
+
   resources :team_quest_links, only: [:index]
   resources :votes, only: [:index, :new, :create]
 

@@ -1,0 +1,26 @@
+.quest-description-container{
+  width: 80%;
+  margin-bottom: 15vh;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 20px;
+  background-color: white;
+
+  .quest-title{
+    width: 100%;
+    color: $secondary-color;
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  .quest-description{
+    font-size: 0.8em;
+    margin-bottom: 2em;
+
+  }
+
+  .quest-criteria{
+    font-size: 0.8em;
+    margin-bottom: 2em;
+  }
+}

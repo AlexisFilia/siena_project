@@ -1,3 +1,14 @@
 <div id="top-bar">
+  <div id="team-description-container">
+    <div id="team-level"><%= @team_current_level.id %> </div>
 
+    <div id="team-name-and-progress-bar-container">
+      <div id="team-name"><%= @team.name.upcase %></div>
+      <div id="progress-bar-container">
+        <div id="progress-bar" style="width:<%= (@team_current_level_completion[:total] * 100).to_i %>%;" ></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="team-ranking-container">2/18</div>
 </div>

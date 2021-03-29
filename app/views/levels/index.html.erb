@@ -5,7 +5,7 @@
     <!-- <div id="divider-right"></div> -->
     <% @levels.each do |l| %>
 
-      <% if l[:level].id > @team_level.id %>
+      <% if l[:level].id > @team_current_level.id %>
 
         <div class="level-container locked">
             <div class="upper-part centered">
@@ -35,7 +35,7 @@
 
       <% else %>
 
-        <%= link_to level_path(l[:level]), class: "level-container" do %>
+        <%= link_to level_quests_path(l[:level]), class: "level-container" do %>
             <div class="upper-part centered">
               <div class="mandatory-indication centered-vertically">
                 <% if l[:mandatory_completion] == "-" %>

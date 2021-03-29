@@ -1,42 +1,47 @@
-<div class="container bg-light mt-4">
-  <div class="row p-4">
-    <div class="col col-12">
-      <h2>GENERAL MESSAGES</h2>
-      <%= link_to "Back", root_path %>
-      <% if !@general_messages.blank? %>
-        <% @general_messages.each do |message| %>
-          <p>---------------------------------</p>
-        <% if !message.message_ref.blank? %>
-            <p><strong>Reference :</strong> <%= Message.find(message.message_ref).value %></p>
-          <% end %>
-          <p><%= message.value %> </p>
-        <% end %>
-      <% end %>
+<%= render 'shared/top-bar' %>
+<%= render 'shared/bottom-bar' %>
 
-      <%= simple_form_for @message do |f| %>
-        <%= f.input :value %>
-        <% f.input :type_of  %>
-        <%= f.button :submit, class: "btn btn-primary", name: 'type_of',value: 'general' %>
-      <% end %>
-    </div>
-
-    <div class="col col-12 mt-4">
-      <h2>TEAM MESSAGES</h2>
-      <% if !@team_messages.blank? %>
-        <% @team_messages.each do |message| %>
-          <p>---------------------------------</p>
+<div class="main-container">
+  <div class="container bg-light mt-4">
+    <div class="row p-4">
+      <div class="col col-12">
+        <h2>GENERAL MESSAGES</h2>
+        <%= link_to "Back", root_path %>
+        <% if !@general_messages.blank? %>
+          <% @general_messages.each do |message| %>
+            <p>---------------------------------</p>
           <% if !message.message_ref.blank? %>
-            <p><strong>Reference :</strong> <%= Message.find(message.message_ref).value %></p>
+              <p><strong>Reference :</strong> <%= Message.find(message.message_ref).value %></p>
+            <% end %>
+            <p><%= message.value %> </p>
           <% end %>
-          <p><%= message.value %> </p>
         <% end %>
-      <% end %>
 
-      <%= simple_form_for @message do |f| %>
-        <%= f.input :value %>
-        <% f.input :type_of %>
-        <%= f.button :submit, class: 'btn btn-primary', name: 'type_of',value: 'team' %>
-      <% end %>
+        <%= simple_form_for @message, remote: true do |f| %>
+          <%= f.input :value %>
+          <% f.input :type_of  %>
+          <%= f.button :submit, class: "btn btn-primary", name: 'type_of',value: 'general' %>
+        <% end %>
+      </div>
+
+      <div class="col col-12 mt-4">
+        <h2>TEAM MESSAGES</h2>
+        <% if !@team_messages.blank? %>
+          <% @team_messages.each do |message| %>
+            <p>---------------------------------</p>
+            <% if !message.message_ref.blank? %>
+              <p><strong>Reference :</strong> <%= Message.find(message.message_ref).value %></p>
+            <% end %>
+            <p><%= message.value %> </p>
+          <% end %>
+        <% end %>
+
+        <%= simple_form_for @message, remote: true do |f| %>
+          <%= f.input :value %>
+          <% f.input :type_of %>
+          <%= f.button :submit, class: 'btn btn-primary', name: 'type_of',value: 'team' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,2 +1,27 @@
-<h1>Quests#show</h1>
-<p>Find me in app/views/quests/show.html.erb</p>
+<%= render 'shared/top-bar' %>
+<%= render 'shared/bottom-bar' %>
+
+<div class="container-below-top-bar">
+  <%= link_to :back, class: "rounded-div centered" do %>
+    <i class="fas fa-chevron-left"></i>
+  <% end %>
+
+  <div class="level-details centered-vertically">
+    <p class="level-number"><%= @level.id %> </p>
+    <p class="title"><%= @level.name.upcase %> </p>
+  </div>
+
+  <div class="rounded-div transparent"></div>
+</div>
+
+<div class="quest-description-container">
+  <div class="quest-title centered"><%= @quest.name.upcase %> </div>
+  <div class="quest-description"><%= @quest.description %> </div>
+  <ul class="quest-criteria">
+    <% @criteria.each do |c| %>
+      <li><%= c %> </li>
+    <% end %>
+  </ul>
+
+  <div class="main-button">UPLOADER LES DOCUMENTS</div>
+</div>

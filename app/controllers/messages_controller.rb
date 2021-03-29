@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :load_team_main_variables
+
   def show
   end
 
@@ -20,4 +22,14 @@ class MessagesController < ApplicationController
     Message.create!(user: current_user, type_of: params[:type_of], value: params.require(:message).permit(:value)[:value])
     redirect_to messages_path
   end
+
+
+  private
+
+  def load_team_main_variables
+    @team = current_user.team
+    @team_current_level = @team.get_level
+    @team_current_level_completion = @team.get_percentage_of_level_completion(@team_current_level)
+  end
+
 end

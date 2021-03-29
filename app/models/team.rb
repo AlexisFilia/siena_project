@@ -99,6 +99,22 @@ class Team < ApplicationRecord
 
   end
 
+  def get_rank
+
+    # compare les total_points de toutes les équipes et retourne le rang
+
+  end
+
+  def get_total_points
+    # cummule les points stockés en dur dans la team
+  end
+
+  def update_points(action)
+    # truc qui devrait se trigger quand on vote (action = "vote"), quand on realise une quete (action = quete), quand on fait autre chose...
+    # ca permettrait d´updater le score d´une team en dur dans la team et donc de calculer le ranking tres rapidement (et autres actions)
+    # update points_level", "points_optional", "points_vote" et autres choses qu´on voudrait
+  end
+
 
 end
 

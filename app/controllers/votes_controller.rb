@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  before_action :load_team_main_variables
+
   def index
   end
 
@@ -28,4 +30,13 @@ class VotesController < ApplicationController
   def vote_params
     params.permit(:criteria, :vote)
   end
+
+  private
+
+  def load_team_main_variables
+    @team = current_user.team
+    @team_current_level = @team.get_level
+    @team_current_level_completion = @team.get_percentage_of_level_completion(@team_current_level)
+  end
+
 end
