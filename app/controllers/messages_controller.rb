@@ -1,10 +1,11 @@
 class MessagesController < ApplicationController
-  before_action :load_team_main_variables
 
   def show
   end
 
   def index
+    @sideNav_id = 7; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
+
     @message = Message.new()
 
     @general_messages = Message.where(type_of: 'general')
@@ -13,7 +14,7 @@ class MessagesController < ApplicationController
 
     @team_messages = Message.joins(:user)
                             .where(type_of: 'team')
-                            .where(users: { team_id: current_user.team.id })
+                            .where(users: { team_id: @team.id })
                             .order('created_at ASC')
                             .limit(50)
   end
@@ -23,14 +24,6 @@ class MessagesController < ApplicationController
     redirect_to messages_path
   end
 
-
-  private
-
-  def load_team_main_variables
-    @team = current_user.team
-    @team_current_level = @team.get_level
-    @team_current_level_completion = @team.get_percentage_of_level_completion(@team_current_level)
-  end
 
 end
 

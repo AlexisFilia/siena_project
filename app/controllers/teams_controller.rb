@@ -1,6 +1,5 @@
 class TeamsController < ApplicationController
   def show
-    @team = current_user.team
     @team_members = @team.users
   end
 
