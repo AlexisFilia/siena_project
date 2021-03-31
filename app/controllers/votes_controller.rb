@@ -32,3 +32,4 @@ class VotesController < ApplicationController
 
 
 end
+
