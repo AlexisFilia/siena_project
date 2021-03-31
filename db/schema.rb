@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
 
   create_table "polls", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "type_of"
     t.string "result"
     t.string "perimeter"

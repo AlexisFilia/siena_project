@@ -1,5 +1,53 @@
 <%= render 'shared/top-bar' %>
 <%= render 'shared/bottom-bar' %>
 
-<div class="main-container">
+<div class="container-below-top-bar">
+  <% if @initial_perimeter == "team" %>
+    <div id="public-poll" class="public-team-choice">PUBLIC</div>
+    <div id="team-poll" class="public-team-choice active">TEAM</div>
+  <% else %>
+    <div id="public-poll" class="public-team-choice active">PUBLIC</div>
+    <div id="team-poll" class="public-team-choice">TEAM</div>
+  <% end %>
 </div>
+
+<div class="public-team-choice-selected"><p>- <span>TEAM</span> POLL -</p></div>
+
+<div class="main-container centered-vertically with-bottom-margin">
+  <div class="form-container">
+
+
+    <%= simple_form_for @poll do |f| %>
+
+      <div class="form-section">
+        <div class="form-section-title">MAIN INFORMATION</div>
+        <%= f.hidden_field :perimeter, value: @initial_perimeter, id: "poll-perimeter-choice" %>
+        <%= f.input :name, label: "Poll Title" %>
+        <%= f.input :description, label: "Poll Description" %>
+      </div>
+
+      <div class="form-section poll-options">
+
+        <div class="form-section-title">POLL OPTIONS</div>
+
+        <div class="form-group string required poll_name poll-option" data-id="1">
+          <input class="form-control string required" name="options[1]" type="text" placeholder="Option n°1">
+          <div class="delete-option" data-id="1" >X</div>
+        </div>
+
+        <div class="form-group string poll_name add-an-option" data-id="addopt">
+          <input class="form-control string" name="addopt" type="text" placeholder="Ajouter une option">
+          <div class="delete-option" data-id="addopt" style="display: none">X</div>
+        </div>
+
+      </div>
+      <div class="centered-vertically">
+        <%= f.button :submit, class: "main-button" %>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>
+
+

@@ -22,4 +22,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: {
     message: 'This email already exists in the DB.'
   }
+
+  def get_full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 end
