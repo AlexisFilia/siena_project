@@ -69,9 +69,12 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
 
   create_table "media", force: :cascade do |t|
     t.string "url"
-    t.bigint "team_quest_link_id", null: false
+    t.string "type_of"
+    t.bigint "team_quest_link_id"
+    t.bigint "message_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_id"], name: "index_media_on_message_id"
     t.index ["team_quest_link_id"], name: "index_media_on_team_quest_link_id"
   end
 
@@ -222,6 +225,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "likes", "team_quest_links"
   add_foreign_key "likes", "users"
+  add_foreign_key "media", "messages"
   add_foreign_key "media", "team_quest_links"
   add_foreign_key "messages", "users"
   add_foreign_key "options", "polls"

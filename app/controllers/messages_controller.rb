@@ -20,10 +20,16 @@ class MessagesController < ApplicationController
   end
 
   def create
-    Message.create!(user: current_user, type_of: params[:type_of], value: params.require(:message).permit(:value)[:value])
+    message = Message.create!({
+                            user: current_user,
+                            type_of: params[:type_of],
+                            value: params.require(:message).permit(:value)[:value],
+                            message_ref: params.require(:message).permit(:message_ref)[:message_ref]
+                          })
+    unless params[:message][:url].blank? || params[:message][:type_of_media].blank?
+      media = Media.define_media(params[:message][:url], params[:message][:type_of_media], message)
+    end
     redirect_to messages_path
   end
-
-
 end
 
