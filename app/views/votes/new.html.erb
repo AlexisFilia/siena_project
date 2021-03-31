@@ -1,27 +1,42 @@
 <%= render 'shared/top-bar' %>
 <%= render 'shared/bottom-bar' %>
 
-<div class="main-container">
-  <div class="container bg-light mt-4">
-    <div class="row p-4">
-      <div class="col col-12">
-        <h1>Votes#new</h1>
-        <p>Find me in app/views/votes/new.html.erb</p>
-        <%= link_to "Back", root_path %>
+<div class="main-container centered-vertically">
 
 
-        <% if @tql_to_vote.blank? %>
-          <p>There is not more quests to vote for.</p>
-          <p>Go and have a look into the quest GALLERY</p>
-          <%= link_to "GALLERY", team_quest_links_path %>
-        <% else %>
-          <h3><%= @tql_to_vote.quest.name %></h3>
-          <p><%= @tql_to_vote.quest.criteria %></p>
+  <% if @tql_to_vote.blank? %>
 
-          <%= link_to "Vote NO", votes_path(vote: false, tql: @tql_to_vote), method: :post %>
-          <%= link_to "Vote Yes", votes_path(vote: true, tql: @tql_to_vote), method: :post %>
-        <% end %>
-      </div>
+    <div id="no-more-tql" class="centered-vertically">
+      <p>There is no quests to vote for at the moment.</p>
+      <p>Check out the GALLERY!</p>
+      <%= link_to "GALLERY", team_quest_links_path, class: "main-button" %>
     </div>
-  </div>
+  <% else %>
+
+    <div class="tql-to-vote">
+      <div class="tql-carousel"></div>
+      <div class="tql-description">
+        <p>CRITÈRES DE VALIDATION :</p>
+        <ul>
+          <% JSON.parse(@tql_to_vote.quest.criteria).each do |c| %>
+            <li><%= c %> </li>
+          <% end %>
+        </ul>
+
+      </div>
+      <div class="tql-buttons">
+        <%= link_to "Vote NO", votes_path(vote: false, tql: @tql_to_vote), method: :post, class: "vote-no" %>
+        <%= link_to "Vote YES", votes_path(vote: true, tql: @tql_to_vote), method: :post, class: "vote-yes" %>
+      </div>
+
+    </div>
+    <!-- <h3><%#= @tql_to_vote.quest.name %></h3> -->
+
+
+
+  <% end %>
+
+
+
 </div>
+
