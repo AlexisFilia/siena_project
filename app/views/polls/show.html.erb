@@ -1,2 +1,31 @@
-<h1>Polls#show</h1>
-<p>Find me in app/views/polls/show.html.erb</p>
+<%= render 'shared/top-bar' %>
+<%= render 'shared/bottom-bar' %>
+
+<div class="container-below-top-bar">
+  <div class="public-team-choice-selected"><p>- <span><%= @poll.perimeter.upcase %></span> POLL -</p></div>
+</div>
+
+<div class="main-container centered-vertically with-bottom-margin">
+  <div class="form-container">
+    <p style="font-size: 0.8em"><i>Poll created by <%= @poll.user.get_full_name %></i></p>
+
+    <div class="form-section">
+      <div class="form-section-title"><%= @poll.name %></div>
+      <p><%= @poll.description %></p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">OPTIONS :</div>
+      <% @poll_options.each do |option| %>
+        <div class="poll-option-display <%= option[:best] %>">
+          <div class="poll-option-progress-bar-container">
+            <div class="poll-option-progress-bar" style="width: <%= (option[:percent]* 100).to_i  %>%"></div>
+            <p><%= option[:description] %></p>
+          </div>
+          <div class="poll-option-display-votes"><%= option[:votes].to_i %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

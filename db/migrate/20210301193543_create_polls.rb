@@ -2,7 +2,7 @@ class CreatePolls < ActiveRecord::Migration[6.1]
   def change
     create_table :polls do |t|
       t.string :name
-      t.string :description
+      t.text :description
       t.string :type_of
       t.string :result
       t.string :perimeter
@@ -13,3 +13,4 @@ class CreatePolls < ActiveRecord::Migration[6.1]
     end
   end
 end
+

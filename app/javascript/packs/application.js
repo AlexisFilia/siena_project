@@ -28,6 +28,9 @@ import "bootstrap";
 // import { stolenCode } from '../components/stolenCode';
 import { sideNav } from '../components/sideNav';
 import { sideNavLinks } from '../components/sideNavLinks';
+import { publicTeamChoiceToggle } from '../components/publicTeamChoiceToggle';
+import { handlePollOptions } from '../components/handlePollOptions';
+import { handlePollVotes } from '../components/handlePollVotes';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -37,4 +40,7 @@ document.addEventListener('turbolinks:load', () => {
   // stolenCode();
   sideNav();
   sideNavLinks();
+  publicTeamChoiceToggle();
+  handlePollOptions();
+  handlePollVotes();
 });

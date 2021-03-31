@@ -1,2 +1,34 @@
-<h1>PollUserLinks#new</h1>
-<p>Find me in app/views/poll_user_links/new.html.erb</p>
+<%= render 'shared/top-bar' %>
+<%= render 'shared/bottom-bar' %>
+
+<div class="container-below-top-bar">
+  <div class="public-team-choice-selected"><p>- <span><%= @poll.perimeter.upcase %></span> POLL -</p></div>
+</div>
+
+<div class="main-container centered-vertically with-bottom-margin">
+  <div class="form-container">
+    <p style="font-size: 0.8em"><i>Poll created by <%= @poll.user.get_full_name %></i></p>
+
+    <div class="form-section">
+      <div class="form-section-title"><%= @poll.name %></div>
+      <p><%= @poll.description %></p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">OPTIONS :</div>
+      <% @poll_options.each do |option| %>
+        <div class="poll-option-selectable" data-id="<%= option.id %>"><%= option.description %></div>
+      <% end %>
+    </div>
+
+    <%= simple_form_for [@poll, @pul] do |f| %>
+      <div class="centered-vertically">
+        <%= f.hidden_field :option, value: 1, id: "poll-selected-option" %>
+        <%= f.button :submit, "CONFIRM", class: "main-button" %>
+      </div>
+
+    <% end %>
+
+
+  </div>
+</div>

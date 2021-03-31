@@ -1,5 +1,12 @@
 .main-container{
-  margin-top: 10vh;
-  margin-bottom: 15vh;
+
   min-height: 75vh;
+
+  &.with-top-margin{
+    margin-top: 10vh;
+  }
+
+  &.with-bottom-margin{
+    margin-bottom: 15vh;
+  }
 }
