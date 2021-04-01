@@ -7,16 +7,18 @@ const sideNav = () => {
   const plusBtnI = document.querySelector("#bottom-bar-button-plus");
   const backBtnI = document.querySelector("#bottom-bar-button-back");
 
-  plusBtn.addEventListener('click', (e) => {
-
-    // plusBtn.classList.toggle("slided");
+  const slideAll = () => {
     sideNavBackground.classList.toggle("slided");
     sideNav.classList.toggle("slided");
     bottomBar.classList.toggle("slided");
     plusBtnI.classList.toggle("invisible");
     backBtnI.classList.toggle("invisible");
+  }
 
-  });
+  plusBtn.addEventListener('click', (e) => {slideAll();});
+  sideNavBackground.addEventListener('click', (e) => {slideAll();});
+
+
 
 }
 
