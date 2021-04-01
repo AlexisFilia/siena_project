@@ -1,15 +1,7 @@
 <%= render 'shared/top-bar' %>
 <%= render 'shared/bottom-bar' %>
+<%= render 'shared/public-team-choice-container' %>
 
-<div class="container-below-top-bar">
-  <% if @initial_perimeter == "team" %>
-    <div id="public-poll" class="public-team-choice">PUBLIC</div>
-    <div id="team-poll" class="public-team-choice active">TEAM</div>
-  <% else %>
-    <div id="public-poll" class="public-team-choice active">PUBLIC</div>
-    <div id="team-poll" class="public-team-choice">TEAM</div>
-  <% end %>
-</div>
 
 <div class="public-team-choice-selected"><p>- <span>TEAM</span> POLL -</p></div>
 

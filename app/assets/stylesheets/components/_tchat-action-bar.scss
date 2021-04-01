@@ -1,0 +1,36 @@
+.tchat-action-bar{
+  z-index: 10;
+  position: fixed;
+  height: 10vh;
+  bottom: 13vh;
+  width: 100%;
+
+  .wrapper{
+    position: relative;
+
+    .form-group{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      #message_value{
+        width: 80%;
+        border-radius: 20px;
+      }
+
+    }
+    .btn-send-message{
+      position: absolute;
+      background-color: transparent;
+      // left: calc(100% - 1.5em);
+      right: 10%;
+      top: 0;
+      color: $secondary-color;
+      font-size: 1.5em;
+      border-radius: 50%;
+      border: none;
+
+    }
+  }
+}

@@ -6,6 +6,9 @@ class MessagesController < ApplicationController
   def index
     @sideNav_id = 7; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
 
+    # Question ouverte : pourquoi pas une fonction dans le modele messages pour choper un array de hash avec des infos plus poussées sur les messages
+    # histoire de limiter les requetes dans la view?
+
     @message = Message.new()
 
     @general_messages = Message.where(type_of: 'general')
@@ -17,12 +20,14 @@ class MessagesController < ApplicationController
                             .where(users: { team_id: @team.id })
                             .order('created_at ASC')
                             .limit(50)
+
+    @user_picture = "https://images.pexels.com/photos/2880094/pexels-photo-2880094.jpeg?cs=srgb&dl=pexels-breston-kenya-2880094.jpg&fm=jpg"
   end
 
   def create
     message = Message.create!({
                             user: current_user,
-                            type_of: params[:type_of],
+                            type_of: params.require(:message).permit(:type_of)[:type_of],
                             value: params.require(:message).permit(:value)[:value],
                             message_ref: params.require(:message).permit(:message_ref)[:message_ref]
                           })
@@ -32,4 +37,5 @@ class MessagesController < ApplicationController
     redirect_to messages_path
   end
 end
+
 

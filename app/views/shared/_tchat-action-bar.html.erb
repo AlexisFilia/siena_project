@@ -1,0 +1,12 @@
+<div class="tchat-action-bar">
+  <%= simple_form_for @message, remote: true do |f| %>
+    <%= f.hidden_field :type_of, value: "team", id: "message-perimeter-choice" %>
+    <%= f.input :message_ref, as: :hidden %>
+    <div class="wrapper">
+      <%= f.input :value, label: false; %>
+      <%= button_tag type: 'submit', class: "btn-send-message" do %>
+        <i class="fas fa-arrow-circle-up"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

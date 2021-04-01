@@ -3,6 +3,7 @@ const publicTeamChoiceToggle = () => {
   if(!publicTeamChoices) return;
   const span = document.querySelector(".public-team-choice-selected span");
   const pollPerimeterChoice = document.querySelector("#poll-perimeter-choice");
+  const messagePerimeterChoice = document.querySelector("#message-perimeter-choice");
 
   publicTeamChoices.forEach(choice => {
     choice.addEventListener("click", (e) => {
@@ -15,9 +16,11 @@ const publicTeamChoiceToggle = () => {
         if(span.innerText == "TEAM"){
           span.innerText = "PUBLIC";
           if(pollPerimeterChoice){pollPerimeterChoice.value = "public"} ;
+          if(messagePerimeterChoice){messagePerimeterChoice.value = "public"} ;
         }else{
           span.innerText = "TEAM";
           if(pollPerimeterChoice){pollPerimeterChoice.value = "team"}
+          if(messagePerimeterChoice){messagePerimeterChoice.value = "team"}
         }
       }
     });
@@ -28,3 +31,6 @@ const publicTeamChoiceToggle = () => {
 }
 
 export{publicTeamChoiceToggle};
+
+
+
