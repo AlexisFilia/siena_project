@@ -2,19 +2,17 @@
 <%= render 'shared/bottom-bar' %>
 <%= render 'shared/tchat-action-bar' %>
 <%= render 'shared/public-team-choice-container' %>
-<div class="public-team-choice-selected"><p>- <span>TEAM</span> TCHAT -</p></div>
+<div class="public-team-choice-selected"><p>- <span><%=  @initial_perimeter.upcase %></span> TCHAT -</p></div>
 
 
-<div id="team-messages-container" class="messages-container">
-
-
+<div id="team-messages-container" class="messages-container" style='<%= 'display: none;' if @initial_perimeter == 'public' %>'>
 
   <% if !@team_messages.blank? %>
 
     <%= link_to "Load more...", messages_path, class: "load-more-messages-btn" %>
 
     <% @team_messages.each do |message| %>
-      <div class="message-container <%= 'c-user' if message.user == current_user %>">
+      <div id="message-<%= message.id %>" class="message-container <%= 'c-user' if message.user == current_user %>">
 
         <% if !message.message_ref.blank? %>
           <div class="message-reference-container"><%= Message.find(message.message_ref).value %></div>
@@ -32,17 +30,40 @@
 
 </div>
 
+<div id="public-messages-container" class="messages-container" style='<%= 'display: none;' if @initial_perimeter == 'team' %>'>
 
-<!--   <div id="public-messages-container" class="messages-container">
+  <% if !@public_messages.blank? %>
 
-  </div>
+    <%= link_to "Load more...", messages_path, class: "load-more-messages-btn" %>
+
+    <% @public_messages.each do |message| %>
+      <div id="message-<%= message.id %>" class="message-container <%= 'c-user' if message.user == current_user %>">
+
+        <% if !message.message_ref.blank? %>
+          <div class="message-reference-container"><%= Message.find(message.message_ref).value %></div>
+        <% end %>
+
+        <% if !message.medias.blank? %>
+          <div class="message-media-container"><%= image_tag message.medias.last.url, height: 30, width: 40, crop: :fill %></div>
+        <% end %>
+        <div class="message-date"><%= message.created_at.strftime('%A %d %B %Y, at %I:%M%p') %></div>
+        <div class="message-user" style="background-image: url('<%= @user_picture %>')"></div>
+        <div class="message"><%= "#{message.user == current_user ? 'You' : message.user.first_name} : #{message.value}" %></div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
 
+<!-- -------------------------------------CODE D´ALEX---------------------------- -->
 
+<!--
+<div class="main-container with-top-margin with-bottom-margin">
   <div class="container bg-light mt-4">
     <div class="row p-4">
       <div class="col col-12">
-
+        <h2>GENERAL MESSAGES</h2>
+        <%#= link_to "Back", root_path %>
         <%# if !@general_messages.blank? %>
           <%# @general_messages.each do |message| %>
             <%# if !message.message_ref.blank? %>
@@ -55,7 +76,6 @@
             <p>---------------------------------</p>
           <%# end %>
         <%# end %>
-
         <%#= simple_form_for @message, remote: true do |f| %>
           <%#= f.input :message_ref %>
           <%#= f.hidden_field :url, value: 'https://images.unsplash.com/photo-1597328269617-6b08dd06914b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80' %>
@@ -66,8 +86,28 @@
         <%# end %>
       </div>
 
+      <div class="col col-12 mt-4">
+        <h2>TEAM MESSAGES</h2>
+        <%# if !@team_messages.blank? %>
+          <%# @team_messages.each do |message| %>
+            <p>---------------------------------</p>
+            <%# if !message.message_ref.blank? %>
+              <p><strong>Reference :</strong> <%#= Message.find(message.message_ref).value %></p>
+            <%# end %>
+            <%# if !message.medias.blank? %>
+              <%#= image_tag message.medias.last.url, height: 30, width: 40, crop: :fill %>
+            <%# end %>
+            <p><%#= message.id %> : <%#= message.value %> </p>
+          <%# end %>
+        <%# end %>
+        <%#= simple_form_for @message, remote: true do |f| %>
+          <%#= f.input :message_ref, as: :hidden %>
+          <%#= f.input :value %>
+          <%# f.input :type_of %>
+          <%#= f.button :submit, class: 'btn btn-primary', name: 'type_of',value: 'team' %>
+        <%# end %>
+      </div>
     </div>
   </div>
-
+</div>
  -->
-

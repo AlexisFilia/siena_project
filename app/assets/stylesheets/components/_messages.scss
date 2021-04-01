@@ -54,15 +54,15 @@
       text-align: center;
     }
 
-    // &.c-user{
-    //    background-color: $secondary-color;
-    //    color: white;
+    &.c-user{
+       background-color: $secondary-color;
+       color: white;
 
-    //   .message-user{
-    //     left: calc(100% - 25px);
-    //   }
+      .message-user{
+        left: calc(100% - 25px);
+      }
 
-    // }
+    }
   }
 
 }

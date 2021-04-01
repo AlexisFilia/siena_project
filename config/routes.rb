@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:index, :create]
 
+  resources :media, only: [:show, :create]
+
   resources :levels, only: [:index, :show], shallow: true do
     resources :quests, only: [:index, :show]
   end

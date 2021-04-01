@@ -7,6 +7,8 @@ class Media < ApplicationRecord
     message: 'This url already exists in the DB.'
   }
 
+  has_one_attached :media
+
   def self.define_media(url, type_of, entity)
     media = if Media.exists?(url: url, type_of: type_of)
               Media.find_by(url: url, type_of: type_of)

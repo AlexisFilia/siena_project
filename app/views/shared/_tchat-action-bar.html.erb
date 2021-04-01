@@ -1,6 +1,24 @@
 <div class="tchat-action-bar">
+
+
+
+  <!-- <%#= simple_form_for @media, :url => media_path, :method => :post, remote: true do |f| %>
+
+    <div class="media-btn-wrapper">
+      <%#= f.input :media, as: :file, label: false%>
+      <div class="icon-wrapper">
+        <i class="fas fa-paperclip"></i>
+      </div>
+
+    </div>
+    <%#= button_tag type: 'submit', class: "btn-send-message" %>
+
+  <%# end %> -->
+
+
   <%= simple_form_for @message, remote: true do |f| %>
-    <%= f.hidden_field :type_of, value: "team", id: "message-perimeter-choice" %>
+    <%= f.hidden_field :message_ref, id: "message-ref" %>
+    <%= f.hidden_field :type_of, value: @initial_perimeter, id: "message-perimeter-choice" %>
     <%= f.input :message_ref, as: :hidden %>
     <div class="wrapper">
       <%= f.input :value, label: false; %>
@@ -10,3 +28,4 @@
     </div>
   <% end %>
 </div>
+
