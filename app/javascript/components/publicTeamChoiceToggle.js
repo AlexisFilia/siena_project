@@ -3,6 +3,9 @@ const publicTeamChoiceToggle = () => {
   if(!publicTeamChoices) return;
   const span = document.querySelector(".public-team-choice-selected span");
   const pollPerimeterChoice = document.querySelector("#poll-perimeter-choice");
+  const messagePerimeterChoice = document.querySelector("#message-perimeter-choice");
+  const teamMessagesContainer = document.querySelector("#team-messages-container");
+  const publicMessagesContainer = document.querySelector("#public-messages-container");
 
   publicTeamChoices.forEach(choice => {
     choice.addEventListener("click", (e) => {
@@ -15,9 +18,21 @@ const publicTeamChoiceToggle = () => {
         if(span.innerText == "TEAM"){
           span.innerText = "PUBLIC";
           if(pollPerimeterChoice){pollPerimeterChoice.value = "public"} ;
+          if(messagePerimeterChoice){
+            messagePerimeterChoice.value = "public";
+            publicMessagesContainer.style.display = "flex";
+            teamMessagesContainer.style.display = "none";
+
+          };
+
         }else{
           span.innerText = "TEAM";
           if(pollPerimeterChoice){pollPerimeterChoice.value = "team"}
+          if(messagePerimeterChoice){
+            messagePerimeterChoice.value = "team";
+            publicMessagesContainer.style.display = "none";
+            teamMessagesContainer.style.display = "flex";
+          }
         }
       }
     });
@@ -28,3 +43,6 @@ const publicTeamChoiceToggle = () => {
 }
 
 export{publicTeamChoiceToggle};
+
+
+

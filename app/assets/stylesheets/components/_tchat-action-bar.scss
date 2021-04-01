@@ -1,0 +1,80 @@
+.tchat-action-bar{
+  z-index: 10;
+  position: fixed;
+  height: 10vh;
+  bottom: 13vh;
+  width: 100%;
+
+  .wrapper{
+    position: relative;
+
+    .form-group{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      #message_value{
+        position: absolute;
+        right: 10%;
+        top: 0;
+        width: 60%;
+        border-radius: 20px;
+      }
+
+    }
+    .btn-send-message{
+      position: absolute;
+      background-color: transparent;
+      // left: calc(100% - 1.5em);
+      right: 10%;
+      top: 0;
+      color: $secondary-color;
+      font-size: 1.5em;
+      border-radius: 50%;
+      border: none;
+
+    }
+  }
+
+  .media-btn-wrapper{
+    position: relative;
+
+    #media_media{
+      position: absolute;
+      left: 10%;
+      top: 0;
+      z-index: 12;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      color: transparent;
+      background-color: transparent;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      overflow: hidden;
+      // display: none;
+    }
+
+    .icon-wrapper{
+      z-index: 11;
+      position: absolute;
+      left: 10%;
+      top: 0;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i{
+        color: $secondary-color;
+        font-size: 1.5em;
+
+      }
+
+    }
+
+  }
+}
