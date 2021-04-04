@@ -9,15 +9,24 @@
       <p>Description : <%= @team.description %></p>
       <p>Values : <%= @team.values %></p>
 
+      <%= link_to "Back", root_path, class: "btn btn-secondary" %>
+
       <h2>Crewmates :</h2>
 
       <% @team_members.each do |user| %>
-        <p>Username : <%= user.username %></p>
-        <p>Name : <%= user.first_name %> <%= user.last_name %></p>
-
+        <div class="bd-highlight mb-3 border">
+          <div class="p-2">Username : <%= user.username %></div>
+          <div class="p-2">Name : <%= user.first_name %> <%= user.last_name %></div>
+          <div class="d-flex flex-row">
+            <div class="p-2">Role :</div>
+            <% if !user.roles.nil? %>
+              <% user.roles.each do |role| %>
+                <div class="p-2"><strong><%= role.name %> :</strong> <%= role.description %></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-
-      <%= link_to "Back", root_path %>
 
     </div>
   </div>
