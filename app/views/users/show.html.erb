@@ -21,8 +21,14 @@
         <% current_user.description %>
       </div>
 
-      <%= link_to "Back", root_path %>
-      <%= link_to "Edit", edit_user_path(current_user) %>
+      <% if !current_user.roles.nil? %>
+        <% current_user.roles.each do |role| %>
+          <div><%= role.name %> : <%= role.description %></div>
+        <% end %>
+      <% end %>
+
+      <%= link_to "Back", root_path, class: "btn btn-secondary" %>
+      <%= link_to "Edit", edit_user_path(current_user), class: "btn btn-secondary" %>
 
     </div>
   </div>

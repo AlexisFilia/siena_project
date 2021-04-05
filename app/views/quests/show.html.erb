@@ -23,5 +23,7 @@
     <% end %>
   </ul>
 
-  <div class="main-button">UPLOADER LES DOCUMENTS</div>
+  <% if @team_quest_link.nil? || @team_quest_link.status == 'draft' %>
+    <div class="main-button">UPLOADER DES DOCUMENTS</div>
+  <% end %>
 </div>

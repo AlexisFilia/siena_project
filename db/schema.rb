@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   create_table "team_quest_links", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.bigint "quest_id", null: false
-    t.string "status"
+    t.string "status", default: "draft"
     t.text "roulette_result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   create_table "user_role_links", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "role_id", null: false
-    t.boolean "on_boarding"
+    t.boolean "on_boarding", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["role_id"], name: "index_user_role_links_on_role_id"
@@ -193,9 +193,9 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.string "username"
     t.string "first_name"
     t.string "last_name"
-    t.boolean "usage_conditions"
-    t.boolean "image_rights"
-    t.boolean "on_boarding"
+    t.boolean "usage_conditions", default: false
+    t.boolean "image_rights", default: false
+    t.boolean "on_boarding", default: false
     t.text "description"
     t.bigint "team_id", null: false
     t.string "email", default: "", null: false

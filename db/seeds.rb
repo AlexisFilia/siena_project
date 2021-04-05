@@ -81,6 +81,7 @@ tql_4 = TeamQuestLink.create!(team: team_1, quest: quest_4, status: "completed")
 tql_5 = TeamQuestLink.create!(team: team_1, quest: quest_5, status: "pending")
 tql_6 = TeamQuestLink.create!(team: team_1, quest: quest_6, status: "rejected")
 tql_7 = TeamQuestLink.create!(team: team_1, quest: quest_7, status: "completed")
+tql_8 = TeamQuestLink.create!(team: team_1, quest: quest_8, status: "draft")
 
 
 puts "Team Quests Links for Team 1 have been created"
@@ -108,3 +109,24 @@ team_3.update_points(quest_9)
 team_4.update_points(quest_10)
 
 puts "The new seeded DB has been created"
+
+puts "Creating some Roles"
+
+role_1 = Role.create!(name: 'FeelGoodFellow', description: "C'est le Coordinateur de la team")
+role_2 = Role.create!(name: 'Responsable environnement', description: "C'est le responsable des actions en lien avec l'environnement de travail")
+role_3 = Role.create!(name: 'Responsable sport', description: "C'est le responsable des actions en lien avec le sport")
+role_4 = Role.create!(name: 'Responsable interaction externes', description: "C'est le responsable de toute la com interne à l'équipe")
+role_5 = Role.create!(name: 'Responsable interactions internes', description: "C'est le responsable de toute la com externe à l'équipe")
+
+puts "Roles have been created"
+
+
+puts "Creating some user_role_links"
+
+user_role_link_1 = UserRoleLink.create!(on_boarding: true, role: role_1, user: User.find_by(first_name: "Player1"))
+user_role_link_2 = UserRoleLink.create!(on_boarding: true, role: role_2, user: User.find_by(first_name: "Player2"))
+user_role_link_3 = UserRoleLink.create!(on_boarding: true, role: role_3, user: User.find_by(first_name: "Player3"))
+user_role_link_4 = UserRoleLink.create!(on_boarding: true, role: role_4, user: User.find_by(first_name: "Player4"))
+user_role_link_5 = UserRoleLink.create!(on_boarding: true, role: role_5, user: User.find_by(first_name: "Player5"))
+
+puts "user_role_links have been created"

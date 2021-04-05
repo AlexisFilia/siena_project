@@ -6,9 +6,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :username
       t.string :first_name
       t.string :last_name
-      t.boolean :usage_conditions
-      t.boolean :image_rights
-      t.boolean :on_boarding
+      t.boolean :usage_conditions, default: false
+      t.boolean :image_rights, default: false
+      t.boolean :on_boarding, default: false
       t.text :description
       t.references :team, null: false, foreign_key: true
 

@@ -7,7 +7,7 @@ class QuestsController < ApplicationController
     @quest = Quest.find(params[:id])
     @level = @quest.level
     @criteria = JSON.parse(@quest.criteria)
-
+    @team_quest_link = TeamQuestLink.find_by(team: current_user.team, quest: @quest)
   end
 
   def index
