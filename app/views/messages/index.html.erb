@@ -22,7 +22,8 @@
           <div class="message-media-container"><%= image_tag message.medias.last.url, height: 30, width: 40, crop: :fill %></div>
         <% end %>
         <div class="message-date"><%= message.created_at.strftime('%A %d %B %Y, at %I:%M%p') %></div>
-        <div class="message-user" style="background-image: url('<%= @user_picture %>')"></div>
+        <div id="sideNav-profile-picture"><%= cl_image_tag current_user.photo.key, class: "message-user" %></div>
+        <div class="message-user" style="background-image: url('<%= url_for(message.user.photo.key) %>')"></div>
         <div class="message"><%= "#{message.user == current_user ? 'You' : message.user.first_name} : #{message.value}" %></div>
       </div>
     <% end %>
@@ -47,7 +48,7 @@
           <div class="message-media-container"><%= image_tag message.medias.last.url, height: 30, width: 40, crop: :fill %></div>
         <% end %>
         <div class="message-date"><%= message.created_at.strftime('%A %d %B %Y, at %I:%M%p') %></div>
-        <div class="message-user" style="background-image: url('<%= @user_picture %>')"></div>
+        <div class="message-user" style="background-image: url('<%= url_for(message.user.photo.key) %>')"></div>
         <div class="message"><%= "#{message.user == current_user ? 'You' : message.user.first_name} : #{message.value}" %></div>
       </div>
     <% end %>

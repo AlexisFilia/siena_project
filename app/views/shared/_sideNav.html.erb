@@ -4,7 +4,7 @@
 
 
   <div id="sideNav-profile-container">
-    <div id="sideNav-profile-picture"></div>
+    <%= cl_image_tag current_user.photo.key, id: "sideNav-profile-picture" %>
     <%= link_to current_user.first_name.upcase, user_path(current_user), id: "sideNav-profile-name" %>
   </div>
 
@@ -16,6 +16,7 @@
     <%= link_to "SCORES BOARD", teams_path, data: {id: 5}  %>
     <%= link_to "QUESTS VALIDATION", teams_path, data: {id: 6}  %>
     <%= link_to "TCHAT", messages_path, data: {id: 7}  %>
+    <%= link_to "LOG-OUT", destroy_user_session_path, :method => :delete  %>
   </div>
 
 </div>
