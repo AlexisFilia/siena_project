@@ -19,7 +19,7 @@ const publicTeamChoiceToggle = () => {
           span.innerText = "PUBLIC";
           if(pollPerimeterChoice){pollPerimeterChoice.value = "public"} ;
           if(messagePerimeterChoice){
-            messagePerimeterChoice.value = "public";
+            // messagePerimeterChoice.value = "public";
             publicMessagesContainer.style.display = "flex";
             teamMessagesContainer.style.display = "none";
 
@@ -29,7 +29,7 @@ const publicTeamChoiceToggle = () => {
           span.innerText = "TEAM";
           if(pollPerimeterChoice){pollPerimeterChoice.value = "team"}
           if(messagePerimeterChoice){
-            messagePerimeterChoice.value = "team";
+            // messagePerimeterChoice.value = "team";
             publicMessagesContainer.style.display = "none";
             teamMessagesContainer.style.display = "flex";
           }
