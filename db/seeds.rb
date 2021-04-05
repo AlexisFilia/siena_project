@@ -88,9 +88,9 @@ puts "Team Quests Links for Team 1 have been created"
 
 puts "Creating some Team Quests Links for others teams"
 
-tql_8 = TeamQuestLink.create!(team: team_2, quest: quest_8, status: "pending")
-tql_9 = TeamQuestLink.create!(team: team_3, quest: quest_9, status: "pending")
-tql_10 = TeamQuestLink.create!(team: team_4, quest: quest_10, status: "pending")
+tql_9 = TeamQuestLink.create!(team: team_2, quest: quest_8, status: "pending")
+tql_10 = TeamQuestLink.create!(team: team_3, quest: quest_9, status: "pending")
+tql_11 = TeamQuestLink.create!(team: team_4, quest: quest_10, status: "pending")
 
 puts "Team Quests Links for others teams have been created"
 
@@ -100,13 +100,8 @@ team_1.update_points(quest_1)
 team_1.update_points(quest_2)
 team_1.update_points(quest_3)
 team_1.update_points(quest_4)
-team_1.update_points(quest_5)
-team_1.update_points(quest_6)
 team_1.update_points(quest_7)
 
-team_2.update_points(quest_8)
-team_3.update_points(quest_9)
-team_4.update_points(quest_10)
 
 puts "The new seeded DB has been created"
 
