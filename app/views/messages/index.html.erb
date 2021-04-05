@@ -1,7 +1,18 @@
 <%#= render 'shared/top-bar' %>
 <%= render 'shared/bottom-bar' %>
 <%= render 'shared/tchat-action-bar' %>
-<%= render 'shared/public-team-choice-container' %>
+<%#= render 'shared/public-team-choice-container' %>
+
+<div class="public-team-choice-container">
+    <% if @initial_perimeter == "public" %>
+      <%= link_to "PUBLIC", messages_path(perimeter: "public"), class: "public-team-choice active" %>
+      <%= link_to "TEAM", messages_path(perimeter: "team"), class: "public-team-choice" %>
+    <% else %>
+      <%= link_to "PUBLIC", messages_path(perimeter: "public"), class: "public-team-choice" %>
+      <%= link_to "TEAM", messages_path(perimeter: "team"), class: "public-team-choice active" %>
+    <% end %>
+</div>
+
 <div class="public-team-choice-selected"><p>- <span><%=  @initial_perimeter.upcase %></span> TCHAT -</p></div>
 
 
@@ -53,6 +64,7 @@
     <% end %>
   <% end %>
 </div>
+
 
 
 <!-- -------------------------------------CODE D´ALEX---------------------------- -->
