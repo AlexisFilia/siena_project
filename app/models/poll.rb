@@ -1,6 +1,7 @@
 class Poll < ApplicationRecord
   belongs_to :company
   belongs_to :user
+  belongs_to :message, optional: true
 
   has_many :options, dependent: :destroy
   has_many :poll_user_links, dependent: :destroy
@@ -9,6 +10,7 @@ class Poll < ApplicationRecord
   validates :description, presence: true
   validates :type_of, presence: true
   validates :perimeter, presence: true
+
   validates :name, uniqueness: {
     scope: :company,
     message: 'This poll name already exists in the DB.'
