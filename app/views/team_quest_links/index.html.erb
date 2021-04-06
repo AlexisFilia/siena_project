@@ -13,8 +13,8 @@
         <% @validated_tqls.each do |tql| %>
           <p>------------------------</p>
           <h3><%= tql.quest.name %> for <%= tql.team.name %></h3>
-          <% if !tql.medias.blank? %>
-            <%= image_tag tql.medias.first.url %>
+          <% if !tql.media.blank? %>
+            <%= image_tag tql.media.first.url %>
           <% end %>
         <% end %>
       </div>

@@ -18,7 +18,7 @@
 
   <%= simple_form_for @message, remote: true do |f| %>
     <%= f.hidden_field :message_ref, id: "message-ref" %>
-    <%= f.hidden_field :type_of, value: @initial_perimeter, id: "message-perimeter-choice" %>
+    <%= f.hidden_field :perimeter, value: @initial_perimeter %>
     <%= f.input :message_ref, as: :hidden %>
     <div class="wrapper">
       <%= f.input :value, label: false; %>

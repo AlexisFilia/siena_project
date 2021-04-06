@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.string "url"
     t.string "type_of"
     t.bigint "team_quest_link_id"
     t.bigint "message_id"
@@ -80,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
 
   create_table "messages", force: :cascade do |t|
     t.string "type_of"
+    t.string "perimeter"
     t.string "value"
     t.integer "message_ref"
     t.bigint "user_id", null: false
@@ -112,15 +112,10 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.text "description"
     t.string "type_of"
     t.string "result"
-    t.string "perimeter"
-    t.bigint "company_id", null: false
-    t.bigint "user_id", null: false
     t.bigint "message_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_id"], name: "index_polls_on_company_id"
     t.index ["message_id"], name: "index_polls_on_message_id"
-    t.index ["user_id"], name: "index_polls_on_user_id"
   end
 
   create_table "quest_tag_links", force: :cascade do |t|
@@ -234,9 +229,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   add_foreign_key "poll_user_links", "options"
   add_foreign_key "poll_user_links", "polls"
   add_foreign_key "poll_user_links", "users"
-  add_foreign_key "polls", "companies"
   add_foreign_key "polls", "messages"
-  add_foreign_key "polls", "users"
   add_foreign_key "quest_tag_links", "quests"
   add_foreign_key "quest_tag_links", "tags"
   add_foreign_key "quests", "levels"

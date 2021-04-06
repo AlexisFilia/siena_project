@@ -17,9 +17,11 @@ class PollsController < ApplicationController
 
   def create
 
-    poll = Poll.new(poll_params)
-    poll.user = current_user
-    poll.company = current_user.team.company
+    p_params = poll_params
+
+    message = Message.create!(user: current_user, perimeter: p_params[:perimeter], type_of: "poll")
+    poll = Poll.new(name: p_params[:name], description: p_params[:description])
+    poll.message = message
     poll.type_of = "standard" # ON POURRAIT FAIRE UN POLL A DUREE LIMITEE DANS LE TEMPS.... POUR LINSTANT UN SEUL TYPE
 
     if poll.save!

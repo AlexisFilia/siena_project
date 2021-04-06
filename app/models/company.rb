@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  has_many :polls, dependent: :destroy
+  # has_many :polls, dependent: :destroy
   has_many :teams, dependent: :destroy
   has_many :users, through: :teams
 

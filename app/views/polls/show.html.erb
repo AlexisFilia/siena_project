@@ -2,7 +2,7 @@
 <%= render 'shared/bottom-bar' %>
 
 <div class="container-below-top-bar">
-  <div class="public-team-choice-selected"><p>- <span><%= @poll.perimeter.upcase %></span> POLL -</p></div>
+  <div class="public-team-choice-selected"><p>- <span><%= @poll.get_perimeter.upcase %></span> POLL -</p></div>
 </div>
 
 <div class="main-container centered-vertically with-bottom-margin">

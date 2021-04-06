@@ -13,19 +13,21 @@ class MessagesController < ApplicationController
     # histoire de limiter les requetes dans la view?
 
     @message = Message.new()
-    @media = Media.new()
+    @medium = Medium.new()
 
     if @initial_perimeter == "team"
 
-      @team_messages = Message.joins(:user)
-                              .where(type_of: 'team')
+      @messages = Message.joins(:user)
+                              .where(perimeter: 'team')
                               .where(users: { team_id: @team.id })
                               .order('created_at ASC')
                               .limit(50)
+      # params[:anchor] = "message-#{@messages.last.anchor}"
     else
-      @public_messages = Message.where(type_of: 'public')
+      @messages = Message.where(perimeter: 'public')
                                  .order('created_at ASC')
                                  .limit(50)
+      # params[:anchor] = "message-#{@messages.last.anchor}"
     end
 
 
@@ -33,19 +35,24 @@ class MessagesController < ApplicationController
 
   def create
 
-    perimeter = params.require(:message).permit(:type_of)[:type_of]
+    perimeter = params.require(:message).permit(:perimeter)[:perimeter]
 
     message = Message.create!({
                             user: current_user,
-                            type_of: perimeter,
+                            perimeter: perimeter,
+                            type_of: "standard",
                             value: params.require(:message).permit(:value)[:value],
                             message_ref: params.require(:message).permit(:message_ref)[:message_ref]
                           })
-    unless params[:message][:url].blank? || params[:message][:type_of_media].blank?
-      media = Media.define_media(params[:message][:url], params[:message][:type_of_media], message)
-    end
-    redirect_to messages_path(perimeter: perimeter, anchor: "message-#{message.id}")
+  #   unless params[:message][:url].blank? || params[:message][:type_of_media].blank?
+  #     media = Media.define_media(params[:message][:url], params[:message][:type_of_media], message)
+  #   end
+    redirect_to messages_path(perimeter: perimeter, anchor: message.anchor)
   end
+
+
+
 end
+
 
 

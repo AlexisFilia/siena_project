@@ -3,7 +3,7 @@ const publicTeamChoiceToggle = () => {
   if(!publicTeamChoices) return;
   const span = document.querySelector(".public-team-choice-selected span");
   const pollPerimeterChoice = document.querySelector("#poll-perimeter-choice");
-  const messagePerimeterChoice = document.querySelector("#message-perimeter-choice");
+  const messagePerimeterChoice = document.querySelectorAll(".message-perimeter-choice");
   const teamMessagesContainer = document.querySelector("#team-messages-container");
   const publicMessagesContainer = document.querySelector("#public-messages-container");
 
@@ -20,8 +20,8 @@ const publicTeamChoiceToggle = () => {
           if(pollPerimeterChoice){pollPerimeterChoice.value = "public"} ;
           if(messagePerimeterChoice){
             // messagePerimeterChoice.value = "public";
-            publicMessagesContainer.style.display = "flex";
-            teamMessagesContainer.style.display = "none";
+            // publicMessagesContainer.style.display = "flex";
+            // teamMessagesContainer.style.display = "none";
 
           };
 
@@ -30,8 +30,8 @@ const publicTeamChoiceToggle = () => {
           if(pollPerimeterChoice){pollPerimeterChoice.value = "team"}
           if(messagePerimeterChoice){
             // messagePerimeterChoice.value = "team";
-            publicMessagesContainer.style.display = "none";
-            teamMessagesContainer.style.display = "flex";
+            // publicMessagesContainer.style.display = "none";
+            // teamMessagesContainer.style.display = "flex";
           }
         }
       }
