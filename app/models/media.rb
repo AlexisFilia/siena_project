@@ -1,4 +1,4 @@
-class Media < ApplicationRecord
+class Medium < ApplicationRecord
   belongs_to :message, optional: true
   belongs_to :team_quest_link, optional: true
 
@@ -7,7 +7,7 @@ class Media < ApplicationRecord
     message: 'This url already exists in the DB.'
   }
 
-  has_one_attached :media
+  has_one_attached :attached_file
 
   def self.define_media(url, type_of, entity)
     media = if Media.exists?(url: url, type_of: type_of)

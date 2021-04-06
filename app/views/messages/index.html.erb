@@ -15,6 +15,14 @@
 <div class="public-team-choice-selected"><p>- <span><%=  @initial_perimeter.upcase %></span> TCHAT -</p></div>
 <%= link_to "Create Poll", new_poll_path %>
 
+<%#= simple_form_for @media, :url => media_path, :method => :post, remote: true do |f| %>
+  <%#= f.hidden_field :message, value: @message %>
+  <%#= f.input :attached_file, as: :file, label: false%>
+  <%#= button_tag type: 'submit', class: "btn-send-message" %>
+  <%#= f.button :submit, class: "main-button" %>
+
+<%# end %>
+
 <div class="messages-container">
 
   <% if !@messages.blank? %>
@@ -28,9 +36,9 @@
           <div class="message-reference-container"><%= Message.find(message.message_ref).value %></div>
         <% end %>
 
-        <% if !message.medias.blank? %>
-          <div class="message-media-container"><%= image_tag message.medias.last.url, height: 30, width: 40, crop: :fill %></div>
-        <% end %>
+        <%# if !message.media.blank? %>
+          <!-- <div class="message-media-container"><%#= image_tag message.media.last.url, height: 30, width: 40, crop: :fill %></div> -->
+        <%# end %>
         <div class="message-date"><%= message.created_at.strftime('%A %d %B %Y, at %I:%M%p') %></div>
         <div class="message-user" style="background-image: url('<%= cloudinary_url(message.user.photo.key) %>')"></div>
         <% if !message.poll.nil? %>

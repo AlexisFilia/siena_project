@@ -13,18 +13,18 @@ class MessagesController < ApplicationController
     # histoire de limiter les requetes dans la view?
 
     @message = Message.new()
-    @media = Media.new()
+    # @media = Medium.new()
 
     if @initial_perimeter == "team"
 
       @messages = Message.joins(:user)
-                              .where(type_of: 'team')
+                              .where(perimeter: 'team')
                               .where(users: { team_id: @team.id })
                               .order('created_at ASC')
                               .limit(50)
       # params[:anchor] = "message-#{@messages.last.anchor}"
     else
-      @messages = Message.where(type_of: 'public')
+      @messages = Message.where(perimeter: 'public')
                                  .order('created_at ASC')
                                  .limit(50)
       # params[:anchor] = "message-#{@messages.last.anchor}"
@@ -35,11 +35,12 @@ class MessagesController < ApplicationController
 
   def create
 
-    perimeter = params.require(:message).permit(:type_of)[:type_of]
+    perimeter = params.require(:message).permit(:perimeter)[:perimeter]
 
     message = Message.create!({
                             user: current_user,
-                            type_of: perimeter,
+                            perimeter: perimeter,
+                            type_of: "standard",
                             value: params.require(:message).permit(:value)[:value],
                             message_ref: params.require(:message).permit(:message_ref)[:message_ref]
                           })

@@ -1,5 +1,5 @@
 class Poll < ApplicationRecord
-  belongs_to :company
+  # belongs_to :company
   belongs_to :user
   belongs_to :message, optional: true
 
@@ -7,14 +7,14 @@ class Poll < ApplicationRecord
   has_many :poll_user_links, dependent: :destroy
 
   validates :name, presence: true
-  validates :description, presence: true
   validates :type_of, presence: true
   validates :perimeter, presence: true
+  # validates :description, presence: true
 
-  validates :name, uniqueness: {
-    scope: :company,
-    message: 'This poll name already exists in the DB.'
-  }
+  # validates :name, uniqueness: {
+  #   scope: :company,
+  #   message: 'This poll name already exists in the DB.'
+  # }
 
 
   def get_options_with_votes
@@ -61,3 +61,4 @@ class Poll < ApplicationRecord
   end
 
 end
+

@@ -125,3 +125,65 @@ user_role_link_4 = UserRoleLink.create!(on_boarding: true, role: role_4, user: U
 user_role_link_5 = UserRoleLink.create!(on_boarding: true, role: role_5, user: User.find_by(first_name: "Player5"))
 
 puts "user_role_links have been created"
+
+puts "Creating some Messages"
+
+message_1 = Message.create!({
+                            user: User.find(1),
+                            perimeter: "public",
+                            value: "Premier message public les gars!"
+                          })
+
+
+message_2 = Message.create!({
+                            user: User.find(2),
+                            perimeter: "public",
+                            value: "Bravo mec!",
+                            message_ref: message_1
+                          })
+
+message_3 = Message.create!({
+                            user: User.find(3),
+                            perimeter: "team",
+                            value: "Ok team! On va les niker!",
+                          })
+
+message_4 = Message.create!({
+                            user: User.find(4),
+                            perimeter: "team",
+                            value: "C´est clair on est des gueudins!",
+                          })
+
+message_4 = Message.create!({
+                            user: User.find(1),
+                            perimeter: "team",
+                            value: "Parle mieux Jean-Pierre voyons...",
+                            message_ref: message_3
+                          })
+
+puts "Some messages have been created"
+
+puts "Creating some polls"
+
+
+poll_message_1 = Message.create!(user: User.find(1), perimeter: "team", type_of: "poll")
+poll_1 = Poll.create!(user: User.find(1), name: "Qui vote pour frapper Jean Pierre?", description: "Jean-Pierre parle trop mal, il faut le punir.", message: poll_message_1, type_of: "standard", perimeter: "team")
+puts "Some polls have been created"
+
+puts "Creating Options"
+option_1 = Option.create!(poll: poll_1, description: "Oui, on le frappe")
+option_2 = Option.create!(poll: poll_1, description: "On le brûle")
+option_3 = Option.create!(poll: poll_1, description: "On va boire une bière plutôt?")
+puts "Options ok"
+
+puts "Creating Poll User links"
+pul_1 = PollUserLink.create!(poll: poll_1, user: User.find(1), option: option_1 )
+pul_2 = PollUserLink.create!(poll: poll_1, user: User.find(2), option: option_2 )
+pul_3 = PollUserLink.create!(poll: poll_1, user: User.find(3), option: option_3 )
+pul_4 = PollUserLink.create!(poll: poll_1, user: User.find(4), option: option_2 )
+puts "Poll User links ok"
+
+
+
+
+
