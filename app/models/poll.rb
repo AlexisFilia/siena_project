@@ -1,14 +1,15 @@
 class Poll < ApplicationRecord
   # belongs_to :company
-  belongs_to :user
-  belongs_to :message, optional: true
+  # belongs_to :user
+  belongs_to :message
 
+  has_one :user, through: :message
   has_many :options, dependent: :destroy
   has_many :poll_user_links, dependent: :destroy
 
   validates :name, presence: true
   validates :type_of, presence: true
-  validates :perimeter, presence: true
+  # validates :perimeter, presence: true
   # validates :description, presence: true
 
   # validates :name, uniqueness: {
@@ -16,6 +17,9 @@ class Poll < ApplicationRecord
   #   message: 'This poll name already exists in the DB.'
   # }
 
+  def get_perimeter
+    self.message.perimeter
+  end
 
   def get_options_with_votes
     # retourne un array de hash sous la forme [description: description, votes: votesAmount, percent: percentageoftotalvotes, best: true/false]

@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
     # histoire de limiter les requetes dans la view?
 
     @message = Message.new()
-    # @media = Medium.new()
+    @media = Medium.new()
 
     if @initial_perimeter == "team"
 
@@ -44,9 +44,9 @@ class MessagesController < ApplicationController
                             value: params.require(:message).permit(:value)[:value],
                             message_ref: params.require(:message).permit(:message_ref)[:message_ref]
                           })
-    unless params[:message][:url].blank? || params[:message][:type_of_media].blank?
-      media = Media.define_media(params[:message][:url], params[:message][:type_of_media], message)
-    end
+  #   unless params[:message][:url].blank? || params[:message][:type_of_media].blank?
+  #     media = Media.define_media(params[:message][:url], params[:message][:type_of_media], message)
+  #   end
     redirect_to messages_path(perimeter: perimeter, anchor: message.anchor)
   end
 

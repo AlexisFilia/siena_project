@@ -7,11 +7,11 @@ class User < ApplicationRecord
   belongs_to :team
   has_one :company, through: :team
 
-  has_one_attached :photo
 
   has_many :likes, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :polls, through: :messages
   has_many :poll_user_links, dependent: :destroy
   has_many :user_role_links, dependent: :destroy
   has_many :roles, through: :user_role_links
@@ -22,6 +22,9 @@ class User < ApplicationRecord
   validates :email, uniqueness: {
     message: 'This email already exists in the DB.'
   }
+
+  has_one_attached :photo
+
 
   def get_full_name
     "#{self.first_name} #{self.last_name}"

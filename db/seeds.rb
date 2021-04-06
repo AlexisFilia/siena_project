@@ -164,16 +164,18 @@ message_4 = Message.create!({
 puts "Some messages have been created"
 
 puts "Creating some polls"
-
-
 poll_message_1 = Message.create!(user: User.find(1), perimeter: "team", type_of: "poll")
-poll_1 = Poll.create!(user: User.find(1), name: "Qui vote pour frapper Jean Pierre?", description: "Jean-Pierre parle trop mal, il faut le punir.", message: poll_message_1, type_of: "standard", perimeter: "team")
+poll_message_2 = Message.create!(user: User.find(2), perimeter: "team", type_of: "poll")
+poll_1 = Poll.create!(name: "Qui vote pour frapper Jean Pierre?", description: "Jean-Pierre parle trop mal, il faut le punir.", message: poll_message_1, type_of: "standard")
+poll_2 = Poll.create!(name: "On fait quoi des cendres de JP?", message: poll_message_2, type_of: "standard")
 puts "Some polls have been created"
 
 puts "Creating Options"
 option_1 = Option.create!(poll: poll_1, description: "Oui, on le frappe")
 option_2 = Option.create!(poll: poll_1, description: "On le brûle")
 option_3 = Option.create!(poll: poll_1, description: "On va boire une bière plutôt?")
+option_4 = Option.create!(poll: poll_2, description: "On les jette du haut d´une falaise")
+option_5 = Option.create!(poll: poll_2, description: "On les sniffe!")
 puts "Options ok"
 
 puts "Creating Poll User links"
@@ -181,6 +183,8 @@ pul_1 = PollUserLink.create!(poll: poll_1, user: User.find(1), option: option_1 
 pul_2 = PollUserLink.create!(poll: poll_1, user: User.find(2), option: option_2 )
 pul_3 = PollUserLink.create!(poll: poll_1, user: User.find(3), option: option_3 )
 pul_4 = PollUserLink.create!(poll: poll_1, user: User.find(4), option: option_2 )
+pul_5 = PollUserLink.create!(poll: poll_2, user: User.find(1), option: option_4 )
+pul_6 = PollUserLink.create!(poll: poll_2, user: User.find(2), option: option_5 )
 puts "Poll User links ok"
 
 

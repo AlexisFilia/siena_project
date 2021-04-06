@@ -113,13 +113,10 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.text "description"
     t.string "type_of"
     t.string "result"
-    t.string "perimeter"
-    t.bigint "user_id", null: false
     t.bigint "message_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["message_id"], name: "index_polls_on_message_id"
-    t.index ["user_id"], name: "index_polls_on_user_id"
   end
 
   create_table "quest_tag_links", force: :cascade do |t|
@@ -234,7 +231,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   add_foreign_key "poll_user_links", "polls"
   add_foreign_key "poll_user_links", "users"
   add_foreign_key "polls", "messages"
-  add_foreign_key "polls", "users"
   add_foreign_key "quest_tag_links", "quests"
   add_foreign_key "quest_tag_links", "tags"
   add_foreign_key "quests", "levels"
