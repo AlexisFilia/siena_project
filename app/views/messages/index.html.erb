@@ -16,13 +16,13 @@
 <div class="public-team-choice-selected"><p>- <span><%=  @initial_perimeter.upcase %></span> TCHAT -</p></div>
 
 
-<div id="team-messages-container" class="messages-container" style='<%= 'display: none;' if @initial_perimeter == 'public' %>'>
+<div class="messages-container">
 
-  <% if !@team_messages.blank? %>
+  <% if !@messages.blank? %>
 
     <%= link_to "Load more...", messages_path, class: "load-more-messages-btn" %>
 
-    <% @team_messages.each do |message| %>
+    <% @messages.each do |message| %>
       <div id="message-<%= message.id %>" class="message-container <%= 'c-user' if message.user == current_user %>">
 
         <% if !message.message_ref.blank? %>
@@ -41,29 +41,6 @@
 
 </div>
 
-<div id="public-messages-container" class="messages-container" style='<%= 'display: none;' if @initial_perimeter == 'team' %>'>
-
-  <% if !@public_messages.blank? %>
-
-    <%= link_to "Load more...", messages_path, class: "load-more-messages-btn" %>
-
-    <% @public_messages.each do |message| %>
-      <div id="message-<%= message.id %>" class="message-container <%= 'c-user' if message.user == current_user %>">
-
-        <% if !message.message_ref.blank? %>
-          <div class="message-reference-container"><%= Message.find(message.message_ref).value %></div>
-        <% end %>
-
-        <% if !message.medias.blank? %>
-          <div class="message-media-container"><%= image_tag message.medias.last.url, height: 30, width: 40, crop: :fill %></div>
-        <% end %>
-        <div class="message-date"><%= message.created_at.strftime('%A %d %B %Y, at %I:%M%p') %></div>
-        <div class="message-user" style="background-image: url('<%= cloudinary_url(message.user.photo.key) %>')"></div>
-        <div class="message"><%= "#{message.user == current_user ? 'You' : message.user.first_name} : #{message.value}" %></div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
 
 
 

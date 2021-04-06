@@ -6,4 +6,10 @@ class Message < ApplicationRecord
   has_one :poll
 
   validates :type_of, presence: true
+
+
+  def anchor
+    "message-#{self.id}"
+  end
+
 end

@@ -20,8 +20,8 @@ const publicTeamChoiceToggle = () => {
           if(pollPerimeterChoice){pollPerimeterChoice.value = "public"} ;
           if(messagePerimeterChoice){
             // messagePerimeterChoice.value = "public";
-            publicMessagesContainer.style.display = "flex";
-            teamMessagesContainer.style.display = "none";
+            // publicMessagesContainer.style.display = "flex";
+            // teamMessagesContainer.style.display = "none";
 
           };
 
@@ -30,8 +30,8 @@ const publicTeamChoiceToggle = () => {
           if(pollPerimeterChoice){pollPerimeterChoice.value = "team"}
           if(messagePerimeterChoice){
             // messagePerimeterChoice.value = "team";
-            publicMessagesContainer.style.display = "none";
-            teamMessagesContainer.style.display = "flex";
+            // publicMessagesContainer.style.display = "none";
+            // teamMessagesContainer.style.display = "flex";
           }
         }
       }

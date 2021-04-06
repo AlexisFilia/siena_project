@@ -17,15 +17,17 @@ class MessagesController < ApplicationController
 
     if @initial_perimeter == "team"
 
-      @team_messages = Message.joins(:user)
+      @messages = Message.joins(:user)
                               .where(type_of: 'team')
                               .where(users: { team_id: @team.id })
                               .order('created_at ASC')
                               .limit(50)
+      # params[:anchor] = "message-#{@messages.last.anchor}"
     else
-      @public_messages = Message.where(type_of: 'public')
+      @messages = Message.where(type_of: 'public')
                                  .order('created_at ASC')
                                  .limit(50)
+      # params[:anchor] = "message-#{@messages.last.anchor}"
     end
 
 
@@ -44,8 +46,12 @@ class MessagesController < ApplicationController
     unless params[:message][:url].blank? || params[:message][:type_of_media].blank?
       media = Media.define_media(params[:message][:url], params[:message][:type_of_media], message)
     end
-    redirect_to messages_path(perimeter: perimeter, anchor: "message-#{message.id}")
+    redirect_to messages_path(perimeter: perimeter, anchor: message.anchor)
   end
+
+
+
 end
+
 
 
