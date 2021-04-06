@@ -10,6 +10,9 @@ class PollUserLinksController < ApplicationController
 
   def new
     @poll = Poll.find(params[:poll_id])
+
+    redirect_to poll_path(@poll) if @poll.has_been_completed_by_user?(current_user)
+
     @pul = PollUserLink.new
     @poll_options = @poll.options
   end

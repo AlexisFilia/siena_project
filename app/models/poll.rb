@@ -44,4 +44,20 @@ class Poll < ApplicationRecord
 
     return returned_array
   end
+
+
+  def has_been_completed_by_user?(user)
+    # check if user has participated to poll
+
+    puls = self.poll_user_links
+
+    if !puls.blank?
+      puls.each do |pul|
+        return true if pul.user == user
+      end
+    end
+
+    return false
+  end
+
 end

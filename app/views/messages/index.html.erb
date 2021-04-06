@@ -2,7 +2,6 @@
 <%= render 'shared/bottom-bar' %>
 <%= render 'shared/tchat-action-bar' %>
 <%#= render 'shared/public-team-choice-container' %>
-
 <div class="public-team-choice-container">
     <% if @initial_perimeter == "public" %>
       <%= link_to "PUBLIC", messages_path(perimeter: "public"), class: "public-team-choice active" %>
@@ -14,7 +13,7 @@
 </div>
 
 <div class="public-team-choice-selected"><p>- <span><%=  @initial_perimeter.upcase %></span> TCHAT -</p></div>
-
+<%= link_to "Create Poll", new_poll_path %>
 
 <div class="messages-container">
 
@@ -34,7 +33,17 @@
         <% end %>
         <div class="message-date"><%= message.created_at.strftime('%A %d %B %Y, at %I:%M%p') %></div>
         <div class="message-user" style="background-image: url('<%= cloudinary_url(message.user.photo.key) %>')"></div>
-        <div class="message"><%= "#{message.user == current_user ? 'You' : message.user.first_name} : #{message.value}" %></div>
+        <% if !message.poll.nil? %>
+            <div class="message">
+              <p><%= "#{message.user == current_user ? 'You' : message.user.first_name} created a poll" %></p>
+              <p>"<%= message.poll.name %>"</p>
+              <%= link_to new_poll_poll_user_link_path(message.poll) do %>
+                <i class="fas fa-poll-h"></i>
+              <% end %>
+            </div>
+        <% else %>
+          <div class="message"><%= "#{message.user == current_user ? 'You' : message.user.first_name} : #{message.value}" %></div>
+        <% end %>
       </div>
     <% end %>
   <% end %>
