@@ -18,4 +18,12 @@ class Medium < ApplicationRecord
   #   media.send("#{entity.class.to_s.downcase}_id=", entity.id)
   #   media.save!
   # end
+
+
+  def is_image?
+
+    image_types = ["image/png"]
+
+    image_types.include?(self.type_of)
+  end
 end
