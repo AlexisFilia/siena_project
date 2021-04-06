@@ -15,13 +15,12 @@
 <div class="public-team-choice-selected"><p>- <span><%=  @initial_perimeter.upcase %></span> TCHAT -</p></div>
 <%= link_to "Create Poll", new_poll_path %>
 
-<%#= simple_form_for @media, :url => media_path, :method => :post, remote: true do |f| %>
-  <%#= f.hidden_field :message, value: @message %>
-  <%#= f.input :attached_file, as: :file, label: false%>
+<%= simple_form_for @medium, :url => media_path, :method => :post, remote: true do |f| %>
+  <%= f.hidden_field :perimeter, value: @initial_perimeter %>
+  <%= f.input :attached_file, as: :file, label: false%>
   <%#= button_tag type: 'submit', class: "btn-send-message" %>
-  <%#= f.button :submit, class: "main-button" %>
-
-<%# end %>
+  <%= f.button :submit, class: "main-button" %>
+<% end %>
 
 <div class="messages-container">
 

@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
     # histoire de limiter les requetes dans la view?
 
     @message = Message.new()
-    @media = Medium.new()
+    @medium = Medium.new()
 
     if @initial_perimeter == "team"
 

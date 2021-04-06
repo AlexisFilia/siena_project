@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   end
 
   create_table "media", force: :cascade do |t|
-    t.string "url"
     t.string "type_of"
     t.bigint "team_quest_link_id"
     t.bigint "message_id"

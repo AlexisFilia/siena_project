@@ -3,7 +3,7 @@ const publicTeamChoiceToggle = () => {
   if(!publicTeamChoices) return;
   const span = document.querySelector(".public-team-choice-selected span");
   const pollPerimeterChoice = document.querySelector("#poll-perimeter-choice");
-  const messagePerimeterChoice = document.querySelector("#message-perimeter-choice");
+  const messagePerimeterChoice = document.querySelectorAll(".message-perimeter-choice");
   const teamMessagesContainer = document.querySelector("#team-messages-container");
   const publicMessagesContainer = document.querySelector("#public-messages-container");
 
