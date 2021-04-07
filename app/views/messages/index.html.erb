@@ -14,56 +14,78 @@
 </div>
  -->
 <!-- <div class="public-team-choice-selected"><p>- <span><%=  @initial_perimeter.upcase %></span> TCHAT -</p></div> -->
-<%= link_to "Create Poll", new_poll_path %>
+<%#= link_to "Create Poll", new_poll_path %>
 
-<%= simple_form_for @medium, :url => media_path, :method => :post, remote: true do |f| %>
-  <%= f.hidden_field :perimeter, value: @initial_perimeter %>
-  <%= f.input :attached_file, as: :file, label: false%>
-  <%#= button_tag type: 'submit', class: "btn-send-message" %>
-  <%= f.button :submit, class: "main-button" %>
-<% end %>
+<%#= simple_form_for @medium, :url => media_path, :method => :post, remote: true do |f| %>
+  <%#= f.hidden_field :perimeter, value: @initial_perimeter %>
+  <%#= f.input :attached_file, as: :file, label: false%>
+  <%##= button_tag type: 'submit', class: "btn-send-message" %>
+  <%#= f.button :submit, class: "main-button" %>
+<%# end %>
 
-<div class="messages-container">
+<div class="main-container with-bottom-margin with-top-margin">
 
-  <% if !@messages.blank? %>
 
-    <%= link_to "Load more...", messages_path, class: "load-more-messages-btn" %>
+  <div class="messages-container">
 
-    <% @messages.each do |message| %>
-      <div id="message-<%= message.id %>" class="message-container <%= 'c-user' if message.user == current_user %>">
+    <% if !@messages.blank? %>
+      <%= link_to "Load more...", messages_path, class: "load-more-messages-btn" %>
 
-        <% if !message.message_ref.blank? %>
-          <div class="message-reference-container">
-            <%= Message.find(message.message_ref).value %>
 
-            </div>
-        <% end %>
+      <% @messages.each do |message| %>
 
-        <% if !message.media.blank? %>
-          <div class="message-media-container"><%= cl_image_tag message.media.last.attached_file.key%></div>
-        <% end %>
-        <div class="message-date"><%= message.created_at.strftime('%A %d %B %Y, at %I:%M%p') %></div>
-        <div class="message-user" style="background-image: url('<%= cloudinary_url(message.user.photo.key) %>')"></div>
-        <% if !message.poll.nil? %>
-            <div class="message">
-              <p><%= "#{message.user == current_user ? 'You' : message.user.first_name} created a poll" %></p>
-              <p>"<%= message.poll.name %>"</p>
-              <%= link_to new_poll_poll_user_link_path(message.poll) do %>
-                <i class="fas fa-poll-h"></i>
-              <% end %>
-            </div>
-        <% else %>
-          <% unless message.value.nil? %>
-            <div class="message"><%= "#{message.user == current_user ? 'You' : message.user.first_name} : #{message.value}" %></div>
+        <div id="message-<%= message.id %>" class="message-container <%= 'c-user' if message.user == current_user %>">
+
+
+
+          <!-- <%# if !message.message_ref.blank? %>
+            <div class="message-reference-container">
+              <%#= Message.find(message.message_ref).value %>
+
+              </div>
+          <%# end %> -->
+
+          <div class="message-user-picture" style="background-image: url('<%= cloudinary_url(message.user.photo.key) %>')"></div>
+
+          <% if !message.poll.nil? %>
+              <div class="message">
+                <p class="message-user-name"><%= "#{message.user == current_user ? 'Me' : message.user.get_full_name}" %></p>
+                <p>"<%= message.poll.name %>"</p>
+                <%= link_to new_poll_poll_user_link_path(message.poll) do %>
+                  <i class="fas fa-poll-h"></i>
+                <% end %>
+              </div>
+          <% else %>
+            <% unless message.value.nil? %>
+
+              <div class="message">
+                <p class="message-user-name"><%= "#{message.user == current_user ? 'Me' : message.user.get_full_name}" %></p>
+                <p><%= message.value %></p>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+
+          <% if !message.media.blank? %>
+            <div class="message">
+              <p class="message-user-name"><%= "#{message.user == current_user ? 'Me' : message.user.get_full_name}" %></p>
+              <%= cl_image_tag message.media.last.attached_file.key%>
+            </div>
+          <% end %>
+
+          <!-- <div class="message-date"><%#= message.created_at.strftime('%A %d %B %Y, at %I:%M%p') %></div> -->
+          <div class="message-date"><%= message.created_at.strftime('%I:%M%p') %></div>
+
+
+
+
+
+        </div>
+
+
+      <% end %>
     <% end %>
-  <% end %>
-
+  </div>
 </div>
-
-
 
 
 <!-- -------------------------------------CODE D´ALEX---------------------------- -->
@@ -122,3 +144,4 @@
   </div>
 </div>
  -->
+

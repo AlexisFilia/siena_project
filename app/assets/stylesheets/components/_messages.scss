@@ -1,80 +1,174 @@
 .messages-container{
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  // height: 50vh;
-  // padding-top: 40vh;
-  padding-bottom: 25vh;
-  // overflow: scroll;
-
 
   .load-more-messages-btn{
-    // background-color: $secondary-color;
     padding: 10px;
     border-radius: 4px;
-    // margin-top: 70vh; // ==> Compensating scroll
     color: white;
     margin-bottom: 20px;
     text-decoration: none;
+    width: 100%;
+    text-align: center;
   }
 
+
   .message-container{
-    position: relative;
-    background-color: white;
-    width: 80%;
-    border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
+    display: flex;
+    font-size: 12px;
+    width: 100%;
+    padding: 0 20px;
     margin: 10px 0;
-    padding: 20px;
 
-    .message-reference-container{}
-    .message-media-container{
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      img{
-        width:80%;
-      }
-    }
-
-    .message-date{
-      position: absolute;
-      top: -1.5em;
-      left: 25px;
-      font-size: 0.5em;
-      color: white;
-    }
-    .message-user{
-      position: absolute;
+    .message-user-picture{
       height: 50px;
       width: 50px;
       border-radius: 50%;
-      top: -25px;
-      left: -25px;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      background-color: white;
 
     }
+
     .message{
-      text-align: center;
+
+      background-color: white;
+      border-radius: 4px;
+      color: black;
+      padding: 10px 20px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      min-width: 20%;
+      max-width: 55%;
+      margin: 0 10px;
+      overflow-wrap: break-word;
+
+      p{
+        margin-bottom: 0;
+      }
+
+      .message-user-name{
+        color: $secondary-color;
+        margin-bottom: 8px;
+        font-weight: lighter;
+      }
+
+      img{
+        width: 100%;
+      }
+    }
+
+    .message-date{
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      font-size: 8px;
     }
 
     &.c-user{
-       background-color: $secondary-color;
-       color: white;
+      flex-flow: row-reverse;
 
-      .message-user{
-        left: calc(100% - 25px);
+      .message{
+        background-color: $secondary-color;
+        color: white;
+        .message-user-name{
+          color: $menu-items-color;
+          // text-align: right;
+        }
       }
-
     }
+
   }
 
 }
+
+
+
+
+
+
+
+// .messages-container{
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   // height: 50vh;
+//   // padding-top: 40vh;
+//   // padding-bottom: 25vh;
+//   // overflow: scroll;
+
+
+//   .load-more-messages-btn{
+//     // background-color: $secondary-color;
+//     padding: 10px;
+//     border-radius: 4px;
+//     // margin-top: 70vh; // ==> Compensating scroll
+//     color: white;
+//     margin-bottom: 20px;
+//     text-decoration: none;
+//   }
+
+//   .message-container{
+//     position: relative;
+//     background-color: white;
+//     width: 80%;
+//     border-radius: 10px;
+//     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+//     margin: 10px 0;
+//     padding: 20px;
+
+//     .message-reference-container{}
+//     .message-media-container{
+//       width: 100%;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+
+//       img{
+//         width:80%;
+//       }
+//     }
+
+//     .message-date{
+//       position: absolute;
+//       top: -1.5em;
+//       left: 25px;
+//       font-size: 0.5em;
+//       color: white;
+//     }
+//     .message-user{
+//       position: absolute;
+//       height: 50px;
+//       width: 50px;
+//       border-radius: 50%;
+//       top: -25px;
+//       left: -25px;
+//       background-position: center;
+//       background-repeat: no-repeat;
+//       background-size: cover;
+//       box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
+//     }
+//     .message{
+//       text-align: center;
+//     }
+
+//     &.c-user{
+//        background-color: $secondary-color;
+//        color: white;
+
+//       .message-user{
+//         left: calc(100% - 25px);
+//       }
+
+//     }
+//   }
+
+// }
 
 
