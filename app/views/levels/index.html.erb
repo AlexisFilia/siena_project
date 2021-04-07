@@ -1,70 +1,80 @@
 <%= render 'shared/evolutive-top-bar' %>
 <%#= render 'shared/bottom-bar' %>
 
-  <div id="levels-container" class="centered-vertically">
-    <!-- <div id="divider-left"></div> -->
-    <!-- <div id="divider-right"></div> -->
-    <% @levels.each do |l| %>
+<div class="main-container with-top-margin with-bottom-margin">
 
-      <% if l[:level].id > @team_current_level.id %>
+    <div id="levels-container" class="centered-vertically">
+      <!-- <div id="divider-left"></div> -->
+      <!-- <div id="divider-right"></div> -->
+      <% @levels.each do |l| %>
 
-        <div class="level-container locked">
-            <div class="upper-part centered">
-              <div class="mandatory-indication centered-vertically">
-                <% if l[:mandatory_completion] == "-" %>
-                  <p class="percent">-</p>
-                <% else %>
-                  <p class="percent"><%= (l[:mandatory_completion] * 100).to_i %>%</p>
-                <% end %>
-                <p>MANDATORY</p>
+        <% if l[:level].id > @team_current_level.id %>
+
+          <div class="level-container locked">
+              <div class="upper-part centered">
+                <div class="mandatory-indication centered-vertically">
+                  <% if l[:mandatory_completion] == "-" %>
+                    <p class="percent">-</p>
+                  <% else %>
+                    <p class="percent"><%= (l[:mandatory_completion] * 100).to_i %>%</p>
+                  <% end %>
+                  <p>MANDATORY</p>
+                </div>
+                <div class="level-index centered">
+                  <p><%= l[:level].id %></p>
+                  <i class="fas fa-lock"></i>
+                </div>
+                <div class="optional-indication centered-vertically">
+                  <% if l[:optional_completion] == "-" %>
+                    <p class="percent">-</p>
+                  <% else %>
+                    <p class="percent"><%= (l[:optional_completion] * 100).to_i %>%</p>
+                  <% end %>
+                  <p>OPTIONAL</p>
+                </div>
               </div>
-              <div class="level-index centered">
-                <p><%= l[:level].id %></p>
-                <i class="fas fa-lock"></i>
+              <div class="level-name-part centered"><%= l[:level].name.upcase %></div>
+          </div>
+
+        <% else %>
+
+
+          <%= link_to level_quests_path(l[:level]), class: "level-container" do %>
+            <div class="target-wrapper">
+              <div class="tw-big top"><div class="tw-small top left"></div><div class="tw-small top right"></div></div>
+              <div class="tw-big bottom"><div class="tw-small bottom left"></div><div class="tw-small bottom right"></div></div>
+              <div class="upper-part centered">
+                <div class="mandatory-indication centered-vertically">
+                  <% if l[:mandatory_completion] == "-" %>
+                    <p class="percent">-</p>
+                  <% else %>
+                    <p class="percent"><%= (l[:mandatory_completion] * 100).to_i %>%</p>
+                  <% end %>
+                  <p>MANDATORY</p>
+                </div>
+                <div class="level-index centered">
+                  <p><%= l[:level].id %></p>
+                  <i class="fas fa-lock"></i>
+                </div>
+                <div class="optional-indication centered-vertically">
+                  <% if l[:optional_completion] == "-" %>
+                    <p class="percent">-</p>
+                  <% else %>
+                    <p class="percent"><%= (l[:optional_completion] * 100).to_i %>%</p>
+                  <% end %>
+                  <p>OPTIONAL</p>
+                </div>
               </div>
-              <div class="optional-indication centered-vertically">
-                <% if l[:optional_completion] == "-" %>
-                  <p class="percent">-</p>
-                <% else %>
-                  <p class="percent"><%= (l[:optional_completion] * 100).to_i %>%</p>
-                <% end %>
-                <p>OPTIONAL</p>
-              </div>
+              <div class="level-name-part centered"><%= l[:level].name.upcase %></div>
             </div>
-            <div class="level-name-part centered"><%= l[:level].name.upcase %></div>
-        </div>
+          <% end %>
 
-      <% else %>
 
-        <%= link_to level_quests_path(l[:level]), class: "level-container" do %>
-            <div class="upper-part centered">
-              <div class="mandatory-indication centered-vertically">
-                <% if l[:mandatory_completion] == "-" %>
-                  <p class="percent">-</p>
-                <% else %>
-                  <p class="percent"><%= (l[:mandatory_completion] * 100).to_i %>%</p>
-                <% end %>
-                <p>MANDATORY</p>
-              </div>
-              <div class="level-index centered">
-                <p><%= l[:level].id %></p>
-                <i class="fas fa-lock"></i>
-              </div>
-              <div class="optional-indication centered-vertically">
-                <% if l[:optional_completion] == "-" %>
-                  <p class="percent">-</p>
-                <% else %>
-                  <p class="percent"><%= (l[:optional_completion] * 100).to_i %>%</p>
-                <% end %>
-                <p>OPTIONAL</p>
-              </div>
-            </div>
-            <div class="level-name-part centered"><%= l[:level].name.upcase %></div>
         <% end %>
 
       <% end %>
 
-    <% end %>
+    </div>
 
   </div>
 

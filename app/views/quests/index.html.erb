@@ -14,32 +14,10 @@
   <div class="rounded-div centered"><p><%#= (@level_completion[:total] * 100).to_i %>%</p></div>
 </div> -->
 
-<div class="quests-container centered-vertically">
-  <div class="title">MANDATORY QUESTS</div>
-  <% @quests.select{|q| q[:quest].type_of == "mandatory"}.each do |q| %>
-    <%= link_to quest_path(q[:quest]), class: "quest-container #{q[:status]}" do %>
-      <div class="round-item centered">
-        <!-- <i class="far fa-gem"></i> -->
-        <!-- <i class="far fa-star"></i> -->
-        <% case q[:status] %>
-        <% when "open" %>
-          <i class="fas fa-crosshairs" class=""></i>
-        <% when "pending" %>
-          <i class="far fa-clock"></i>
-        <% when "completed" %>
-          <i class="fas fa-award"></i>
-        <% when "rejected" %>
-          <i class="fas fa-skull-crossbones"></i>
-        <% end %>
-      </div>
-      <div class="quest-title centered"><%= q[:quest].name.upcase %> </div>
-    <% end %>
-  <% end %>
-
-
-  <% if !@quests.select{|q| q[:quest].type_of == "optional"}.empty? %>
-    <div class="title">OPTIONAL QUESTS</div>
-    <% @quests.select{|q| q[:quest].type_of == "optional"}.each do |q| %>
+<div class="main-container with-top-margin with-bottom-margin">
+  <div class="quests-container centered-vertically">
+    <div class="title">MANDATORY QUESTS</div>
+    <% @quests.select{|q| q[:quest].type_of == "mandatory"}.each do |q| %>
       <%= link_to quest_path(q[:quest]), class: "quest-container #{q[:status]}" do %>
         <div class="round-item centered">
           <!-- <i class="far fa-gem"></i> -->
@@ -58,7 +36,31 @@
         <div class="quest-title centered"><%= q[:quest].name.upcase %> </div>
       <% end %>
     <% end %>
-  <% end %>
 
+
+    <% if !@quests.select{|q| q[:quest].type_of == "optional"}.empty? %>
+      <div class="title">OPTIONAL QUESTS</div>
+      <% @quests.select{|q| q[:quest].type_of == "optional"}.each do |q| %>
+        <%= link_to quest_path(q[:quest]), class: "quest-container #{q[:status]}" do %>
+          <div class="round-item centered">
+            <!-- <i class="far fa-gem"></i> -->
+            <!-- <i class="far fa-star"></i> -->
+            <% case q[:status] %>
+            <% when "open" %>
+              <i class="fas fa-crosshairs" class=""></i>
+            <% when "pending" %>
+              <i class="far fa-clock"></i>
+            <% when "completed" %>
+              <i class="fas fa-award"></i>
+            <% when "rejected" %>
+              <i class="fas fa-skull-crossbones"></i>
+            <% end %>
+          </div>
+          <div class="quest-title centered"><%= q[:quest].name.upcase %> </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  </div>
 </div>
 
