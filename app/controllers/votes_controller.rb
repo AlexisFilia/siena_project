@@ -13,6 +13,10 @@ class VotesController < ApplicationController
                                                  .where(votes: { user_id: nil}))
                                 .order('created_at ASC')
                                 .first
+
+
+    #Evolutive elements------------------
+    @top_bar_title = "VALIDATION"
   end
 
   def create

@@ -1,0 +1,84 @@
+#evolutive-top-bar{
+  z-index: 10;
+  height: 10vh;
+  width: 100%;
+  background-color: $background-color-lighter;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
+  display: grid;
+  // grid-template-columns: 1fr 50fr ;
+  align-items: center;
+
+  #etb-burger-menu{
+    position: absolute;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 15px;
+    color: white;
+    font-size: 16px;
+
+    &:hover{
+      cursor: pointer;
+
+    }
+  }
+
+  #etb-title{
+    color: $menu-items-color;
+    justify-self: center;
+    font-size: 16px;
+  }
+
+  #etb-perimeter-toggle{
+    display: none;
+  }
+
+  &.perimeter-choices{
+
+    grid-template-columns: 6fr 4fr;
+    grid-gap: 0;
+
+    #etb-perimeter-toggle{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+
+      .public-team-choice{
+        color: white;
+        background-color: $gray;
+        padding: 10px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        width: 48%;
+        font-size: 12px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
+        &:hover{
+          background-color: $secondary-color;
+          // transform: scale(1.1);
+          cursor: pointer;
+        }
+
+        &.active{
+          background-color: $secondary-color;
+          // transform: scale(1.1);
+          &:hover{
+            cursor: auto;
+            // transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+

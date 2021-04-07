@@ -2,79 +2,56 @@
   z-index: 10;
   position: fixed;
   height: 10vh;
-  bottom: 13vh;
+  bottom: 0;
   width: 100%;
+  background-color: $background-color-lighter;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  align-items: center;
+  padding: 15px;
 
-  .wrapper{
-    position: relative;
 
-    .form-group{
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  #tchat-action-bar-btn-plus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 5vh;
+    width: 5vh;
+    border: 1px solid white;
+    border-radius: 50%;
+
+  }
+
+  #new_message{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+
+    .message_value{
+      margin: 0;
+      width: 70%;
 
       #message_value{
-        position: absolute;
-        right: 10%;
-        top: 0;
-        width: 60%;
-        border-radius: 20px;
+        border: none;
+        background-color: $background-color;
+        color: white;
       }
-
     }
-    .btn-send-message{
-      position: absolute;
+
+    #tchat-action-bar-btn-send{
+      height: 100%;
+      width: 20%;
       background-color: transparent;
-      // left: calc(100% - 1.5em);
-      right: 10%;
-      top: 0;
-      color: $secondary-color;
-      font-size: 1.5em;
-      border-radius: 50%;
-      border: none;
-
-    }
-  }
-
-  .media-btn-wrapper{
-    position: relative;
-
-    #media_media{
-      position: absolute;
-      left: 10%;
-      top: 0;
-      z-index: 12;
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      color: transparent;
-      background-color: transparent;
-      opacity: 0;
-      filter: alpha(opacity=0);
-      overflow: hidden;
-      // display: none;
-    }
-
-    .icon-wrapper{
-      z-index: 11;
-      position: absolute;
-      left: 10%;
-      top: 0;
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      i{
-        color: $secondary-color;
-        font-size: 1.5em;
-
-      }
-
+      color: $menu-items-color;
+      border-radius: 4px;
+      border: 1px solid $menu-items-color;
     }
 
   }
+
+
+
+
 }
+
