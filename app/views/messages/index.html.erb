@@ -32,7 +32,10 @@
       <div id="message-<%= message.id %>" class="message-container <%= 'c-user' if message.user == current_user %>">
 
         <% if !message.message_ref.blank? %>
-          <div class="message-reference-container"><%= Message.find(message.message_ref).value %></div>
+          <div class="message-reference-container">
+            <%= Message.find(message.message_ref).value %>
+
+            </div>
         <% end %>
 
         <% if !message.media.blank? %>
