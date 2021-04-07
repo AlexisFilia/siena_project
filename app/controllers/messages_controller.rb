@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
   def index
     # raise
-    @sideNav_id = 7; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
+    # @sideNav_id = 7; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
     @initial_perimeter = params[:perimeter].nil? ? "team" : params[:perimeter]
     params[:perimeter] = @initial_perimeter # pour l´avoir dans l´url
 
@@ -31,6 +31,9 @@ class MessagesController < ApplicationController
     end
 
 
+    #Evolutive elements------------------
+    @top_bar_title = "TCHAT"
+    @etb_class = "perimeter-choices"
   end
 
   def create

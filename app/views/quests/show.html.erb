@@ -1,18 +1,20 @@
-<%= render 'shared/top-bar' %>
-<%= render 'shared/bottom-bar' %>
+<%= render 'shared/evolutive-top-bar' %>
 
-<div class="container-below-top-bar">
-  <%= link_to :back, class: "rounded-div centered" do %>
+<%#= render 'shared/top-bar' %>
+<%#= render 'shared/bottom-bar' %>
+
+<!-- <div class="container-below-top-bar">
+  <%#= link_to :back, class: "rounded-div centered" do %>
     <i class="fas fa-chevron-left"></i>
-  <% end %>
+  <%# end %>
 
   <div class="level-details centered-vertically">
     <p class="level-number"><%= @level.id %> </p>
-    <p class="title"><%= @level.name.upcase %> </p>
+    <p class="title"><%#= @level.name.upcase %> </p>
   </div>
 
   <div class="rounded-div transparent"></div>
-</div>
+</div> -->
 
 <div class="quest-description-container">
   <div class="quest-title centered"><%= @quest.name.upcase %> </div>
