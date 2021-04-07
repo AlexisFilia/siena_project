@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
 
     #Evolutive elements------------------
     @top_bar_title = "TCHAT"
-    @etb_class = "perimeter-choices"
+    @etb_class = "perimeter-choices tchat"
   end
 
   def create
@@ -56,6 +56,7 @@ class MessagesController < ApplicationController
 
 
 end
+
 
 
 

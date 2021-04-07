@@ -15,18 +15,22 @@
 
   <%# end %> -->
 
+  <div id="tchat-action-bar-btn-plus"><i class="fas fa-plus"></i></div>
 
   <%= simple_form_for @message, remote: true do |f| %>
     <%= f.hidden_field :message_ref, id: "message-ref" %>
     <%= f.hidden_field :perimeter, value: @initial_perimeter %>
     <%= f.input :message_ref, as: :hidden %>
-    <div class="wrapper">
-      <%= f.input :value, label: false; %>
-      <%= button_tag type: 'submit', class: "btn-send-message" do %>
-        <i class="fas fa-arrow-circle-up"></i>
+      <%= f.input :value, label: false, placeholder: "Type something..." %>
+
+      <%= button_tag type: 'submit', id: "tchat-action-bar-btn-send" do %>
+        <i class="far fa-paper-plane"></i>
       <% end %>
     </div>
   <% end %>
+
+
 </div>
+
 
 
