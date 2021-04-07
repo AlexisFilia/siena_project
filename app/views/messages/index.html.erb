@@ -50,9 +50,10 @@
           <% if !message.poll.nil? %>
               <div class="message">
                 <p class="message-user-name"><%= "#{message.user == current_user ? 'Me' : message.user.get_full_name}" %></p>
-                <p>"<%= message.poll.name %>"</p>
-                <%= link_to new_poll_poll_user_link_path(message.poll) do %>
+                <%= link_to new_poll_poll_user_link_path(message.poll), class: "poll-link" do %>
                   <i class="fas fa-poll-h"></i>
+                  <p><%= message.poll.name %></p>
+                  <p>- <%= message.poll.poll_user_links.count %> votes -</p>
                 <% end %>
               </div>
           <% else %>

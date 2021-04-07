@@ -59,6 +59,29 @@
       img{
         width: 100%;
       }
+
+      .poll-link{
+
+
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: black;
+        i{
+          // text-align: center;
+          color: $menu-items-color;
+          font-size: 24px;
+          margin-bottom: 5px;
+          margin-right: 10px;
+        }
+
+        &:hover{
+          cursor: pointer;
+        }
+      }
     }
 
     .message-date{
