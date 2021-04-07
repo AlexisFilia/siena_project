@@ -1,6 +1,6 @@
 <div id="evolutive-top-bar" class="standard <%= @etb_class %>">
   <div id="etb-burger-menu"><i class="fas fa-bars"></i></div>
-  <div id="etb-title"><span><%= @initial_perimeter.upcase %></span> <%= @top_bar_title %></div>
+  <div id="etb-title"><span><%= @initial_perimeter.upcase if @initial_perimeter %></span> <%= @top_bar_title %></div>
   <div id="etb-perimeter-toggle">
     <% if @initial_perimeter == "public" %>
       <div class="public-team-choice active">PUBLIC</div>
@@ -11,3 +11,5 @@
     <% end %>
   </div>
 </div>
+
+<%= render 'shared/main-menu' %>

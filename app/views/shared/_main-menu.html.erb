@@ -1,0 +1,37 @@
+<div id="main-menu">
+  <div id="main-menu-content">
+    <div id="main-menu-close"><i class="fas fa-times"></i></div>
+    <div id="main-menu-team-name"><%= @team.name.upcase %></div>
+    <div id="main-menu-team-info">
+      <p><span>POINTS : </span><%= @team_points%></p>
+      <p><span>RANK : </span><%= @team_rank %> /<%= Team.all.count %></p>
+      <p><span>LEVEL : </span><%= @team_current_level.id %></p>
+      <div id="main-menu-progress-bar-container">
+        <div id="main-menu-progress-bar" style="width:<%= (@team_current_level_completion[:total] * 100).to_i %>%;"></div>
+      </div>
+    </div>
+    <div class="divider-container"><div class="divider"></div></div>
+
+    <div id="main-menu-links">
+      <%= link_to "QUESTS", levels_path, class: "main-button"  %>
+      <%= link_to "TCHAT", messages_path, class: "main-button"  %>
+      <%= link_to "VALIDATION", teams_path, class: "main-button"  %>
+
+      <div class="divider-container"><div class="divider"></div></div>
+
+      <%= link_to "GALLERY", team_quest_links_path, class: "main-button"  %>
+      <%= link_to "SCORES", teams_path, class: "main-button"  %>
+
+      <div class="divider-container"><div class="divider"></div></div>
+
+      <%= link_to "MY TEAM", team_path(current_user.team), class: "main-button"  %>
+      <%= link_to "MY PROFILE", edit_user_path(current_user), class: "main-button"  %>
+
+
+      <%= link_to "LOG-OUT", destroy_user_session_path, :method => :delete, class: "main-button"  %>
+    </div>
+    <%#= link_to "QUESTS", levels_path,  %>
+
+  </div>
+</div>
+

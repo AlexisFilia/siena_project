@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
       @team_current_level = @team.get_level
       @team_current_level_completion = @team.get_percentage_of_level_completion(@team_current_level)
       @team_rank = @team.get_rank
+      @team_points = @team.get_total_points
     end
   end
 end

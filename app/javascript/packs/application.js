@@ -31,6 +31,7 @@ import { sideNavLinks } from '../components/sideNavLinks';
 import { publicTeamChoiceToggle } from '../components/publicTeamChoiceToggle';
 import { handlePollOptions } from '../components/handlePollOptions';
 import { handlePollVotes } from '../components/handlePollVotes';
+import { handleMainMenu } from '../components/handleMainMenu';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -43,4 +44,5 @@ document.addEventListener('turbolinks:load', () => {
   publicTeamChoiceToggle();
   handlePollOptions();
   handlePollVotes();
+  handleMainMenu();
 });
