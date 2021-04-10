@@ -7,5 +7,10 @@ class TeamQuestLinksController < ApplicationController
                                    .order('created_at DESC')
   end
 
+  def update
+    tql = TeamQuestLink.find(params[:id])
+    tql.update!(status: 'pending')
+    redirect_to level_quests_path(tql.quest.level)
+  end
 end
 

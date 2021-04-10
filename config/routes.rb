@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :quests, only: [:index, :show]
   end
 
-  resources :team_quest_links, only: [:index]
+  resources :team_quest_links, only: [:index, :update]
   resources :votes, only: [:index, :new, :create]
 
   resources :polls, only: [:show, :new, :create, :edit, :update, :delete], shallow: true do
