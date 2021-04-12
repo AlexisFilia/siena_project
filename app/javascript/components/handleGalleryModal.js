@@ -5,8 +5,14 @@ const handleGalleryModal = () => {
   const galleryModal = document.querySelector('#gallery-modal');
   if(!galleryModal) return;
 
+  const galleryModalBackground = document.querySelector('#gallery-modal-background');
   const galleryModalClose = galleryModal.querySelector('#gallery-modal-close');
   const galleryItems = document.querySelectorAll('.gallery-item');
+
+  const toggleModal = () => {
+    galleryModalBackground.classList.toggle('active');
+    galleryModal.classList.toggle('active');
+  }
 
 
   const displayGalleryModal = (data) =>{
@@ -15,7 +21,7 @@ const handleGalleryModal = () => {
     const description = `${data.team} : ${data.quest}`;
     modalDescription.innerHTML = description;
     // modalDescription.insertAdjacentHTML('beforeend', )
-    galleryModal.classList.toggle('active');
+    toggleModal();
   }
 
 
@@ -36,7 +42,8 @@ const handleGalleryModal = () => {
   }
 
 
-  galleryModalClose.addEventListener('click', (e) => {galleryModal.classList.toggle('active');});
+  galleryModalClose.addEventListener('click', (e) => toggleModal(e));
+  galleryModalBackground.addEventListener('click', (e) => toggleModal(e));
   galleryItems.forEach(item => {item.addEventListener('click', (e) => fetch_gallery_modal_content(item.dataset.id))});
 
 }
