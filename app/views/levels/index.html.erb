@@ -39,10 +39,10 @@
         <% else %>
 
 
-          <%= link_to level_quests_path(l[:level]), class: "level-container" do %>
+          <%= link_to level_quests_path(l[:level]), class: "level-container" do %><!--
             <div class="target-wrapper">
               <div class="tw-big top"><div class="tw-small top left"></div><div class="tw-small top right"></div></div>
-              <div class="tw-big bottom"><div class="tw-small bottom left"></div><div class="tw-small bottom right"></div></div>
+              <div class="tw-big bottom"><div class="tw-small bottom left"></div><div class="tw-small bottom right"></div></div> -->
               <div class="upper-part centered">
                 <div class="mandatory-indication centered-vertically">
                   <% if l[:mandatory_completion] == "-" %>
@@ -66,7 +66,7 @@
                 </div>
               </div>
               <div class="level-name-part centered"><%= l[:level].name.upcase %></div>
-            </div>
+            <!-- </div> -->
           <% end %>
 
 
