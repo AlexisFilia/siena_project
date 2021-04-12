@@ -14,3 +14,4 @@ namespace :team_quest_link do
     end
   end
 end
+

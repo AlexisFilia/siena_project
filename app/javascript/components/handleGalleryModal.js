@@ -49,3 +49,4 @@ const handleGalleryModal = () => {
 }
 
 export{handleGalleryModal};
+
