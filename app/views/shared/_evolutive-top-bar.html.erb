@@ -10,6 +10,14 @@
         <%= link_to "PUBLIC", messages_path(perimeter: "public"), class: "public-team-choice" %>
         <%= link_to "TEAM", messages_path(perimeter: "team"), class: "public-team-choice active" %>
       <% end %>
+    <% elsif @etb_class == "perimeter-choices gallery" %>
+      <% if @initial_perimeter == "public" %>
+        <%= link_to "PUBLIC", team_quest_links_path(perimeter: "public"), class: "public-team-choice active" %>
+        <%= link_to "TEAM", team_quest_links_path(perimeter: "team"), class: "public-team-choice" %>
+      <% else %>
+        <%= link_to "PUBLIC", team_quest_links_path(perimeter: "public"), class: "public-team-choice" %>
+        <%= link_to "TEAM", team_quest_links_path(perimeter: "team"), class: "public-team-choice active" %>
+      <% end %>
     <% else %>
       <% if @initial_perimeter == "public" %>
         <div class="public-team-choice active">PUBLIC</div>
@@ -23,5 +31,6 @@
 </div>
 
 <%= render 'shared/main-menu' %>
+
 
 

@@ -1,0 +1,34 @@
+#gallery{
+
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-column-gap: 5px;
+  grid-row-gap: 10px;
+
+  .gallery-item{
+    border-radius: 4px;
+    width: 100%;
+    transition: transform 0.5s;
+
+    .gallery-item-medium{
+      border-radius: 4px;
+      width: 100%;
+      img{
+        border-radius: 10px;
+        width: 100%;
+      }
+    }
+
+    .gallery-item-description{
+      color: white;
+      font-size: 0.7em;
+    }
+
+    &:hover{
+      cursor: pointer;
+      transform: scale(0.9);
+    }
+  }
+}
