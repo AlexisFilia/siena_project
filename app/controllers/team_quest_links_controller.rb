@@ -25,5 +25,11 @@ class TeamQuestLinksController < ApplicationController
     @etb_class = "perimeter-choices gallery"
   end
 
+  def fetch_gallery_modal_content
+
+    rendered_array = ["yo", "yi"]
+    render json: rendered_array.to_json
+  end
+
 end
 

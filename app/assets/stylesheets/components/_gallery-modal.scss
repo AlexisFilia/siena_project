@@ -1,41 +1,47 @@
 #gallery-modal{
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  left: 0;
-  min-height: 100vh;
-  width: 100%;
-  border-radius: 10px;
-  background-color: rgba(0,0,0, 0.6);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: none;
 
-
-
-  #gallery-modal-carousel{
-    position: relative;
+  &.active{
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
     width: 100%;
+    border-radius: 10px;
+    background-color: rgba(0,0,0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    img{
+
+
+    #gallery-modal-carousel{
+      position: relative;
       width: 100%;
-      border-radius: 20px 20px 0 0;
+
+      img{
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+      }
+
+      #gallery-modal-close{
+        color: white;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
     }
 
-    #gallery-modal-close{
+    #gallery-modal-description{
+      height: 10vh; // A enlever
+      border-radius: 0 0 20px 20px;
+      background-color: rgb(50,50,50);
+      padding: 20px;
+      overflow-wrap: break-word;
       color: white;
-      position: absolute;
-      top: 20px;
-      left: 20px;
     }
+
   }
 
-  #gallery-modal-description{
-    height: 10vh; // A enlever
-    border-radius: 0 0 20px 20px;
-    background-color: rgb(50,50,50);
-    padding: 20px;
-    overflow-wrap: break-word;
-    color: white;
-  }
 }

@@ -34,6 +34,7 @@ import { handlePollVotes } from '../components/handlePollVotes';
 import { handleMainMenu } from '../components/handleMainMenu';
 import { handleTchatModal } from '../components/handleTchatModal';
 import { tchatScroll } from '../components/tchatScroll';
+import { handleGalleryModal } from '../components/handleGalleryModal';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -49,4 +50,5 @@ document.addEventListener('turbolinks:load', () => {
   handleMainMenu();
   handleTchatModal();
   tchatScroll();
+  handleGalleryModal();
 });
