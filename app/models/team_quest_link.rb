@@ -10,7 +10,7 @@ class TeamQuestLink < ApplicationRecord
   has_many :quest_tag_links, through: :quest
   has_many :tags, through: :quest_tag_links
 
-  def check_tql_status
+  def check_and_update_tql_status_from_votes
     all_votes = self.votes
     company = self.company
     number_of_users = company.users.count
@@ -18,6 +18,12 @@ class TeamQuestLink < ApplicationRecord
     return if all_votes.count < number_of_users / 5
     #### Si non, changer le status du team_quest_link ####
     self.update_tql_status(all_votes)
+  end
+
+  def check_and_update_tql_status_from_time
+    if (!self.created_at.friday? && self.created_at > 1.day.ago) || (self.created_at.friday? && self.created_at > 3.day.ago)
+      self.update_tql_status(self.votes)
+    end
   end
 
   def update_tql_status(all_votes)
