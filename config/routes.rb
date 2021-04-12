@@ -31,4 +31,9 @@ Rails.application.routes.draw do
   resources :tinder_quests, only: [:index]
 
   get '/tim_tests', to: 'pages#tim_tests'
+
+
+  # API CALLS
+
+  post '/fetch_gallery_modal_content', to: 'team_quest_links#fetch_gallery_modal_content'
 end

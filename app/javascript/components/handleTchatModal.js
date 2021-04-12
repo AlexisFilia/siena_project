@@ -16,7 +16,7 @@ const handleTchatModal = () => {
 
   tchatModalClose.addEventListener('click', (e) => {
     tchatModal.classList.toggle('active');
-    btnCreatePoll.style.display = 'block';
+    btnCreatePoll.style.display = 'flex';
     btnSendMedia.style.display = 'none';
     attachement.value = '';
   });
@@ -25,7 +25,7 @@ const handleTchatModal = () => {
   attachement.addEventListener('change', (e) => {
     // console.log(attachement.value);
     btnCreatePoll.style.display = 'none';
-    btnSendMedia.style.display = 'block';
+    btnSendMedia.style.display = 'flex';
 
   });
 
