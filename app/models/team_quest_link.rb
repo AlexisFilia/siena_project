@@ -10,7 +10,14 @@ class TeamQuestLink < ApplicationRecord
   has_many :quest_tag_links, through: :quest
   has_many :tags, through: :quest_tag_links
 
+
   def check_and_update_tql_status_from_votes
+
+  # OBJECTIF : Centralisation de la gestion de la validation des tql ici
+  #chron_tql_check_and_update (avec en commentaire là où le chro se declenche - lib/tasks/chron_tql_check_and_update.rake )
+  #vote_tql_check_and_update
+  #3eme avec probablement des points communs entre les deux
+
     all_votes = self.votes
     company = self.company
     number_of_users = company.users.count
@@ -35,3 +42,4 @@ class TeamQuestLink < ApplicationRecord
     end
   end
 end
+
