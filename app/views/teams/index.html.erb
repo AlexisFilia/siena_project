@@ -1,26 +1,20 @@
 <%= render 'shared/evolutive-top-bar' %>
 <div class="main-container centered-vertically with-top-margin with-bottom-margin">
 
-  <div class="container bg-light mt-4">
-    <div class="row p-4">
-      <div class="col col-12">
+  <% @teams.each do |team| %>
 
-        <h1>List des teams</h1>
-        <p>Ordonnées pas Rank</p>
-
-        <%= link_to "Back", root_path, class: "btn btn-secondary" %>
-
-        <% @teams.each do |team| %>
-          <p>------------------------</p>
-          <h3><%= team.name %></h3>
-          <p>Leval :</p>
-          <p>Rank :</p>
-          <p>Score :</p>
-        <% end %>
-
+    <%= link_to team_path(team[:id]), class: "team-score-container" do %>
+      <div class="team-rank"><%= team[:rank] %></div>
+      <div class="team-name-and-level">
+        <div class="team-name"><%= team[:name] %></div>
+        <div class="team-level">LVL. <%= team[:level] %></div>
       </div>
-    </div>
-  </div>
+      <div class="team-points"><%= team[:points] %> pts</div>
+    <% end %>
+  <% end %>
+
+
 </div>
+
 
 
