@@ -8,8 +8,8 @@ class Message < ApplicationRecord
   validates :perimeter, presence: true
 
 
-  def anchor
-    "message-#{self.id}"
-  end
+  # def anchor
+  #   "message-#{self.id}"
+  # end
 
 end
