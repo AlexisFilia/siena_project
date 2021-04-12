@@ -27,8 +27,10 @@ class TeamQuestLinksController < ApplicationController
 
   def fetch_gallery_modal_content
 
-    rendered_array = ["yo", "yi"]
-    render json: rendered_array.to_json
+    tql = TeamQuestLink.find(params["id"])
+    tql_data_hash = {team: tql.team.name, quest: tql.quest.name}
+
+    render json: tql_data_hash.to_json
   end
 
 end
