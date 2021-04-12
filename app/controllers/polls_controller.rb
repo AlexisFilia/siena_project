@@ -4,6 +4,9 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
     @poll_options = @poll.get_options_with_votes
     pp @poll_options
+
+    #Evolutive elements------------------
+    @top_bar_title = "POLL RESULTS"
   end
 
   def new
@@ -12,6 +15,10 @@ class PollsController < ApplicationController
     @initial_perimeter = params[:initial_perimeter].nil? ? "team" : params[:initial_perimeter]
 
     @poll = Poll.new
+
+    #Evolutive elements------------------
+    @top_bar_title = "POLL"
+    @etb_class = "perimeter-choices"
 
   end
 
@@ -57,5 +64,6 @@ class PollsController < ApplicationController
 
 
 end
+
 
 

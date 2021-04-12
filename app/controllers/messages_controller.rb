@@ -50,12 +50,13 @@ class MessagesController < ApplicationController
   #   unless params[:message][:url].blank? || params[:message][:type_of_media].blank?
   #     media = Media.define_media(params[:message][:url], params[:message][:type_of_media], message)
   #   end
-    redirect_to messages_path(perimeter: perimeter, anchor: message.anchor)
+    redirect_to messages_path(perimeter: perimeter)
   end
 
 
 
 end
+
 
 
 

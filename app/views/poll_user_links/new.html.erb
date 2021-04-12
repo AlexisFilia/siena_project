@@ -1,13 +1,15 @@
-<%= render 'shared/top-bar' %>
-<%= render 'shared/bottom-bar' %>
+<%#= render 'shared/top-bar' %>
+<%#= render 'shared/bottom-bar' %>
 
-<div class="container-below-top-bar">
-  <div class="public-team-choice-selected"><p>- <span><%= @poll.get_perimeter.upcase %></span> POLL -</p></div>
-</div>
+<%= render 'shared/evolutive-top-bar' %>
 
-<div class="main-container centered-vertically with-bottom-margin">
+<!-- <div class="container-below-top-bar">
+  <div class="public-team-choice-selected"><p>-  POLL -</p></div>
+</div> -->
+
+<div class="main-container centered-vertically with-top-margin with-bottom-margin">
   <div class="form-container">
-    <p style="font-size: 0.8em"><i>Poll created by <%= @poll.user.get_full_name %></i></p>
+    <p class="poll-info" style="font-size: 0.8em"><i> <span><%= @poll.get_perimeter.upcase %></span> Poll created by <%= @poll.user.get_full_name %></i></p>
 
     <div class="form-section">
       <div class="form-section-title"><%= @poll.name %></div>
