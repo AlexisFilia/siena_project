@@ -19,6 +19,7 @@ class TeamQuestLink < ApplicationRecord
     #### Si non, changer le status du team_quest_link ####
     if all_votes.where(vote: true).count > all_votes.count / 2
       self.update!(status: 'completed')
+      self.team.update_points(self.quest)
     else
       self.update!(status: 'rejected')
     end

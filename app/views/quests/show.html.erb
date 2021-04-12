@@ -37,20 +37,11 @@
     <!-- TODO : Faire en sorte que l'on cree un team_quest_link dès qu'on ajoute un premier media -->
 
     <% if @team_quest_link.nil? || @team_quest_link.status == 'draft' %>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 322ce549303a0fd639294ce22c417f98f3377cee
       <div class="main-button"><%= link_to "UPLOADER DES DOCUMENTS", root_path %></div>
     <% end %>
     <% if !@team_quest_link.nil? && @team_quest_link.status == 'draft' && @team_quest_link.media %>
       <div class="main-button"><%= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put' %></div>
-<<<<<<< HEAD
-=======
       <div class="main-button with-top-margin">UPLOADER DES DOCUMENTS</div>
->>>>>>> 96c7f529ef9d651c2f977d5900c5a0418bd02b14
-=======
->>>>>>> 322ce549303a0fd639294ce22c417f98f3377cee
     <% end %>
   </div>
 
