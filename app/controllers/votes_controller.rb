@@ -25,6 +25,7 @@ class VotesController < ApplicationController
     vote.user = current_user
     vote.team_quest_link = tql
     vote.save!
+    tql.check_tql_status
     redirect_to new_vote_path
   end
 
