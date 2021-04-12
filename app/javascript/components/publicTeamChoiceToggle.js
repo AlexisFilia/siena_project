@@ -1,7 +1,7 @@
 const publicTeamChoiceToggle = () => {
   const publicTeamChoices = document.querySelectorAll(".public-team-choice");
   if(!publicTeamChoices) return;
-  const span = document.querySelector(".public-team-choice-selected span");
+  const span = document.querySelector("#etb-title span");
   const pollPerimeterChoice = document.querySelector("#poll-perimeter-choice");
   const messagePerimeterChoice = document.querySelectorAll(".message-perimeter-choice");
   const teamMessagesContainer = document.querySelector("#team-messages-container");
@@ -43,6 +43,7 @@ const publicTeamChoiceToggle = () => {
 }
 
 export{publicTeamChoiceToggle};
+
 
 
 

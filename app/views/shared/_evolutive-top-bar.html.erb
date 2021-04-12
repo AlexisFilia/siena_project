@@ -2,7 +2,7 @@
   <div id="etb-burger-menu"><i class="fas fa-bars"></i></div>
   <div id="etb-title"><span><%= @initial_perimeter.upcase if @initial_perimeter %></span> <%= @top_bar_title %></div>
   <div id="etb-perimeter-toggle">
-    <% if @etb_class = "perimeter-choices tchat" %>
+    <% if @etb_class == "perimeter-choices tchat" %>
       <% if @initial_perimeter == "public" %>
         <%= link_to "PUBLIC", messages_path(perimeter: "public"), class: "public-team-choice active" %>
         <%= link_to "TEAM", messages_path(perimeter: "team"), class: "public-team-choice" %>
@@ -23,4 +23,5 @@
 </div>
 
 <%= render 'shared/main-menu' %>
+
 
