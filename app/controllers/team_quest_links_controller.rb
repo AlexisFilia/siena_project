@@ -33,5 +33,10 @@ class TeamQuestLinksController < ApplicationController
     render json: tql_data_hash.to_json
   end
 
+  def update
+    tql = TeamQuestLink.find(params[:id])
+    tql.update!(status: 'pending')
+    redirect_to level_quests_path(tql.quest.level)
+  end
 end
 
