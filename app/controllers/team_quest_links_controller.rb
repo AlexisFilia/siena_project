@@ -25,18 +25,20 @@ class TeamQuestLinksController < ApplicationController
     @etb_class = "perimeter-choices gallery"
   end
 
+
+  def update
+    tql = TeamQuestLink.find(params[:id])
+    tql.update!(status: 'pending')
+    redirect_to level_quests_path(tql.quest.level)
+  end
+
+
   def fetch_gallery_modal_content
 
     tql = TeamQuestLink.find(params["id"])
     tql_data_hash = {team: tql.team.name, quest: tql.quest.name}
 
     render json: tql_data_hash.to_json
-  end
-
-  def update
-    tql = TeamQuestLink.find(params[:id])
-    tql.update!(status: 'pending')
-    redirect_to level_quests_path(tql.quest.level)
   end
 end
 

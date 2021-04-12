@@ -24,9 +24,15 @@ class VotesController < ApplicationController
     vote = Vote.new(vote_params)
     vote.user = current_user
     vote.team_quest_link = tql
-    vote.save!
-    tql.check_tql_status
-    redirect_to new_vote_path
+    if vote.save!
+      tql.check_tql_status
+      @team.update_points("vote")
+      redirect_to new_vote_path
+    else
+      render :new
+    end
+
+
   end
 
   private

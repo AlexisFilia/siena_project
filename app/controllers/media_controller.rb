@@ -1,16 +1,18 @@
 class MediaController < ApplicationController
+  before_action :media_params
 
   def create
 
-    m_params = media_params
 
-    if m_params[:perimeter].nil?
+
+    if @media_params[:perimeter].nil?
 
     else
-      message = Message.create!(user: current_user, perimeter: m_params[:perimeter], type_of: "media")
-      medium = Medium.new(message: message, attached_file: m_params[:attached_file], type_of: m_params[:attached_file].content_type)
+
+      message = Message.create!(user: current_user, perimeter: @media_params[:perimeter], type_of: "media")
+      medium = Medium.new(message: message, attached_file: @media_params[:attached_file], type_of: @media_params[:attached_file].content_type)
       if medium.save!
-        redirect_to messages_path(perimeter: m_params[:perimeter], anchor: message.anchor)
+        redirect_to messages_path(perimeter: @media_params[:perimeter])
       end
     end
   end
@@ -18,7 +20,8 @@ class MediaController < ApplicationController
   private
 
   def media_params
-    params.require(:medium).permit(:perimeter, :attached_file)
+    @media_params = params.require(:medium).permit(:perimeter, :attached_file)
+
   end
 
 end

@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def edit
 
+    #Evolutive elements------------------
+    @top_bar_title = "EDIT PROFILE"
   end
 
   def update
