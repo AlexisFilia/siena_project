@@ -17,6 +17,10 @@ class TeamQuestLink < ApplicationRecord
     #### Ne rien faire si on a moins de 20% des users qui ont voté ####
     return if all_votes.count < number_of_users / 5
     #### Si non, changer le status du team_quest_link ####
+    self.update_tql_status(all_votes)
+  end
+
+  def update_tql_status(all_votes)
     if all_votes.where(vote: true).count > all_votes.count / 2
       self.update!(status: 'completed')
       self.team.update_points(self.quest)
