@@ -7,6 +7,8 @@ class PollsController < ApplicationController
 
     #Evolutive elements------------------
     @top_bar_title = "POLL RESULTS"
+    @etb_class = "with-back-link"
+    @back_route = messages_path(perimeter: @poll.message.perimeter)
   end
 
   def new

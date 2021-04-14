@@ -1,24 +1,22 @@
 <%= render 'shared/evolutive-top-bar' %>
 
+
 <div class="main-container centered-vertically with-top-margin with-bottom-margin">
 
-  <div class="container bg-light mt-4">
-    <div class="row p-4">
-      <div class="col col-12">
-
-        <!-- <h2>Edit Profile user</h2> -->
-
-        <%= simple_form_for current_user do |f| %>
-          <%= f.input :first_name %>
-          <%= f.input :last_name %>
-          <% f.input :description  %>
-          <%= f.input :photo, as: :file %>
-          <%= f.button :submit, class: "btn btn-primary", value: 'Edit profile' %>
-        <% end %>
-
-        <%= link_to "Back", root_path %>
-
+  <%= simple_form_for current_user do |f| %>
+    <div id="user-container">
+      <div id="user-picture" style="background-image: url(<%= current_user.photo.blank? ? asset_path('user_image.png') : cl_image_path(current_user.photo.key)  %>);"></div>
+      <%= f.input :photo, as: :file, label: false %>
+      <div id="user-info">
+        <p><span>Surname : </span> <%= f.input :first_name, label: false %></p>
+        <p><span>Name : </span> <%= f.input :last_name, label: false %></p>
+        <p><span>Email : </span> <%= f.input :email, label: false %></p>
+        <p><span>About me : </span> <%= f.input :description, label: false %></p>
       </div>
     </div>
-  </div>
+
+    <%= f.button :submit, class: "main-button", value: 'SAVE CHANGES' %>
+  <% end %>
 </div>
+
+

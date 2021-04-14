@@ -35,8 +35,32 @@
     font-size: 16px;
   }
 
-  #etb-perimeter-toggle{
-    display: none;
+  #etb-perimeter-toggle{display: none;}
+  #back-link{display: none;}
+
+  &.with-back-link{
+
+    #back-link{
+      position: absolute;
+      height: 10vh;
+      display: flex;
+      align-items: center;
+      top: 0;
+      right: 15px;
+      font-size: 20px;
+
+      a{
+        text-decoration: none;
+        color: white;
+      }
+
+      &:hover{
+        text-decoration: none;
+        cursor: pointer;
+
+      }
+    }
+
   }
 
   &.perimeter-choices{

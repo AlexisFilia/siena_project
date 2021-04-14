@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def show
+
+    @user = User.find(params[:id])
+    #Evolutive elements------------------
+    @top_bar_title = "PROFILE"
   end
 
   def index

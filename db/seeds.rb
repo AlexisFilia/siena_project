@@ -107,11 +107,11 @@ puts "The new seeded DB has been created"
 
 puts "Creating some Roles"
 
-role_1 = Role.create!(name: 'FeelGoodFellow', description: "C'est le Coordinateur de la team")
-role_2 = Role.create!(name: 'Responsable environnement', description: "C'est le responsable des actions en lien avec l'environnement de travail")
-role_3 = Role.create!(name: 'Responsable sport', description: "C'est le responsable des actions en lien avec le sport")
-role_4 = Role.create!(name: 'Responsable interaction externes', description: "C'est le responsable de toute la com interne à l'équipe")
-role_5 = Role.create!(name: 'Responsable interactions internes', description: "C'est le responsable de toute la com externe à l'équipe")
+role_1 = Role.create!(name: 'feelgoodfellow', description: "C'est le Coordinateur de la team")
+role_2 = Role.create!(name: 'responsable environnement', description: "C'est le responsable des actions en lien avec l'environnement de travail")
+role_3 = Role.create!(name: 'responsable sport', description: "C'est le responsable des actions en lien avec le sport")
+role_4 = Role.create!(name: 'responsable interaction externes', description: "C'est le responsable de toute la com interne à l'équipe")
+role_5 = Role.create!(name: 'responsable interactions internes', description: "C'est le responsable de toute la com externe à l'équipe")
 
 puts "Roles have been created"
 
