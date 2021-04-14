@@ -7,31 +7,35 @@
     <p class="title">STATS</p>
 
     <div id="stats-container">
-      <p><span>RANK : </span><%= @team_rank %> /<%= Team.all.count %></p>
-      <p><span>LEVEL : </span><%= @team_current_level.id %></p>
-      <p><span>TOTAL POINTS : </span><%= @team_points%></p>
-      <p><span>From level : </span><%= @team.points_level %></p>
-      <p><span>From optional quests : </span><%= @team.points_optional %></p>
-      <p><span>From votes : </span><%= @team.points_votes %></p>
+      <p><span>RANK : </span><%= @team_show.get_rank %> /<%= Team.all.count %></p>
+      <p><span>LEVEL : </span><%= @team_show.get_level.id %></p>
+      <p><span>TOTAL POINTS : </span><%= @team_show.get_total_points%></p>
+      <p><span>From level : </span><%= @team_show.points_level %></p>
+      <p><span>From optional quests : </span><%= @team_show.points_optional %></p>
+      <p><span>From votes : </span><%= @team_show.points_votes %></p>
       <p><span>QUESTS ACCOMPLISHED : </span><%= @completed_quests.count %></p>
       <p><span>Mandatory : </span><%= @completed_quests.select{|q| q.type_of == 'mandatory'}.count %> </p>
       <p><span>Optional : </span> <%= @completed_quests.select{|q| q.type_of =='optional'}.count %></p>
     </div>
 
-    <p class="title">FEELGOODFELLOW</p>
+    <% if !@fgf.nil? %>
+      <p class="title">FEELGOODFELLOW</p>
 
-    <%= link_to user_path(@fgf), id: "fgf-container" do %>
-      <div id="fgf-picture" style="background-image: url(<%= asset_path('user_image.png') %>)"></div>
-      <div id="fgf-name"><%= @fgf.get_full_name.upcase %></div>
+      <%= link_to user_path(@fgf), id: "fgf-container" do %>
+        <div id="fgf-picture" style="background-image: url(<%= @fgf.photo.blank? ? asset_path('user_image.png') : cl_image_path(@fgf.photo.key)  %>);"></div>
+        <div id="fgf-name"><%= @fgf.get_full_name.upcase %></div>
+      <% end %>
     <% end %>
 
     <p class="title"><span><%= @team_members.count %></span> CREW MEMBERS</p>
 
     <div id="crew-container">
       <% @team_members.each do |user| %>
-        <%= link_to user_path(user), class: "crew-member-container"  do %>
-          <div class="crew-member-picture" style="background-image: url(<%= asset_path('user_image.png') %>)"></div>
-          <div class="crew-member-name"><%= user.get_full_name.upcase %></div>
+        <% if user != @fgf %>
+          <%= link_to user_path(user), class: "crew-member-container"  do %>
+            <div class="crew-member-picture" style="background-image: url(<%= user.photo.blank? ? asset_path('user_image.png') : cl_image_path(user.photo.key)  %>);"></div>
+            <div class="crew-member-name"><%= user.get_full_name.upcase %></div>
+          <% end %>
         <% end %>
       <% end %>
     </div>

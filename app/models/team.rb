@@ -50,7 +50,7 @@ class Team < ApplicationRecord
       return player if player_roles.include?('feelgoodfellow')
     end
 
-    return ""
+    return nil
   end
 
 

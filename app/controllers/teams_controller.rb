@@ -1,12 +1,14 @@
 class TeamsController < ApplicationController
   def show
-    @team_members = @team.users
+    @team_show = Team.find(params[:id])
 
-    @fgf = @team.get_fgf
-    @completed_quests = @team.get_completed_quests
+    @team_members = @team_show.users
+
+    @fgf = @team_show.get_fgf
+    @completed_quests = @team_show.get_completed_quests
 
     #Evolutive elements------------------
-    @top_bar_title = @team.name.upcase
+    @top_bar_title = @team_show.name.upcase
   end
 
   def index
@@ -42,5 +44,6 @@ class TeamsController < ApplicationController
     return indexed_teams
   end
 end
+
 
 
