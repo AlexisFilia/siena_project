@@ -16,6 +16,7 @@ const roulette = () => {
   let currentPosition = 0;
   let incrCount = 0;
 
+  // const stopRoulette = 77 * 2; // max 3 fois la liste
   const stopRoulette = getRandomEvenInteger(rouletteListItemsAmount, rouletteListItemsAmount * 2); // max 3 fois la liste
   let timer;
 
@@ -103,7 +104,7 @@ const roulette = () => {
     if(incrCount == stopRoulette ){
       // clearInterval(timer);
       getResult();
-    }else if(currentPosition == repositionAmount){
+    }else if(currentPosition + 4 == repositionAmount){
       // clearInterval(timer);
       repositionList();
     }else{
