@@ -4,10 +4,12 @@ const roulette = () => {
 
   const rouletteList = document.querySelector('#roulette-list');
   const rouletteListItems = rouletteList.querySelectorAll('li');
+  const backSelect = document.querySelector('#background-selector');
   const rouletteListItemsAmount = rouletteListItems.length;
 
   const rIncr = 1;
   let frequency = 50;
+
   const repositionAmount = rouletteListItemsAmount * (2 / rIncr) - 2; // La taille fait 2em
   let currentPosition = 0;
   let incrCount = 0;
@@ -29,11 +31,37 @@ const roulette = () => {
 
   }
 
+  function launchEndAnimation(winner){
+
+    backSelect.style.top = 0;
+
+    winner.addEventListener('transitionend', (e) => {
+      console.log("bigger");
+      winner.classList.toggle('bigger');
+    });
+
+    backSelect.addEventListener('transitionend', (e) => {
+      rouletteListItems.forEach(item => {
+        if(item != winner){ // current position si la rouletteSize = 2
+          item.style.transform = "scale(0)";
+        }
+      });
+
+    })
+
+    backSelect.style.height = "10em";
+    winner.classList.toggle('bigger');
+
+
+
+  }
+
 
   function getResult(){
     rouletteListItems.forEach(item => {
-      if(item.dataset.id == currentPosition){
+      if(item.dataset.id == currentPosition + 4){ // current position si la rouletteSize = 2
         console.log(item.innerText);
+        launchEndAnimation(item);
       }
     });
 
@@ -47,10 +75,10 @@ const roulette = () => {
     //   frequency = 500;
     // }else
 
-    if(incrCount > 0.8 * stopRoulette){
+    if(incrCount > 0.9 * stopRoulette){
       console.log("palier 2");
       frequency = 200;
-    }else if(incrCount > 0.6 * stopRoulette){
+    }else if(incrCount > 0.7 * stopRoulette){
       console.log("palier 1");
       frequency = 100;
     }

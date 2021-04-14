@@ -12,10 +12,19 @@
   #roulette-visible{
     position: relative;
     margin: 1em 0;
-    height: 2em;
+    height: 10em;
     width: 100%;
     overflow: hidden;
     border: 1px solid $menu-items-color;
+
+    #background-selector{
+      position: absolute;
+      width: 100%;
+      height: 2em;
+      top: 4em;
+      background-color: $secondary-color;
+      transition: all 0.5s;
+    }
 
     #roulette-list{
       position: absolute;
@@ -27,6 +36,11 @@
       li{
         list-style-type: none;
         line-height: 2em;
+        transition: transform 1s;
+
+        &.bigger{
+          transform: scale(1.2);
+        }
       }
     }
   }
