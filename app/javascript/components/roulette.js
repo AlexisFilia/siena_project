@@ -1,3 +1,5 @@
+import { fetchWithToken } from "../utils/fetchWithToken";
+
 const roulette = () => {
   const rouletteBtn = document.querySelector('#roulette-btn');
   if(!rouletteBtn) return
@@ -56,11 +58,28 @@ const roulette = () => {
 
   }
 
+  function sendResults(winner){
+
+    fetchWithToken("/handle_roulette_result", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({ roulette: rouletteList.dataset.list, index: winner.dataset.index})
+      })
+        .then(response => response.json())
+        .then((data) => {console.log(data);});
+
+  }
+
 
   function getResult(){
     rouletteListItems.forEach(item => {
       if(item.dataset.id == currentPosition + 4){ // current position si la rouletteSize = 2
         console.log(item.innerText);
+        sendResults(item);
         launchEndAnimation(item);
       }
     });
@@ -69,11 +88,6 @@ const roulette = () => {
   }
 
   function manageSpeed(){
-
-    // if(incrCount >= stopRoulette - 4){
-    //   console.log("palier 3");
-    //   frequency = 500;
-    // }else
 
     if(incrCount > 0.9 * stopRoulette){
       console.log("palier 2");

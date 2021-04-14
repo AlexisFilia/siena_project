@@ -1,10 +1,9 @@
 <div id="roulette-container">
-
   <div id="roulette-visible">
     <div id="background-selector"></div>
-    <ul id="roulette-list">
+    <ul id="roulette-list" data-list= "une variable qui dit les circonstances de la roulette">
       <% User.all.each_with_index do |user, index|%>
-        <li data-id=<%= "#{index * 2}" %>><%= user.get_full_name %> </li>
+        <li data-index="<%= index %>" data-id=<%= "#{index * 2}" %>><%= user.get_full_name %> </li>
       <% end %>
     </ul>
   </div>
