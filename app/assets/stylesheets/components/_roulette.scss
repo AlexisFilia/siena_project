@@ -1,0 +1,51 @@
+#roulette-container{
+
+  background-color: $background-color-lighter;
+  padding: 20px;
+  width: 100%;
+  margin: 5em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  #roulette-visible{
+    position: relative;
+    margin: 1em 0;
+    height: 10em;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid $menu-items-color;
+
+    #background-selector{
+      position: absolute;
+      width: 100%;
+      height: 2em;
+      top: 4em;
+      background-color: $secondary-color;
+      transition: all 0.5s;
+    }
+
+    #roulette-list{
+      position: absolute;
+      width: 100%;
+      color: white;
+      text-align: center;
+      padding: 0;
+
+      li{
+        list-style-type: none;
+        line-height: 2em;
+        transition: transform 1s;
+
+        &.bigger{
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  #roulette-btn{
+    width: 100%;
+  }
+}
