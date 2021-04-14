@@ -1,18 +1,5 @@
 class QuestsController < ApplicationController
 
-
-  def show
-    # @sideNav_id = 1; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
-
-    @quest = Quest.find(params[:id])
-    @level = @quest.level
-    @criteria = JSON.parse(@quest.criteria)
-    @team_quest_link = TeamQuestLink.find_by(team: current_user.team, quest: @quest)
-
-    #Evolutive elements------------------
-    @top_bar_title = "#{@level.id} - #{@level.name.upcase}"
-  end
-
   def index
     # @sideNav_id = 1; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
     @level = Level.find(params[:level_id])
@@ -25,6 +12,24 @@ class QuestsController < ApplicationController
 
     #Evolutive elements------------------
     @top_bar_title = "#{@level.id} - #{@level.name.upcase}"
+    @etb_class = "with-back-link"
+    @back_route = levels_path
+
+  end
+
+
+  def show
+    # @sideNav_id = 1; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
+
+    @quest = Quest.find(params[:id])
+    @level = @quest.level
+    @criteria = JSON.parse(@quest.criteria)
+    @team_quest_link = TeamQuestLink.find_by(team: current_user.team, quest: @quest)
+
+    #Evolutive elements------------------
+    @top_bar_title = "#{@level.id} - #{@level.name.upcase}"
+    @etb_class = "with-back-link"
+    @back_route = level_quests_path(@level)
   end
 
 end

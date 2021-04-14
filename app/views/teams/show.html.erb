@@ -1,38 +1,44 @@
 <%= render 'shared/evolutive-top-bar' %>
 
 <div class="main-container centered-vertically with-top-margin with-bottom-margin">
-  <div class="container bg-light mt-4">
-    <div class="row p-4">
-      <div class="col col-12">
 
-        <h1>Teams#show</h1>
-        <p>Find me in app/views/teams/show.html.erb</p>
+  <div id="team-container">
 
-        <p>Name : <%= @team.name %></p>
-        <p>Description : <%= @team.description %></p>
-        <p>Values : <%= @team.values %></p>
+    <p class="title">STATS</p>
 
-        <%= link_to "Back", root_path, class: "btn btn-secondary" %>
-
-        <h2>Crewmates :</h2>
-
-        <% @team_members.each do |user| %>
-          <div class="bd-highlight mb-3 border">
-            <div class="p-2">Username : <%= user.username %></div>
-            <div class="p-2">Name : <%= user.first_name %> <%= user.last_name %></div>
-            <div class="d-flex flex-row">
-              <div class="p-2">Role :</div>
-              <% if !user.roles.nil? %>
-                <% user.roles.each do |role| %>
-                  <div class="p-2"><strong><%= role.name %> :</strong> <%= role.description %></div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-
-      </div>
+    <div id="stats-container">
+      <p><span>RANK : </span><%= @team_rank %> /<%= Team.all.count %></p>
+      <p><span>LEVEL : </span><%= @team_current_level.id %></p>
+      <p><span>TOTAL POINTS : </span><%= @team_points%></p>
+      <p><span>From level : </span><%= @team.points_level %></p>
+      <p><span>From optional quests : </span><%= @team.points_optional %></p>
+      <p><span>From votes : </span><%= @team.points_votes %></p>
+      <p><span>QUESTS ACCOMPLISHED : </span><%= @completed_quests.count %></p>
+      <p><span>Mandatory : </span><%= @completed_quests.select{|q| q.type_of == 'mandatory'}.count %> </p>
+      <p><span>Optional : </span> <%= @completed_quests.select{|q| q.type_of =='optional'}.count %></p>
     </div>
+
+    <p class="title">FEELGOODFELLOW</p>
+
+    <%= link_to user_path(@fgf), id: "fgf-container" do %>
+      <div id="fgf-picture" style="background-image: url(<%= asset_path('user_image.png') %>)"></div>
+      <div id="fgf-name"><%= @fgf.get_full_name.upcase %></div>
+    <% end %>
+
+    <p class="title"><span><%= @team_members.count %></span> CREW MEMBERS</p>
+
+    <div id="crew-container">
+      <% @team_members.each do |user| %>
+        <%= link_to user_path(user), class: "crew-member-container"  do %>
+          <div class="crew-member-picture" style="background-image: url(<%= asset_path('user_image.png') %>)"></div>
+          <div class="crew-member-name"><%= user.get_full_name.upcase %></div>
+        <% end %>
+      <% end %>
+    </div>
+
+
   </div>
+
+
 
 </div>

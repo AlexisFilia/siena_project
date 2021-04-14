@@ -2,6 +2,9 @@ class TeamsController < ApplicationController
   def show
     @team_members = @team.users
 
+    @fgf = @team.get_fgf
+    @completed_quests = @team.get_completed_quests
+
     #Evolutive elements------------------
     @top_bar_title = @team.name.upcase
   end

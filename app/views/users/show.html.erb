@@ -1,35 +1,29 @@
-<div class="container bg-light mt-4">
-  <div class="row p-4">
-    <div class="col col-12">
+<%= render 'shared/evolutive-top-bar' %>
 
-      <h2>Profile user</h2>
+<div class="main-container centered-vertically with-top-margin with-bottom-margin">
+  <% if !current_user.photo.nil? %>
+    <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
 
-      <% if !current_user.photo.nil? %>
-        <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill %>
-      <% end %>
-
-      <div>
-        <%= current_user.first_name %>
-      </div>
-      <div>
-        <%= current_user.last_name %>
-      </div>
-      <div>
-        <%= current_user.email %>
-      </div>
-      <div>
-        <% current_user.description %>
-      </div>
-
-      <% if !current_user.roles.nil? %>
-        <% current_user.roles.each do |role| %>
-          <div><%= role.name %> : <%= role.description %></div>
-        <% end %>
-      <% end %>
-
-      <%= link_to "Back", root_path, class: "btn btn-secondary" %>
-      <%= link_to "Edit", edit_user_path(current_user), class: "btn btn-secondary" %>
-
-    </div>
+  <div>
+    <%= current_user.first_name %>
   </div>
-</div>
+  <div>
+    <%= current_user.last_name %>
+  </div>
+  <div>
+    <%= current_user.email %>
+  </div>
+  <div>
+    <% current_user.description %>
+  </div>
+
+  <% if !current_user.roles.nil? %>
+    <% current_user.roles.each do |role| %>
+      <div><%= role.name %> : <%= role.description %></div>
+    <% end %>
+  <% end %>
+
+  <%= link_to "Back", root_path, class: "btn btn-secondary" %>
+  <%= link_to "Edit", edit_user_path(current_user), class: "btn btn-secondary" %>
+
