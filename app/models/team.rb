@@ -40,6 +40,19 @@ class Team < ApplicationRecord
     # return team_completed_tql.empty? ? [] : team_completed_tql.map{|tql| tql.quest}
   end
 
+  def get_fgf
+
+    # Besoin d´une jolie query d´Alex
+
+    team_players = self.users
+    team_players.each do |player|
+      player_roles = player.roles.map{|role| role.name}
+      return player if player_roles.include?('feelgoodfellow')
+    end
+
+    return nil
+  end
+
 
   def get_level
 

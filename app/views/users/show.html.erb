@@ -1,35 +1,36 @@
-<div class="container bg-light mt-4">
-  <div class="row p-4">
-    <div class="col col-12">
+<%= render 'shared/evolutive-top-bar' %>
 
-      <h2>Profile user</h2>
+<div class="main-container centered-vertically with-top-margin with-bottom-margin">
 
-      <% if !current_user.photo.nil? %>
-        <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill %>
+  <div id="user-container">
+    <div id="user-picture" style="background-image: url(<%= @user.photo.blank? ? asset_path('user_image.png') : cl_image_path(@user.photo.key)  %>);"></div>
+    <div id="user-info">
+      <p><span>Surname : </span> <%= @user.first_name.capitalize %></p>
+      <p><span>Name : </span> <%= @user.last_name.capitalize %></p>
+      <p><span>Email : </span> <%= @user.email %></p>
+      <p><span>About me : </span> <%= @user.description %></p>
+      <%= link_to team_path( @user.team) do %>
+        <p><span>Team : </span><%= @user.team.name.capitalize %></p>
       <% end %>
 
-      <div>
-        <%= current_user.first_name %>
-      </div>
-      <div>
-        <%= current_user.last_name %>
-      </div>
-      <div>
-        <%= current_user.email %>
-      </div>
-      <div>
-        <% current_user.description %>
-      </div>
-
-      <% if !current_user.roles.nil? %>
-        <% current_user.roles.each do |role| %>
-          <div><%= role.name %> : <%= role.description %></div>
+      <div id="user-roles">
+        <% if !@user.roles[0].nil? %>
+          <p><span> Role : </span></p>
+          <% @user.roles.each do |role| %>
+            <div class="role-container">
+              <p> <span> <%= role.name.capitalize %> : </span> <%= role.description %></p>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <%= link_to "Back", root_path, class: "btn btn-secondary" %>
-      <%= link_to "Edit", edit_user_path(current_user), class: "btn btn-secondary" %>
-
+      </div>
     </div>
   </div>
+
+  <% if @user == current_user %>
+    <%= link_to "EDIT MY PROFILE", edit_user_path(current_user), class: "main-button" %>
+  <% end %>
+
 </div>
+
+
