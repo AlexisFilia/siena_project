@@ -7,7 +7,7 @@ const roulette = () => {
   const rouletteListItemsAmount = rouletteListItems.length;
 
   const rIncr = 1;
-  const frequency = 50;
+  let frequency = 50;
   const repositionAmount = rouletteListItemsAmount * (2 / rIncr) - 2; // La taille fait 2em
   let currentPosition = 0;
   let incrCount = 0;
@@ -40,18 +40,36 @@ const roulette = () => {
 
   }
 
+  function manageSpeed(){
+
+    // if(incrCount >= stopRoulette - 4){
+    //   console.log("palier 3");
+    //   frequency = 500;
+    // }else
+
+    if(incrCount > 0.8 * stopRoulette){
+      console.log("palier 2");
+      frequency = 200;
+    }else if(incrCount > 0.6 * stopRoulette){
+      console.log("palier 1");
+      frequency = 100;
+    }
+  }
+
   function rollRoulette(){
 
     if(incrCount == stopRoulette ){
-      clearInterval(timer);
+      // clearInterval(timer);
       getResult();
     }else if(currentPosition == repositionAmount){
-      clearInterval(timer);
+      // clearInterval(timer);
       repositionList();
     }else{
+      manageSpeed();
       currentPosition += rIncr;
       incrCount += 1;
       rouletteList.style.top = `-${currentPosition}em`;
+      timer = setTimeout(rollRoulette, frequency);
     }
 
   }
@@ -59,14 +77,14 @@ const roulette = () => {
   function repositionList(){
     currentPosition = 0;
     rouletteList.style.top = "0";
-    timer = setInterval(rollRoulette, frequency);
+    timer = setTimeout(rollRoulette, frequency);
   }
 
   const launchRoulette = (e) => {
     console.log(rouletteListItemsAmount);
     console.log(repositionAmount);
 
-    timer = setInterval(rollRoulette, frequency);
+    timer = setTimeout(rollRoulette, frequency);
   }
 
 
