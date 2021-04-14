@@ -1,0 +1,12 @@
+<div id="roulette-container">
+
+  <div id="roulette-visible">
+    <ul id="roulette-list">
+      <% User.all.each_with_index do |user, index|%>
+        <li data-id=<%= "#{index * 2}" %>><%= user.get_full_name %> </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div id="roulette-btn" class="main-button">LANCER !</div>
+</div>
