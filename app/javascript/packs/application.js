@@ -33,6 +33,7 @@ import { handlePollOptions } from '../components/handlePollOptions';
 import { handlePollVotes } from '../components/handlePollVotes';
 import { handleMainMenu } from '../components/handleMainMenu';
 import { handleTchatModal } from '../components/handleTchatModal';
+import { handleTqlModal } from '../components/handleTqlModal';
 import { tchatScroll } from '../components/tchatScroll';
 import { handleGalleryModal } from '../components/handleGalleryModal';
 import { roulette } from '../components/roulette';
@@ -50,6 +51,7 @@ document.addEventListener('turbolinks:load', () => {
   handlePollVotes();
   handleMainMenu();
   handleTchatModal();
+  handleTqlModal();
   tchatScroll();
   handleGalleryModal();
   roulette();

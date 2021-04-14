@@ -30,19 +30,31 @@
           <li><%= c %> </li>
         <% end %>
       </ul>
-
-
     </div>
 
-    <!-- TODO : Faire en sorte que l'on cree un team_quest_link dès qu'on ajoute un premier media -->
-
-    <% if @team_quest_link.nil? || @team_quest_link.status == 'draft' %>
-      <div class="main-button"><%= link_to "UPLOADER DES DOCUMENTS", root_path %></div>
+    <% if !@team_quest_link.blank? && !@team_quest_link.media.blank? %>
+      <div class="d-flex">
+        <% @team_quest_link.media.each do |medium| %>
+          <div>
+            <%= cl_image_tag medium.attached_file.key, height: 150, width: 200, crop: :fill%>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-    <% if !@team_quest_link.nil? && @team_quest_link.status == 'draft' && @team_quest_link.media %>
+
+<!-- TODO : Faire fonctionner la modale -->
+
+    <% if @team_quest_link.nil? %>
+      <!-- <div class="main-button with-top-margin" id="tql-upload-btn">UPLOADER DES DOCUMENTS</div> -->
+      <%= render 'shared/tql-modal' %>
+    <% end %>
+    <% if !@team_quest_link.nil? && @team_quest_link.status == 'draft' %>
+      <!-- <div class="main-button with-top-margin"  id="tql-upload-btn">UPLOADER DES DOCUMENTS</div> -->
+      <%= render 'shared/tql-modal' %>
+    <% end %>
+    <% if !@team_quest_link.nil? && @team_quest_link.status == 'draft' && !@team_quest_link.media.nil? %>
       <div class="main-button"><%= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put' %></div>
-      <div class="main-button with-top-margin">UPLOADER DES DOCUMENTS</div>
     <% end %>
   </div>
-
 </div>
+
