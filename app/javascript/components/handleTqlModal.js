@@ -1,7 +1,7 @@
 const handleTqlModal = () => {
 
   const tqlModalBtn = document.querySelector('#tql-upload-btn');
-  console.log('test');
+  // console.log('test');
   if(!tqlModalBtn) return;
 
   console.log('test1');

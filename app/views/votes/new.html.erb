@@ -3,7 +3,7 @@
 <%#= render 'shared/top-bar' %>
 <%#= render 'shared/bottom-bar' %>
 
-<div class="main-container with-top-margin with-bottom-margin centered-vertically">
+<div class="main-container with-top-margin with-bottom-margin centered-vertically draggables">
 
 
   <% if @tql_to_vote.blank? %>
@@ -15,7 +15,8 @@
     </div>
   <% else %>
 
-    <div class="tql-to-vote">
+    <div data-id="<%= @tql_to_vote.id %>" class="tql-to-vote draggable">
+      <div class="tql-validation-text"></div>
       <div class="tql-carousel"></div>
       <div class="tql-description">
         <p>CRITÈRES DE VALIDATION :</p>
@@ -34,11 +35,8 @@
     </div>
     <!-- <h3><%#= @tql_to_vote.quest.name %></h3> -->
 
-
-
   <% end %>
 
-
-
 </div>
+
 
