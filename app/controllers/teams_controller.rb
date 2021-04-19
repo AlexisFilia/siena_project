@@ -26,11 +26,12 @@ class TeamsController < ApplicationController
     teams = Team.all
     indexed_teams = []
     teams.each do |team|
-      indexed_teams << {id: team.id, name: team.name, level: team.get_level.id, points: team.get_total_points}
+      indexed_teams << {id: team.id, name: team.name, level: team.get_level.id, points: team.get_total_points.to_i}
     end
 
-    indexed_teams.sort_by!{|team| team[:total_points]}.reverse!
+    indexed_teams.sort_by!{|team| team[:points]}.reverse!
 
+    puts indexed_teams
     # je preserve l´aexeco
     rank = 0
     indexed_teams.each_with_index do |team, index|
