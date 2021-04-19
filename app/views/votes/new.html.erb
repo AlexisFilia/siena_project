@@ -64,7 +64,14 @@
 
 
       <div class="tql-description">
-        <p>CRITÈRES DE VALIDATION :</p>
+        <h2><%= @tql_to_vote.quest.name %></h2>
+        <h3>Submitted by : </h3><%= @tql_to_vote.team.name %>
+        <h3>Quest level : </h3><%= @tql_to_vote.level.name %>
+        <h3>Tags :</h3>
+        <% @tql_to_vote.tags.each do |tag| %>
+          <%= tag.name %>
+        <% end %>
+        <h3>CRITÈRES DE VALIDATION :</h3>
         <ul>
           <% JSON.parse(@tql_to_vote.quest.criteria).each do |c| %>
             <li><%= c %> </li>
