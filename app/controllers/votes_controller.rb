@@ -16,7 +16,7 @@ class VotesController < ApplicationController
 
 
     #Evolutive elements------------------
-    @top_bar_title = "VALIDATION"
+    @top_bar_title = 'VALIDATION'
   end
 
   def create
@@ -27,7 +27,7 @@ class VotesController < ApplicationController
 
     if vote.save!
       tql.check_and_update_tql_status_from_votes
-      @team.update_points("vote")
+      @team.update_points('vote')
       redirect_to new_vote_path
     else
       render :new
@@ -43,8 +43,8 @@ class VotesController < ApplicationController
     vote.team_quest_link = tql
     if vote.save!
       tql.check_and_update_tql_status_from_votes
-      @team.update_points("vote")
-      returned_hash = {message: "ok"}
+      @team.update_points('vote')
+      returned_hash = {message: 'ok'}
       render json: returned_hash.to_json
       # render :js => "console.log('xoxoxoxo'); window.location.reload();"
     else

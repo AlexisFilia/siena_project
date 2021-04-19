@@ -9,7 +9,7 @@ class LevelsController < ApplicationController
     @levels = Level.all.map{|l| {level: l, mandatory_completion: @team.get_percentage_of_level_completion(l)[:mandatory],  optional_completion: @team.get_percentage_of_level_completion(l)[:optional]}}
 
     #Evolutive elements------------------
-    @top_bar_title = "LEVELS"
+    @top_bar_title = 'LEVELS'
 
   end
 

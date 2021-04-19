@@ -2,12 +2,12 @@ class TeamQuestLinksController < ApplicationController
 
 
   def index
-     @initial_perimeter = params[:perimeter].nil? ? "public" : params[:perimeter]
+     @initial_perimeter = params[:perimeter].nil? ? 'public' : params[:perimeter]
 
 
 
 
-    if @initial_perimeter == "team"
+    if @initial_perimeter == 'team'
 
       @validated_tqls = TeamQuestLink.where(status: 'completed')
                                    .where(team: @team)
@@ -18,11 +18,11 @@ class TeamQuestLinksController < ApplicationController
                                     .order('updated_at DESC')
     end
 
-    @medium_placeholder = "https://images.pexels.com/photos/1047285/pexels-photo-1047285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+    @medium_placeholder = 'https://images.pexels.com/photos/1047285/pexels-photo-1047285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
 
     #Evolutive elements------------------
-    @top_bar_title = "GALLERY"
-    @etb_class = "perimeter-choices gallery"
+    @top_bar_title = 'GALLERY'
+    @etb_class = 'perimeter-choices gallery'
   end
 
 
@@ -35,7 +35,7 @@ class TeamQuestLinksController < ApplicationController
 
   def fetch_gallery_modal_content
 
-    tql = TeamQuestLink.find(params["id"])
+    tql = TeamQuestLink.find(params['id'])
 
     media = []
 

@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   def index
     # raise
     # @sideNav_id = 7; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
-    @initial_perimeter = params[:perimeter].nil? ? "team" : params[:perimeter]
+    @initial_perimeter = params[:perimeter].nil? ? 'team' : params[:perimeter]
     params[:perimeter] = @initial_perimeter # pour l´avoir dans l´url
 
     # Question ouverte : pourquoi pas une fonction dans le modele messages pour choper un array de hash avec des infos plus poussées sur les messages
@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     @message = Message.new()
     @medium = Medium.new()
 
-    if @initial_perimeter == "team"
+    if @initial_perimeter == 'team'
 
       @messages = Message.joins(:user)
                               .where(perimeter: 'team')
@@ -32,8 +32,8 @@ class MessagesController < ApplicationController
 
 
     #Evolutive elements------------------
-    @top_bar_title = "TCHAT"
-    @etb_class = "perimeter-choices tchat"
+    @top_bar_title = 'TCHAT'
+    @etb_class = 'perimeter-choices tchat'
   end
 
   def create
@@ -43,7 +43,7 @@ class MessagesController < ApplicationController
     message = Message.create!({
                             user: current_user,
                             perimeter: perimeter,
-                            type_of: "standard",
+                            type_of: 'standard',
                             value: params.require(:message).permit(:value)[:value],
                             message_ref: params.require(:message).permit(:message_ref)[:message_ref]
                           })

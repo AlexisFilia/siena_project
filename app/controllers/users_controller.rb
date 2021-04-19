@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     @user = User.find(params[:id])
     #Evolutive elements------------------
-    @top_bar_title = "PROFILE"
+    @top_bar_title = 'PROFILE'
   end
 
   def index
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def edit
 
     #Evolutive elements------------------
-    @top_bar_title = "EDIT PROFILE"
+    @top_bar_title = 'EDIT PROFILE'
   end
 
   def update

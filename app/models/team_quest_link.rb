@@ -10,6 +10,10 @@ class TeamQuestLink < ApplicationRecord
   has_many :quest_tag_links, through: :quest
   has_many :tags, through: :quest_tag_links
 
+  validates :team, uniqueness: {
+    scope: :quest,
+    message: 'Ce Team Quest Link existe déjà.'
+  }
 
   def check_and_update_tql_status_from_votes
 

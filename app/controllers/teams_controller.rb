@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
     @teams = indexed_teams
 
     #Evolutive elements------------------
-    @top_bar_title = "SCORES"
+    @top_bar_title = 'SCORES'
   end
 
   private

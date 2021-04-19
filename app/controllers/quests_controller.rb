@@ -12,7 +12,7 @@ class QuestsController < ApplicationController
 
     #Evolutive elements------------------
     @top_bar_title = "#{@level.id} - #{@level.name.upcase}"
-    @etb_class = "with-back-link"
+    @etb_class = 'with-back-link'
     @back_route = levels_path
 
   end
@@ -30,7 +30,7 @@ class QuestsController < ApplicationController
 
     #Evolutive elements------------------
     @top_bar_title = "#{@level.id} - #{@level.name.upcase}"
-    @etb_class = "with-back-link"
+    @etb_class = 'with-back-link'
     @back_route = level_quests_path(@level)
   end
 
