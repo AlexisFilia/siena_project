@@ -35,6 +35,27 @@ class VotesController < ApplicationController
 
   end
 
+  def swipe_vote
+
+    tql = TeamQuestLink.find(params[:tql])
+    vote = Vote.new(vote: params[:vote])
+    vote.user = current_user
+    vote.team_quest_link = tql
+    if vote.save!
+      tql.check_and_update_tql_status_from_votes
+      @team.update_points("vote")
+      returned_hash = {message: "ok"}
+      render json: returned_hash.to_json
+      # render :js => "console.log('xoxoxoxo'); window.location.reload();"
+    else
+      # render :new
+      returned_hash = {message: "Je n´ai pas sauvé ton vote"}
+      render json: returned_hash.to_json
+    end
+
+
+  end
+
   private
 
   def vote_params

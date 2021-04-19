@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   # API CALLS
   post '/fetch_gallery_modal_content', to: 'team_quest_links#fetch_gallery_modal_content'
   post '/handle_roulette_result', to: 'roulettes#handle_roulette_result'
+  post '/swipe_vote', to: 'votes#swipe_vote'
 end
