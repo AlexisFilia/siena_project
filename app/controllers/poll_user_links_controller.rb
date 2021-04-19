@@ -17,7 +17,7 @@ class PollUserLinksController < ApplicationController
     @poll_options = @poll.options
 
     #Evolutive elements------------------
-    @top_bar_title = "POLL VOTE"
+    @top_bar_title = 'POLL VOTE'
   end
 
   def create
