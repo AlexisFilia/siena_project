@@ -1,4 +1,6 @@
 import { fetchWithToken } from "../utils/fetchWithToken";
+import { createCarouselFromUrls } from '../components/createCarouselFromUrls';
+
 
 const handleGalleryModal = () => {
 
@@ -15,6 +17,15 @@ const handleGalleryModal = () => {
     galleryModal.classList.toggle('active');
   }
 
+  const populateModalCarousel = (data) => {
+
+
+
+
+
+
+  }
+
 
   const displayGalleryModal = (data) =>{
     // console.log(id);
@@ -23,9 +34,10 @@ const handleGalleryModal = () => {
     const description = `${data.team} : ${data.quest}`;
     modalDescription.innerHTML = description;
     // modalDescription.insertAdjacentHTML('beforeend', )
-    data.media.forEach(medium => {
-      galleryModalCarousel.insertAdjacentHTML('afterbegin', `<img src='${medium}'></img>`)
-    });
+
+    const media = data.media;
+    galleryModalCarousel.innerHTML = createCarouselFromUrls("#gallery-modal-carousel", media);
+
     toggleModal();
   }
 
@@ -54,4 +66,5 @@ const handleGalleryModal = () => {
 }
 
 export{handleGalleryModal};
+
 
