@@ -7,6 +7,7 @@ const handleGalleryModal = () => {
 
   const galleryModalBackground = document.querySelector('#gallery-modal-background');
   const galleryModalClose = galleryModal.querySelector('#gallery-modal-close');
+  const galleryModalCarousel = galleryModal.querySelector('#gallery-modal-carousel');
   const galleryItems = document.querySelectorAll('.gallery-item');
 
   const toggleModal = () => {
@@ -17,10 +18,14 @@ const handleGalleryModal = () => {
 
   const displayGalleryModal = (data) =>{
     // console.log(id);
+    console.log(data);
     const modalDescription = galleryModal.querySelector('#gallery-modal-description');
     const description = `${data.team} : ${data.quest}`;
     modalDescription.innerHTML = description;
     // modalDescription.insertAdjacentHTML('beforeend', )
+    data.media.forEach(medium => {
+      galleryModalCarousel.insertAdjacentHTML('afterbegin', `<img src='${medium}'></img>`)
+    });
     toggleModal();
   }
 
