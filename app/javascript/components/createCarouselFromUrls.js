@@ -27,7 +27,13 @@ const createCarouselFromUrls = (carouselId, media) => {
     </a>
     `;
 
+  }else{
+
+    carouselItems += `
+    <div class="carousel-item active" style="background-image: url('${media[0]}')"></div>
+    `;
   }
+
   carouselHTML = carouselIndicators + "<div class='carousel-inner'>" + carouselItems + "</div>";
 
   return carouselHTML;
