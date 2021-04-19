@@ -5,13 +5,12 @@ const createCarouselFromUrls = (carouselId, media) => {
   let carouselItems = "";
 
   if(media.length > 1){
-    carouselIndicators = "<ol class='carousel-indicators'>";
+    carouselIndicators = `<ol data-target='#${carouselId}' class='carousel-indicators'>`;
     media.forEach((medium, index) =>{
 
-      carouselIndicators += `<li data-target="#${carouselId}" data-slide-to="${index}" class="${index == 0 ? 'active' : ''}"></li>`;
+      carouselIndicators += `<li data-slide-to="${index}" class="${index == 0 ? 'active' : ''}"></li>`;
       carouselItems += `
-      <div class="carousel-item ${index == 0 ? 'active' : ''}">
-        <img src='${medium}'></img>
+      <div class="carousel-item ${index == 0 ? 'active' : ''}" style="background-image: url('${medium}')">
       </div>
       `;
     });

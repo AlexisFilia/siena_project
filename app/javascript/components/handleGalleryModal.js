@@ -1,6 +1,6 @@
 import { fetchWithToken } from "../utils/fetchWithToken";
 import { createCarouselFromUrls } from '../components/createCarouselFromUrls';
-
+import { initCarousel } from '../components/initCarousel';
 
 const handleGalleryModal = () => {
 
@@ -8,22 +8,13 @@ const handleGalleryModal = () => {
   if(!galleryModal) return;
 
   const galleryModalBackground = document.querySelector('#gallery-modal-background');
-  const galleryModalClose = galleryModal.querySelector('#gallery-modal-close');
+  // const galleryModalClose = galleryModalBackground.querySelector('#gallery-modal-close');
   const galleryModalCarousel = galleryModal.querySelector('#gallery-modal-carousel');
   const galleryItems = document.querySelectorAll('.gallery-item');
 
   const toggleModal = () => {
     galleryModalBackground.classList.toggle('active');
     galleryModal.classList.toggle('active');
-  }
-
-  const populateModalCarousel = (data) => {
-
-
-
-
-
-
   }
 
 
@@ -36,8 +27,8 @@ const handleGalleryModal = () => {
     // modalDescription.insertAdjacentHTML('beforeend', )
 
     const media = data.media;
-    galleryModalCarousel.innerHTML = createCarouselFromUrls("#gallery-modal-carousel", media);
-
+    galleryModalCarousel.innerHTML = createCarouselFromUrls("gallery-modal-carousel", media);
+    initCarousel();
     toggleModal();
   }
 
@@ -59,7 +50,7 @@ const handleGalleryModal = () => {
   }
 
 
-  galleryModalClose.addEventListener('click', (e) => toggleModal(e));
+  // galleryModalClose.addEventListener('click', (e) => toggleModal(e));
   galleryModalBackground.addEventListener('click', (e) => toggleModal(e));
   galleryItems.forEach(item => {item.addEventListener('click', (e) => fetch_gallery_modal_content(item.dataset.id))});
 

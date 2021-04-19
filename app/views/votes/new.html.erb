@@ -22,10 +22,10 @@
       <div id="tql-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
 
         <% if @tql_to_vote.media.length > 1 %>
-          <ol class="carousel-indicators">
+          <ol data-target='#tql-carousel' class="carousel-indicators">
 
             <% @tql_to_vote.media.each_with_index do |medium, index| %>
-              <li data-target="#tql-carousel" data-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></li>
+              <li data-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></li>
             <% end %>
 
           </ol>

@@ -9,7 +9,14 @@
     left: 0;
     min-height: 100vh;
     width: 100%;
-    background-color: rgba(0,0,0, 0.6);
+    background-color: rgba(0,0,0, 0.8);
+
+    #gallery-modal-close{
+      color: white;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
   }
 
 }
@@ -20,39 +27,48 @@
   &.active{
     position: fixed;
     z-index: 20;
-    top: 0;
+    top: 10vh;
     left: 0;
     // min-height: 100vh;
+    height: 90vh;
     width: 100%;
+    display: block;
     // border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
 
-    #gallery-modal-close{
-      color: white;
-      position: sticky;
-      top: 20px;
-      left: 20px;
-    }
+
 
 
     #gallery-modal-carousel{
       // position: relative;
       width: 100%;
+      height: 75vh;
 
-      img{
+      .carousel-inner{
         width: 100%;
-        border-radius: 20px 20px 0 0;
-      }
+        height: 100%;
 
+        .carousel-item{
+
+          width: 100%;
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+
+        }
+      }
 
     }
 
     #gallery-modal-description{
-      height: 10vh; // A enlever
-      border-radius: 0 0 20px 20px;
-      background-color: rgb(50,50,50);
+      height: 15vh;
+      width: 100%;
+      // border-radius: 0 0 20px 20px;
+      background-color: black;
       padding: 20px;
       overflow-wrap: break-word;
       color: white;

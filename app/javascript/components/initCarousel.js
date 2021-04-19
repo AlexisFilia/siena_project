@@ -1,22 +1,25 @@
 const initCarousel = () => {
-  const carousel = document.querySelector('#tql-carousel');
+  const carousel = document.querySelector('.carousel');
   if(!carousel) return;
-  console.log("yo");
+
   const carouselControls = carousel.querySelectorAll('.carousel-control');
-  const carouselIndicators = carousel.querySelectorAll('.carousel-indicators li')
+  const carouselIndicators = carousel.querySelectorAll('.carousel-indicators li');
+  let carouselId;
+  if(carouselIndicators[0]){
+    carouselId = carousel.querySelector('.carousel-indicators').dataset.target;
+  }
 
   carouselControls.forEach((cControl) => {
     cControl.addEventListener('click', (event) => {
-      // console.log(cControl.dataset.slide);
-      $('#tql-carousel').carousel(cControl.dataset.slide);
+      $(carouselId).carousel(cControl.dataset.slide);
     })
 
   })
 
   carouselIndicators.forEach((cIndicator) => {
+
     cIndicator.addEventListener('click', (event) => {
-      // console.log(cIndicator.dataset.slideTo);
-      $('#tql-carousel').carousel(parseInt(cIndicator.dataset.slideTo));
+      $(carouselId).carousel(parseInt(cIndicator.dataset.slideTo));
     })
   })
 
