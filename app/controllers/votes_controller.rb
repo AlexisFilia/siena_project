@@ -6,14 +6,17 @@ class VotesController < ApplicationController
   def new
     @tql_to_vote = TeamQuestLink.joins(:team)
                                 .where(teams: { company_id: current_user.company.id })
+                                .where.not(team_id: current_user.team.id)
                                 .where(status: 'pending')
-                                .left_outer_joins(:votes)
-                                .where.not(votes: { user_id: current_user.id })
-                                .or(TeamQuestLink.left_outer_joins(:votes)
-                                                 .where(votes: { user_id: nil}))
+                                .where.not(id: TeamQuestLink.joins(:team)
+                                                            .where(teams: { company_id: current_user.company.id })
+                                                            .where.not(team_id: current_user.team.id)
+                                                            .where(status: 'pending')
+                                                            .joins(:votes)
+                                                            .where(votes: { user_id: current_user.id })
+                                                            .pluck('team_quest_links.id'))
                                 .order('created_at ASC')
                                 .first
-
 
     #Evolutive elements------------------
     @top_bar_title = 'VALIDATION'
