@@ -3,7 +3,7 @@ import { Quest } from '../models/questModel';
 const stolenCode = () => {
 
   // https://codepen.io/chengarda/pen/wRxoyB
-  let redSquareInfo = document.querySelector("#redSquareInfo");
+  let redSquareInfo = document.getElementById("redSquareInfo");
   let canvas = document.getElementById("my-canvas-tests")
   if(!canvas) return;
 

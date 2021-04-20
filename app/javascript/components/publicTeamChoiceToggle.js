@@ -1,11 +1,11 @@
 const publicTeamChoiceToggle = () => {
   const publicTeamChoices = document.querySelectorAll(".public-team-choice");
   if(!publicTeamChoices) return;
-  const span = document.querySelector("#etb-title span");
-  const pollPerimeterChoice = document.querySelector("#poll-perimeter-choice");
+  const span = document.getElementById("etb-title span");
+  const pollPerimeterChoice = document.getElementById("poll-perimeter-choice");
   const messagePerimeterChoice = document.querySelectorAll(".message-perimeter-choice");
-  const teamMessagesContainer = document.querySelector("#team-messages-container");
-  const publicMessagesContainer = document.querySelector("#public-messages-container");
+  const teamMessagesContainer = document.getElementById("team-messages-container");
+  const publicMessagesContainer = document.getElementById("public-messages-container");
 
   publicTeamChoices.forEach(choice => {
     choice.addEventListener("click", (e) => {

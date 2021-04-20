@@ -3,10 +3,10 @@ const handleTqlModal = () => {
   const tqlModalBtn = document.getElementById('tql-upload-btn');
   if(!tqlModalBtn) return;
 
-  const tqlModalClose = document.querySelector('#tql-modal-close');
-  const tqlModal = document.querySelector('#tql-modal');
-  const btnSendMedia = document.querySelector('#btn-send-media');
-  const attachement = document.querySelector('#medium_attached_file');
+  const tqlModalClose = document.getElementById('tql-modal-close');
+  const tqlModal = document.getElementById('tql-modal');
+  const btnSendMedia = document.getElementById('btn-send-media');
+  const attachement = document.getElementById('medium_attached_file');
 
   tqlModalBtn.addEventListener('click', (e) => {
     tqlModal.classList.toggle('active');
