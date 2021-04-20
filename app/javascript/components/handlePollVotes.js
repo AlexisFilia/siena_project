@@ -1,6 +1,6 @@
 const handlePollVotes = () => {
 
-  const selection = document.querySelector("#poll-selected-option");
+  const selection = document.getElementById("poll-selected-option");
   if(!selection) return;
 
   const options = document.querySelectorAll(".poll-option-selectable");

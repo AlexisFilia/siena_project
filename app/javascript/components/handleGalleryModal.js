@@ -4,12 +4,12 @@ import { initCarousel } from '../components/initCarousel';
 
 const handleGalleryModal = () => {
 
-  const galleryModal = document.querySelector('#gallery-modal');
+  const galleryModal = document.getElementById('gallery-modal');
   if(!galleryModal) return;
 
-  const galleryModalBackground = document.querySelector('#gallery-modal-background');
-  // const galleryModalClose = galleryModalBackground.querySelector('#gallery-modal-close');
-  const galleryModalCarousel = galleryModal.querySelector('#gallery-modal-carousel');
+  const galleryModalBackground = document.getElementById('gallery-modal-background');
+  // const galleryModalClose = galleryModalBackground.getElementById('gallery-modal-close');
+  const galleryModalCarousel = galleryModal.getElementById('gallery-modal-carousel');
   const galleryItems = document.querySelectorAll('.gallery-item');
 
   const toggleModal = () => {
@@ -21,7 +21,7 @@ const handleGalleryModal = () => {
   const displayGalleryModal = (data) =>{
     // console.log(id);
     console.log(data);
-    const modalDescription = galleryModal.querySelector('#gallery-modal-description');
+    const modalDescription = galleryModal.getElementById('gallery-modal-description');
     const description = `${data.team} : ${data.quest}`;
     modalDescription.innerHTML = description;
     // modalDescription.insertAdjacentHTML('beforeend', )
