@@ -13,7 +13,7 @@ class MediaController < ApplicationController
             end
       medium = Medium.new(team_quest_link: tql, attached_file: params[:medium][:attached_file], type_of: params[:medium][:attached_file].content_type)
       if medium.save!
-        redirect_to level_quests_path(quest.level)
+        redirect_to quest_path(quest)
       end
 
     else
