@@ -45,12 +45,10 @@
 <!-- TODO : Faire fonctionner la modale -->
 
     <% if @team_quest_link.nil? %>
-      <!-- <div class="main-button with-top-margin" id="tql-upload-btn">UPLOADER DES DOCUMENTS</div> -->
-      <%= render 'shared/tql-modal' %>
+      <div class="main-button with-top-margin" id="tql-upload-btn">UPLOADER DES DOCUMENTS</div>
     <% end %>
     <% if !@team_quest_link.nil? && @team_quest_link.status == 'draft' %>
-      <!-- <div class="main-button with-top-margin"  id="tql-upload-btn">UPLOADER DES DOCUMENTS</div> -->
-      <%= render 'shared/tql-modal' %>
+      <div class="main-button with-top-margin"  id="tql-upload-btn">UPLOADER DES DOCUMENTS</div>
     <% end %>
     <% if !@team_quest_link.nil? && @team_quest_link.status == 'draft' && !@team_quest_link.media.nil? %>
       <div class="main-button"><%= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put' %></div>
@@ -58,4 +56,4 @@
   </div>
 </div>
 
-
+<%= render 'shared/tql-modal' %>
