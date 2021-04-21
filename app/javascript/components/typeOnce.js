@@ -10,6 +10,7 @@ const typeOnce = (target_element, speed) => {
 
     if(i == characters.length){
       clearInterval(timer);
+      target_element.dataset.typed = true;
     }else{
       constructedText += characters[i];
       i += 1;
