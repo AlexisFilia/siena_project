@@ -32,8 +32,7 @@ class TeamQuestLink < ApplicationRecord
   end
 
   def check_and_update_tql_status_from_time
-    if (!self.created_at.friday? && self.created_at > 1.day.ago) || (self.created_at.friday? && self.created_at > 3.day.ago)
-    # if self.created_at > 5.minute.ago
+    if (!self.created_at.friday? && self.created_at > 1.day) || (self.created_at.friday? && self.created_at > 3.day)
       self.update_tql_status(self.votes)
     end
   end
