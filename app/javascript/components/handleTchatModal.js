@@ -1,13 +1,13 @@
 const handleTchatModal = () => {
 
-  const tchatModalBtn = document.getElementById('tchat-action-bar-btn-plus');
+  const tchatModalBtn = document.querySelector('#tchat-action-bar-btn-plus');
   if(!tchatModalBtn) return;
 
-  const tchatModalClose = document.getElementById('tchat-modal-close');
-  const tchatModal = document.getElementById('tchat-modal');
-  const btnSendMedia = document.getElementById('btn-send-media');
-  const btnCreatePoll = document.getElementById('create-poll');
-  const attachement = document.getElementById('medium_attached_file');
+  const tchatModalClose = document.querySelector('#tchat-modal-close');
+  const tchatModal = document.querySelector('#tchat-modal');
+  const btnSendMedia = document.querySelector('#btn-send-media');
+  const btnCreatePoll = document.querySelector('#create-poll');
+  const attachement = document.querySelector('#medium_attached_file');
 
   tchatModalBtn.addEventListener('click', (e) => {
     tchatModal.classList.toggle('active');

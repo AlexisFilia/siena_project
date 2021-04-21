@@ -1,6 +1,6 @@
 const sideNavLinks = () => {
 
-  const sideNav = document.getElementById("sideNav");
+  const sideNav = document.querySelector("#sideNav");
   if(!sideNav) return;
   const sideNavLinks = document.querySelectorAll("#sideNav-links a");
 
