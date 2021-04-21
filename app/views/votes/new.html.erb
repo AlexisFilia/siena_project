@@ -3,7 +3,7 @@
 <%#= render 'shared/top-bar' %>
 <%#= render 'shared/bottom-bar' %>
 
-<div class="main-container with-top-margin with-bottom-margin centered-vertically draggables">
+<div class="main-container with-top-margin with-bottom-margin middle draggables">
 
 
   <% if @tql_to_vote.blank? %>
@@ -27,10 +27,32 @@
         <% end %>
       </div>
 
+      <div class="tql-description">
+        <p class="title"><%= @tql_to_vote.quest.name %></p>
+        <p><i>Submitted by <%= @tql_to_vote.team.name %> at level "<%= @tql_to_vote.level.name %>"</i></p>
+        <!-- <p>Quest level : <%#= @tql_to_vote.level.name %></p> -->
+        <p class="title">CRITÈRES DE VALIDATION :</p>
+        <ul>
+          <% JSON.parse(@tql_to_vote.quest.criteria).each do |c| %>
+            <li><%= c %> </li>
+          <% end %>
+        </ul>
+
+      </div>
+      <div class="tql-buttons">
+        <%= link_to "Vote NO", votes_path(vote: false, tql: @tql_to_vote), method: :post, class: "vote-no" %>
+        <%= link_to "Vote YES", votes_path(vote: true, tql: @tql_to_vote), method: :post, class: "vote-yes" %>
+      </div>
+
+    </div>
+  <% end %>
+
+</div>
 
 
+<!--     OLD CAROUSEL kept in case
 
-<!--       <div id="tql-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+  <div id="tql-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
 
         <%# if @tql_to_vote.media.length > 1 %>
 
@@ -63,33 +85,5 @@
       </div> -->
 
 
-
-      <div class="tql-description">
-        <h2><%= @tql_to_vote.quest.name %></h2>
-        <h3>Submitted by : </h3><%= @tql_to_vote.team.name %>
-        <h3>Quest level : </h3><%= @tql_to_vote.level.name %>
-        <h3>Tags :</h3>
-        <% @tql_to_vote.tags.each do |tag| %>
-          <%= tag.name %>
-        <% end %>
-        <h3>CRITÈRES DE VALIDATION :</h3>
-        <ul>
-          <% JSON.parse(@tql_to_vote.quest.criteria).each do |c| %>
-            <li><%= c %> </li>
-          <% end %>
-        </ul>
-
-      </div>
-      <div class="tql-buttons">
-        <%= link_to "Vote NO", votes_path(vote: false, tql: @tql_to_vote), method: :post, class: "vote-no" %>
-        <%= link_to "Vote YES", votes_path(vote: true, tql: @tql_to_vote), method: :post, class: "vote-yes" %>
-      </div>
-
-    </div>
-    <!-- <h3><%#= @tql_to_vote.quest.name %></h3> -->
-
-  <% end %>
-
-</div>
 
 

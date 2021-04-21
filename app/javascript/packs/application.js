@@ -40,6 +40,7 @@ import { roulette } from '../components/roulette';
 import { draggables } from '../components/draggables';
 import { initCarousel } from '../components/initCarousel';
 import { handleValidationModal } from '../components/handleValidationModal';
+import { typeMission } from '../components/typeMission';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -64,5 +65,6 @@ document.addEventListener('turbolinks:load', () => {
   roulette();
   draggables();
   initCarousel();
+  typeMission();
 
 });

@@ -1,9 +1,9 @@
 .main-container{
 
-  min-height: 90vh;
+  // min-height: 90vh;
 
   &.with-top-margin{
-    margin-top: 10vh;
+    margin-top: 15vh; // 10 + 5
   }
 
   &.with-bottom-margin{

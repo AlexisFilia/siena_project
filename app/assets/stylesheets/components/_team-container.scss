@@ -9,6 +9,10 @@
     width: 100%;
     text-align: center;
     color: white;
+
+    &.first{
+      margin-top: 0;
+    }
   }
 
   #stats-container{

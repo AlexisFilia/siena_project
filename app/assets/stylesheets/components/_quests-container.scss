@@ -5,6 +5,10 @@
   .title{
     color: white;
     margin: 5vh 0;
+
+    &.first{
+      margin-top: 0;
+    }
   }
 
 

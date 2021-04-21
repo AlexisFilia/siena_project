@@ -1,22 +1,8 @@
 <%= render 'shared/evolutive-top-bar' %>
-<%#= render 'shared/top-bar' %>
-<%#= render 'shared/bottom-bar' %>
-
-<!-- <div class="container-below-top-bar">
-  <%#= link_to root_path, class: "rounded-div centered" do %>
-    <i class="fas fa-chevron-left"></i>
-  <%# end %>
-
-  <div class="level-details centered-vertically">
-    <p class="level-number"><%= @level.id %> </p>
-    <p class="title"><%#= @level.name.upcase %> </p>
-  </div>
-  <div class="rounded-div centered"><p><%#= (@level_completion[:total] * 100).to_i %>%</p></div>
-</div> -->
 
 <div class="main-container with-top-margin with-bottom-margin">
   <div class="quests-container centered-vertically">
-    <div class="title">MANDATORY QUESTS</div>
+    <div class="title first">MANDATORY QUESTS</div>
     <% @quests.select{|q| q[:quest].type_of == "mandatory"}.each do |q| %>
       <%= link_to quest_path(q[:quest]), class: "quest-container #{q[:status]}" do %>
         <div class="round-item centered">
