@@ -6,29 +6,61 @@
 <div class="main-container centered-vertically with-top-margin with-bottom-margin">
 
   <div id="gallery">
-    <% @validated_tqls.each do |tql| %>
-      <!-- <h3><%#= tql.quest.name %> for <%#= tql.team.name %></h3> -->
-      <% if !tql.media.blank? %>
 
-        <div class="gallery-item" data-id="<%= tql.id %>">
-          <div class="gallery-item-medium">
-            <%#= image_tag tql.media.first %>
-            <%= cl_image_tag tql.media.first.attached_file.key%>
+    <div class="gallery-column">
+      <% @first_column.each do |tql| %>
+        <!-- <h3><%#= tql.quest.name %> for <%#= tql.team.name %></h3> -->
+        <% if !tql.media.blank? %>
+
+          <div class="gallery-item" data-id="<%= tql.id %>">
+            <div class="gallery-item-medium">
+              <%#= image_tag tql.media.first %>
+              <%= cl_image_tag tql.media.first.attached_file.key%>
+            </div>
+            <div class="gallery-item-description"><%= tql.team.name %> : <%= tql.quest.name %></div>
           </div>
-          <div class="gallery-item-description"><%= tql.team.name %> : <%= tql.quest.name %></div>
-        </div>
 
 
-      <% else %>
+        <% else %>
 
-        <div class="gallery-item" data-id="<%= tql.id %>">
-          <div class="gallery-item-medium">
-            <%= image_tag @medium_placeholder %>
+          <div class="gallery-item" data-id="<%= tql.id %>">
+            <div class="gallery-item-medium">
+              <%= image_tag @medium_placeholder %>
+            </div>
+            <div class="gallery-item-description"><%= tql.team.name %> : <%= tql.quest.name %></div>
           </div>
-          <div class="gallery-item-description"><%= tql.team.name %> : <%= tql.quest.name %></div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+
+    <div class="gallery-column">
+      <% @second_column.each do |tql| %>
+        <!-- <h3><%#= tql.quest.name %> for <%#= tql.team.name %></h3> -->
+        <% if !tql.media.blank? %>
+
+          <div class="gallery-item" data-id="<%= tql.id %>">
+            <div class="gallery-item-medium">
+              <%#= image_tag tql.media.first %>
+              <%= cl_image_tag tql.media.first.attached_file.key%>
+            </div>
+            <div class="gallery-item-description"><%= tql.team.name %> : <%= tql.quest.name %></div>
+          </div>
+
+
+        <% else %>
+
+          <div class="gallery-item" data-id="<%= tql.id %>">
+            <div class="gallery-item-medium">
+              <%= image_tag @medium_placeholder %>
+            </div>
+            <div class="gallery-item-description"><%= tql.team.name %> : <%= tql.quest.name %></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
   </div>
 </div>
 
