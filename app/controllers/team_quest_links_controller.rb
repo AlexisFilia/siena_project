@@ -5,17 +5,35 @@ class TeamQuestLinksController < ApplicationController
      @initial_perimeter = params[:perimeter].nil? ? 'public' : params[:perimeter]
 
 
-
-
     if @initial_perimeter == 'team'
 
       @validated_tqls = TeamQuestLink.where(status: 'completed')
                                    .where(team: @team)
                                    .order('updated_at DESC')
 
+      @first_column = []
+      @second_column = []
+      @validated_tqls.each_with_index do |tql, index|
+        if index % 2 == 0
+          @second_column << tql
+        else
+          @first_column << tql
+        end
+      end
+
     else
       @validated_tqls = TeamQuestLink.where(status: 'completed')
                                     .order('updated_at DESC')
+
+      @first_column = []
+      @second_column = []
+      @validated_tqls.each_with_index do |tql, index|
+        if index % 2 == 0
+          @second_column << tql
+        else
+          @first_column << tql
+        end
+      end
     end
 
     @medium_placeholder = 'https://images.pexels.com/photos/1047285/pexels-photo-1047285.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
