@@ -29,9 +29,9 @@ class TeamQuestLinksController < ApplicationController
       @second_column = []
       @validated_tqls.each_with_index do |tql, index|
         if index % 2 == 0
-          @second_column << tql
-        else
           @first_column << tql
+        else
+          @second_column << tql
         end
       end
     end
