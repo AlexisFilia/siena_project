@@ -20,7 +20,7 @@ import island_33_src from  '../../assets/images/33.png'
 const gameController = () => {
 
   // https://codepen.io/chengarda/pen/wRxoyB
-  let redSquareInfo = document.getElementById("redSquareInfo");
+  let redSquareInfo = document.querySelector("#redSquareInfo");
   let canvas = document.getElementById("my-canvas")
   if(!canvas) return;
 

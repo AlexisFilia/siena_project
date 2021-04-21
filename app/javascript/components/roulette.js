@@ -1,12 +1,12 @@
 import { fetchWithToken } from "../utils/fetchWithToken";
 
 const roulette = () => {
-  const rouletteBtn = document.getElementById('roulette-btn');
+  const rouletteBtn = document.querySelector('#roulette-btn');
   if(!rouletteBtn) return
 
-  const rouletteList = document.getElementById('roulette-list');
+  const rouletteList = document.querySelector('#roulette-list');
   const rouletteListItems = rouletteList.querySelectorAll('li');
-  const backSelect = document.getElementById('background-selector');
+  const backSelect = document.querySelector('#background-selector');
   const rouletteListItemsAmount = rouletteListItems.length;
 
   const rIncr = 1;

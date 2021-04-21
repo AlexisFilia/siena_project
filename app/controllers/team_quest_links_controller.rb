@@ -33,7 +33,7 @@ class TeamQuestLinksController < ApplicationController
   end
 
 
-  def fetch_gallery_modal_content
+  def fetch_team_quest_link_content_for_modals
 
     tql = TeamQuestLink.find(params['id'])
 
