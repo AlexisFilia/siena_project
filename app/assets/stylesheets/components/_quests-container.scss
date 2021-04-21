@@ -13,7 +13,7 @@
 
 
   .quest-container{
-    // position: relative;
+    position: relative;
 
     width: 80%;
     max-width: 500px;
@@ -25,19 +25,45 @@
     transition: transform 0.5s;
 
     .icon-item{
-      // position: absolute;
-      // left: -3vh;
-      // top: -2vh;
-      // border-radius: 50%;
-      height: 8vh;
-      width: 8vh;
+      position: relative;
+      height: 7vh;
+      width: 6vh;
       background-color: white;
 
 
       i{
-        font-size: 1.5em;
+        font-size: 20px;
+        z-index: 1;
+        position: absolute;
+        left: 1.5vh;
+        // text-shadow: 1px 1px white, -1px -1px #444;
       }
     }
+
+    .side-div-wrapper{
+      position: absolute;
+      left: 4vh;
+      transition: width 0.5s;
+      .side-div{
+        width: 6vh;
+        height: 7vh;
+        overflow: hidden;
+        position: relative;
+        transition: width 0.5s;
+        .rotated-div{
+          background-color: white;
+          height: 15vh;
+          width: 15vh;
+          transform: rotate(15deg);
+          position: absolute;
+          top: -4vh;
+          left: -13vh;
+          box-shadow: 8px 1px 3px rgba(0,0,0,0.12);
+          transition: width 0.5s;
+        }
+      }
+    }
+
 
     .quest-title{
       width: 100%;
@@ -51,19 +77,22 @@
 
     &.open{
       .icon-item{color: $background-color-lighter; }
+      .side-div{background-color: $background-color-lighter;}
       .quest-title{background-color: $background-color-lighter;}
     }
 
     &.pending{
-      .icon-item{color: #F9A500; }
+      .icon-item{color: #F9A500;}
+      .side-div{background-color: #F9A500;}
       .quest-title{background-color: #F9A500;}
     }
 
     &.completed{
       .icon-item{color: #6FC240; }
+      .side-div{background-color: #6FC240;}
       .quest-title{background-color: #6FC240;}
-      opacity: 0.6;
-      margin-left: 20px;
+      opacity: 0.5;
+      // margin-left: 20px;
 
       // transform: scale(0.9);
 
@@ -71,17 +100,29 @@
 
     &.rejected{
       .icon-item{color: #ED2B37; }
+      .side-div{background-color: #ED2B37;}
       .quest-title{background-color: #ED2B37;}
     }
 
     &.draft{
       .icon-item{color: #45C4C7; }
+      .side-div{background-color: #45C4C7;}
       .quest-title{background-color: #45C4C7;}
     }
 
     &:hover{
 
       transform: scale(0.95);
+      // .side-div-wrapper{
+      //   width: calc(100% - 4vh);
+      //   .side-div{
+      //     width: 100%;
+      //     .rotated-div{
+      //       width: 20vh;
+      //     }
+      //   }
+      // }
+
     }
   }
 }
