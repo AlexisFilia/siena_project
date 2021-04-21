@@ -7,7 +7,7 @@ class QuestsController < ApplicationController
     @level_completion = @team.get_percentage_of_level_completion(@level)
 
     # on se crée un mapping des quetes en fonction du status du team_quest_link de l´equipe
-    @quests = @level.quests.map{|q| {quest: q , status: @team.get_quest_status(q)}}
+    @quests = @level.get_quests_list_ordered_by_status(@team)
 
 
     #Evolutive elements------------------

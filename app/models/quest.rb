@@ -10,4 +10,5 @@ class Quest < ApplicationRecord
   validates :type_of, presence: true
   # validates :map_position, presence: true
   # validates :validation_type, presence: true
+
 end

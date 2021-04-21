@@ -5,7 +5,7 @@
     <div class="title first">MANDATORY QUESTS</div>
     <% @quests.select{|q| q[:quest].type_of == "mandatory"}.each do |q| %>
       <%= link_to quest_path(q[:quest]), class: "quest-container #{q[:status]}" do %>
-        <div class="round-item centered">
+        <div class="icon-item centered">
           <!-- <i class="far fa-gem"></i> -->
           <!-- <i class="far fa-star"></i> -->
           <% case q[:status] %>
@@ -17,6 +17,8 @@
             <i class="fas fa-award"></i>
           <% when "rejected" %>
             <i class="fas fa-skull-crossbones"></i>
+          <% when "draft" %>
+            <i class="fas fa-edit"></i>
           <% end %>
         </div>
         <div class="quest-title centered"><%= q[:quest].name.upcase %> </div>
@@ -28,7 +30,7 @@
       <div class="title">OPTIONAL QUESTS</div>
       <% @quests.select{|q| q[:quest].type_of == "optional"}.each do |q| %>
         <%= link_to quest_path(q[:quest]), class: "quest-container #{q[:status]}" do %>
-          <div class="round-item centered">
+          <div class="icon-item centered">
             <!-- <i class="far fa-gem"></i> -->
             <!-- <i class="far fa-star"></i> -->
             <% case q[:status] %>
@@ -40,6 +42,8 @@
               <i class="fas fa-award"></i>
             <% when "rejected" %>
               <i class="fas fa-skull-crossbones"></i>
+            <% when "draft" %>
+              <i class="fas fa-edit"></i>
             <% end %>
           </div>
           <div class="quest-title centered"><%= q[:quest].name.upcase %> </div>
