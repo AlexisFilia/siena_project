@@ -26,8 +26,8 @@ import "bootstrap";
 // import { timTests } from '../components/timTests';
 // import { gameController } from '../components/gameController';
 // import { stolenCode } from '../components/stolenCode';
-import { sideNav } from '../components/sideNav';
-import { sideNavLinks } from '../components/sideNavLinks';
+// import { sideNav } from '../components/sideNav';
+// import { sideNavLinks } from '../components/sideNavLinks';
 import { publicTeamChoiceToggle } from '../components/publicTeamChoiceToggle';
 import { handlePollOptions } from '../components/handlePollOptions';
 import { handlePollVotes } from '../components/handlePollVotes';
@@ -39,6 +39,7 @@ import { handleGalleryModal } from '../components/handleGalleryModal';
 import { roulette } from '../components/roulette';
 import { draggables } from '../components/draggables';
 import { initCarousel } from '../components/initCarousel';
+import { handleValidationModal } from '../components/handleValidationModal';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -46,17 +47,22 @@ document.addEventListener('turbolinks:load', () => {
   // timTests();
   // gameController();
   // stolenCode();
-  sideNav();
-  sideNavLinks();
+  // sideNav();
+  // sideNavLinks();
   publicTeamChoiceToggle();
+
   handlePollOptions();
   handlePollVotes();
   handleMainMenu();
+
   handleTchatModal();
   handleTqlModal();
-  tchatScroll();
   handleGalleryModal();
+  handleValidationModal();
+
+  tchatScroll();
   roulette();
   draggables();
   initCarousel();
+
 });

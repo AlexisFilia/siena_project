@@ -1,5 +1,5 @@
 <%= render 'shared/evolutive-top-bar' %>
-
+<%= render 'shared/validation-modal' %>
 <%#= render 'shared/top-bar' %>
 <%#= render 'shared/bottom-bar' %>
 
@@ -13,53 +13,54 @@
       <p>Check out the GALLERY!</p>
       <%= link_to "GALLERY", team_quest_links_path, class: "main-button" %>
     </div>
+
   <% else %>
 
     <div data-id="<%= @tql_to_vote.id %>" class="tql-to-vote draggable">
       <div class="tql-validation-text"></div>
 
-
-      <div id="tql-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-
+      <div data-id="<%= @tql_to_vote.id %>" class="tql-medium" style="background-image: url('<%= cl_image_path @tql_to_vote.media.first.attached_file.key if @tql_to_vote.media.first %>')">
         <% if @tql_to_vote.media.length > 1 %>
+          <div class="tql-medium-indicator">1/<%= @tql_to_vote.media.length %></div>
+        <% else %>
+          <div class="tql-medium-indicator"><i class="fas fa-search"></i></div>
+        <% end %>
+      </div>
+
+
+
+
+<!--       <div id="tql-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+
+        <%# if @tql_to_vote.media.length > 1 %>
+
           <ol data-target='#tql-carousel' class="carousel-indicators">
-
-            <% @tql_to_vote.media.each_with_index do |medium, index| %>
-              <li data-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>"></li>
-            <% end %>
-
+            <%# @tql_to_vote.media.each_with_index do |medium, index| %>
+              <li data-slide-to="<%#= index %>" class="<%#= 'active' if index == 0 %>"></li>
+            <%# end %>
           </ol>
 
           <a class="carousel-control-prev carousel-control" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
+
           <a class="carousel-control-next carousel-control" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
 
-        <% end %>
+        <%# end %>
 
         <div class="carousel-inner">
-
-          <% @tql_to_vote.media.each_with_index do |medium, index| %>
-
-          <div class="carousel-item <%= 'active' if index == 0 %>">
-            <div class="tql-medium" style="background-image: url('<%= cl_image_path medium.attached_file.key %>')"></div>
-          </div>
-
-
-          <% end %>
-
+          <%# @tql_to_vote.media.each_with_index do |medium, index| %>
+            <div class="carousel-item <%#= 'active' if index == 0 %>">
+              <div class="tql-medium" style="background-image: url('<%#= cl_image_path medium.attached_file.key %>')"></div>
+            </div>
+          <%# end %>
         </div>
 
-
-
-
-      </div>
-
-
+      </div> -->
 
 
 

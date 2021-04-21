@@ -34,7 +34,7 @@ const handleGalleryModal = () => {
 
 
   const fetch_gallery_modal_content = (id) =>{
-    fetchWithToken("/fetch_gallery_modal_content", {
+    fetchWithToken("/fetch_team_quest_link_content_for_modals", {
         method: "POST",
         headers: {
           "Accept": "application/json",
