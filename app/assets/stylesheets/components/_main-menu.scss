@@ -132,6 +132,7 @@
         top: 10px;
         left: 20px;
         color: white;
+        z-index: 200;
       }
 
       #main-menu-team-name{
@@ -176,6 +177,7 @@
 
         a{
           margin: 10px 0;
+          z-index: 200;
 
         }
       }
