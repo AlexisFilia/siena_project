@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
   create_table "team_quest_links", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.bigint "quest_id", null: false
-    t.string "status", default: "open"
+    t.string "status", default: "draft"
     t.text "roulette_result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

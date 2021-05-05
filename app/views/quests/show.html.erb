@@ -42,23 +42,32 @@
             <div id="media-grid">
 
               <% if !@team_quest_link.blank? && !@team_quest_link.media.blank? %>
-                <div class="d-flex">
+
                   <% @team_quest_link.media.each do |medium| %>
-                    <div class="media-grid-item">
+                    <div class="media-grid-item"
+
                       <% if medium.type_of == "video/mp4" %>
-                        <%= cl_video_tag(medium.attached_file.key, controls: true, fetch_format: :auto, width: '100%', height: '100%') %>
+                        >
+                        <%= cl_video_tag(medium.attached_file.key, controls: true, fetch_format: :auto, width: '100%', height: '100%', transformation: [crop: "pad"]) %>
+
                       <% else %>
-                        <%= cl_image_tag medium.attached_file.key, height: 150, width: 200, crop: :fill%>
+                        style="background-image: url('<%= cloudinary_url(medium.attached_file.key) %>')">
+                        <%#= cl_image_tag medium.attached_file.key%>
+
                       <% end %>
+                      <%= link_to "-", medium_path(medium), method: :delete, data: { confirm: "Are you sure?" }, class: "remove-medium" %>
                     </div>
                   <% end %>
-                </div>
+
               <% end %>
 
-              <div id="add-medium-to-tql">+</div>
+              <div id="add-medium-to-tql">
+                <p>+</p>
+                <div id="upload-spinner" class="spinner-border text-success" role="status"></div>
+              </div>
 
             </div>
-            <%= button_tag "CONFIRM", type: 'submit', id: "btn-send-media", class: 'main-button' %>
+            <%= button_tag "CONFIRM", type: 'submit', id: "upload-medium" %>
           <% end %>
 
         <% when "pending" %>
@@ -84,7 +93,13 @@
 
     </div>
 
+    <% if @quest_status == "draft" %>
+      <%= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put', class: "main-button", id: "submit-quest" %>
+    <% end %>
+
   </div>
+
+
 
 </div>
 

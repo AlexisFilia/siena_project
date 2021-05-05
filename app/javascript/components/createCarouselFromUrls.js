@@ -9,10 +9,31 @@ const createCarouselFromUrls = (carouselId, media) => {
     media.forEach((medium, index) =>{
 
       carouselIndicators += `<li data-slide-to="${index}" class="${index == 0 ? 'active' : ''}"></li>`;
-      carouselItems += `
-      <div class="carousel-item ${index == 0 ? 'active' : ''}" style="background-image: url('${medium}')">
-      </div>
-      `;
+
+      if(medium.type == "video"){
+        carouselItems += `
+        <div class="carousel-item ${index == 0 ? 'active' : ''}">
+          <video
+          width="100%"
+          height="100%"
+          controls="controls"
+          poster="${medium.url}.jpg">
+          <source src="${medium.url}.webm"
+          type="video/webm">
+          <source src="${medium.url}.mp4"
+          type="video/mp4">
+          <source src="${medium.url}.ogv"
+          type="video/ogg">
+          </video>
+        </div>
+        `;
+      }else{
+        carouselItems += `
+        <div class="carousel-item ${index == 0 ? 'active' : ''}" style="background-image: url('${medium.url}')">
+        </div>
+        `;
+      }
+
     });
 
     carouselIndicators += `
@@ -30,7 +51,7 @@ const createCarouselFromUrls = (carouselId, media) => {
   }else{
 
     carouselItems += `
-    <div class="carousel-item active" style="background-image: url('${media[0]}')"></div>
+    <div class="carousel-item active" style="background-image: url('${media[0].url}')"></div>
     `;
   }
 
@@ -40,4 +61,5 @@ const createCarouselFromUrls = (carouselId, media) => {
 }
 
 export{createCarouselFromUrls};
+
 

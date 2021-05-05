@@ -1,13 +1,14 @@
 class MediaController < ApplicationController
-  before_action :media_params
+  # before_action :media_params
 
   def create
+
+    @media_params = media_params
 
     if @media_params[:perimeter].nil?
 
       # dans le cas ou on crée un medium attaché à un teamQuestLink
-      # Sans l´option "draft" on process tout d' un coup
-      # On crée un team quest link et on y attache un par un les media
+
 
       quest = Quest.find(params[:medium][:quest].to_i)
       tql = if params[:medium][:team_quest_link].blank?
@@ -15,6 +16,8 @@ class MediaController < ApplicationController
             else
               TeamQuestLink.find(params[:medium][:team_quest_link].to_i)
             end
+
+      tql.update(status: 'draft')
       medium = Medium.new(team_quest_link: tql, attached_file: params[:medium][:attached_file], type_of: params[:medium][:attached_file].content_type)
       if medium.save!
         redirect_to quest_path(quest)
@@ -34,10 +37,17 @@ class MediaController < ApplicationController
     end
   end
 
+  def destroy
+    @medium = Medium.find(params[:id])
+    @quest = @medium.team_quest_link.quest
+    @medium.destroy
+    redirect_to quest_path(@quest)
+  end
+
   private
 
   def media_params
-    @media_params = params.require(:medium).permit(:perimeter, :attached_file)
+    params.require(:medium).permit(:perimeter, :attached_file)
 
   end
 end
