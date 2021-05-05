@@ -21,39 +21,46 @@
         </div>
       </div>
 
-    <!-- </div> -->
 
-    <% if !@team_quest_link.blank? && !@team_quest_link.media.blank? %>
+
+  </div>
+</div>
+
+<%= render 'shared/tql-modal' %>
+
+
+
+<!-- CODE PRECEDENT --------------------------------------------------------------------------------------------->
+
+
+<!--     <%# if !@team_quest_link.blank? && !@team_quest_link.media.blank? %>
       <div class="d-flex">
-        <% @team_quest_link.media.each do |medium| %>
+        <%# @team_quest_link.media.each do |medium| %>
 
-          <% if medium.type_of == "video/mp4" %>
+          <%# if medium.type_of == "video/mp4" %>
             <div>
-              <%= cl_video_tag(medium.attached_file.key, controls: true, fetch_format: :auto, width: '100%', height: '100%') %>
+              <%#= cl_video_tag(medium.attached_file.key, controls: true, fetch_format: :auto, width: '100%', height: '100%') %>
             </div>
-          <% else %>
+          <%# else %>
           <div>
-            <%= cl_image_tag medium.attached_file.key, height: 150, width: 200, crop: :fill%>
+            <%#= cl_image_tag medium.attached_file.key, height: 150, width: 200, crop: :fill%>
           </div>
-          <% end %>
-        <% end %>
+          <%# end %>
+        <%# end %>
       </div>
-    <% end %>
+    <%# end %> -->
 
 
 
 <!-- TODO : Faire fonctionner la modale -->
 
-    <% if @team_quest_link.nil? %>
+ <!--    <%# if @team_quest_link.nil? %>
       <div class="main-button with-top-margin" id="tql-upload-btn">UPLOADER DES DOCUMENTS</div>
-    <% end %>
-    <% if !@team_quest_link.nil? && @team_quest_link.status == 'draft' %>
+    <%# end %>
+    <%# if !@team_quest_link.nil? && @team_quest_link.status == 'draft' %>
       <div class="main-button with-top-margin"  id="tql-upload-btn">UPLOADER DES DOCUMENTS</div>
-    <% end %>
-    <% if !@team_quest_link.nil? && @team_quest_link.status == 'draft' && !@team_quest_link.media.nil? %>
-      <div class="main-button"><%= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put' %></div>
-    <% end %>
-  </div>
-</div>
-
-<%= render 'shared/tql-modal' %>
+    <%# end %>
+    <%# if !@team_quest_link.nil? && @team_quest_link.status == 'draft' && !@team_quest_link.media.nil? %>
+      <div class="main-button"><%#= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put' %></div>
+    <%# end %>
+ -->
