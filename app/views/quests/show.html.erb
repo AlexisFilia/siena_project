@@ -26,12 +26,21 @@
     <% if !@team_quest_link.blank? && !@team_quest_link.media.blank? %>
       <div class="d-flex">
         <% @team_quest_link.media.each do |medium| %>
+
+          <% if medium.type_of == "video/mp4" %>
+            <div>
+              <%= cl_video_tag(medium.attached_file.key, controls: true, fetch_format: :auto, width: '100%', height: '100%') %>
+            </div>
+          <% else %>
           <div>
             <%= cl_image_tag medium.attached_file.key, height: 150, width: 200, crop: :fill%>
           </div>
+          <% end %>
         <% end %>
       </div>
     <% end %>
+
+
 
 <!-- TODO : Faire fonctionner la modale -->
 

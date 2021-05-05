@@ -81,7 +81,7 @@ tql_4 = TeamQuestLink.create!(team: team_1, quest: quest_4, status: "completed")
 tql_5 = TeamQuestLink.create!(team: team_1, quest: quest_5, status: "pending")
 tql_6 = TeamQuestLink.create!(team: team_1, quest: quest_6, status: "rejected")
 tql_7 = TeamQuestLink.create!(team: team_1, quest: quest_7, status: "completed")
-tql_8 = TeamQuestLink.create!(team: team_1, quest: quest_8, status: "draft")
+tql_8 = TeamQuestLink.create!(team: team_1, quest: quest_8, status: "open")
 
 
 puts "Team Quests Links for Team 1 have been created"

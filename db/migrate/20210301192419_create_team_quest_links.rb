@@ -3,7 +3,7 @@ class CreateTeamQuestLinks < ActiveRecord::Migration[6.1]
     create_table :team_quest_links do |t|
       t.references :team, null: false, foreign_key: true
       t.references :quest, null: false, foreign_key: true
-      t.string :status, default: 'draft'
+      t.string :status, default: 'open'
       t.text :roulette_result
 
       t.timestamps

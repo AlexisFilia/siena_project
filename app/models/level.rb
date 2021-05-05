@@ -14,8 +14,8 @@ class Level < ApplicationRecord
     open_quests = level_quests_with_status.select{|q| q[:status] == "open"}
     quests_list_ordered_by_status << open_quests unless open_quests.empty?
 
-    draft_quests = level_quests_with_status.select{|q| q[:status] == "draft"}
-    quests_list_ordered_by_status << draft_quests unless draft_quests.empty?
+    # draft_quests = level_quests_with_status.select{|q| q[:status] == "draft"}
+    # quests_list_ordered_by_status << draft_quests unless draft_quests.empty?
 
     rejected_quests = level_quests_with_status.select{|q| q[:status] == "rejected"}
     quests_list_ordered_by_status << rejected_quests unless rejected_quests.empty?
