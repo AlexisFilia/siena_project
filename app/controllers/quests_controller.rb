@@ -25,8 +25,10 @@ class QuestsController < ApplicationController
     @quest_status = @team.get_quest_status(@quest)
     @level = @quest.level
     @criteria = JSON.parse(@quest.criteria)
+
     @team_quest_link = TeamQuestLink.find_by(team: current_user.team, quest: @quest)
     @team_quest_link_id = @team_quest_link.blank? ? nil : @team_quest_link.id
+
     @medium = Medium.new()
 
     #Evolutive elements------------------
@@ -36,6 +38,7 @@ class QuestsController < ApplicationController
   end
 
 end
+
 
 
 

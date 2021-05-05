@@ -4,10 +4,8 @@
 <div class="main-container with-top-margin with-bottom-margin">
 
   <div class="quest-description-container">
-    <!-- <div class="target-wrapper"> -->
-    <!--   <div class="tw-big top"><div class="tw-small top left"></div><div class="tw-small top right"></div></div>
-      <div class="tw-big bottom"><div class="tw-small bottom left"></div><div class="tw-small bottom right"></div></div> -->
       <div class="quest-title centered"><%= @quest.name.upcase %> </div>
+
       <div class="quest-description">
         <div class="description">
           <p class="secondary-color-title">MISSION :</p>
@@ -20,13 +18,77 @@
           <% end %>
         </div>
       </div>
+  </div>
 
 
+
+  <div class="quest-progression-container">
+    <div class="title centered">TEAM PROGRESSION</div>
+    <div class="quest-progression">
+        <div class="quest-status"><div class="quest-status-circle <%= @quest_status %>"></div><p><%=  @quest_status.upcase %></p></div>
+        <p class="secondary-color-title">WHAT'S NEXT ?</p>
+
+        <% case @quest_status %>
+        <% when "open", "draft" %>
+
+          <p>Upload the required documents to submit your quest validation.</p>
+          <p class="secondary-color-title">UPLOAD DOCUMENTS :</p>
+
+          <%= simple_form_for @medium, :url => media_path, :method => :post, remote: true do |f| %>
+            <%= f.hidden_field :quest, value: @quest.id %>
+            <%= f.hidden_field :team_quest_link, value: @team_quest_link_id %>
+            <%= f.input :attached_file, as: :file, label: false%>
+
+            <div id="media-grid">
+
+              <% if !@team_quest_link.blank? && !@team_quest_link.media.blank? %>
+                <div class="d-flex">
+                  <% @team_quest_link.media.each do |medium| %>
+                    <div class="media-grid-item">
+                      <% if medium.type_of == "video/mp4" %>
+                        <%= cl_video_tag(medium.attached_file.key, controls: true, fetch_format: :auto, width: '100%', height: '100%') %>
+                      <% else %>
+                        <%= cl_image_tag medium.attached_file.key, height: 150, width: 200, crop: :fill%>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <div id="add-medium-to-tql">+</div>
+
+            </div>
+            <%= button_tag "CONFIRM", type: 'submit', id: "btn-send-media", class: 'main-button' %>
+          <% end %>
+
+        <% when "pending" %>
+          <p>Your quest is pending validation from the other teams and will be validated or not depending on their votes.</p>
+          <p>If 25 players vote positively or negatively for your quest, your quest will be completed or rejected.</p>
+          <p>If less than 25 players express their opinion, your quest will be completed or rejected 24h after submission with the given status of the votes.</p>
+          <p>In case of tie or zero votes, your quest will be completed.</p>
+          <p>Check out the validation timeline to check out were your quest validation stands.</p>
+          <p class="secondary-color-title">VALIDATION TIMELINE :</p>
+          <p class="secondary-color-title">ONGOING VOTES :</p>
+
+        <% when "completed" %>
+          <p>Nothing to do... your team has already completed this quest!</p>
+          <p>CHECK OUT TEAM GALLERY!</p>
+          <p class="secondary-color-title">VOTES RESULT :</p>
+
+        <% when "rejected" %>
+          <p>Your quest validation request has been rejected by the players.</p>
+          <p>Check out the vote results to understand what went wrong and try again!</p>
+          <p class="secondary-color-title">VOTES RESULT :</p>
+          <p class="secondary-color-title">UPLOAD DOCUMENTS :</p>
+        <% end %>
+
+    </div>
 
   </div>
+
 </div>
 
-<%= render 'shared/tql-modal' %>
+<%#= render 'shared/tql-modal' %>
 
 
 
