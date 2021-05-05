@@ -58,7 +58,11 @@ class TeamQuestLinksController < ApplicationController
     media = []
 
     tql.media.each do |medium|
-      media << Cloudinary::Utils.cloudinary_url(medium.attached_file.key)
+      if medium.type_of == "video/mp4"
+        media << {url: Cloudinary::Utils.cloudinary_url(medium.attached_file.key).gsub('/image/upload/', '/video/upload/c_pad/f_auto/'), type: "video"}
+      else
+        media << {url: Cloudinary::Utils.cloudinary_url(medium.attached_file.key), type: "image"}
+      end
     end
 
     tql_data_hash = {team: tql.team.name, quest: tql.quest.name, media: media}
