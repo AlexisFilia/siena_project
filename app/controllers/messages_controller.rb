@@ -6,10 +6,10 @@ class MessagesController < ApplicationController
   end
 
   def index
-    # raise
     # @sideNav_id = 7; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
     @initial_perimeter = params[:perimeter].nil? ? 'team' : params[:perimeter]
     params[:perimeter] = @initial_perimeter # pour l´avoir dans l´url
+
 
     # Question ouverte : pourquoi pas une fonction dans le modele messages pour choper un array de hash avec des infos plus poussées sur les messages
     # histoire de limiter les requetes dans la view?
@@ -36,31 +36,13 @@ class MessagesController < ApplicationController
     @top_bar_title = 'TCHAT'
     @etb_class = 'perimeter-choices tchat'
 
+    @remove_btn = true unless @messages.next_page
+
     @messages
     respond_to do |f|
       f.js { render layout: false, content_type: 'text/javascript' }
       f.html
     end
-  end
-
-  def load_more_messages
-    # @initial_perimeter = params[:perimeter].nil? ? 'team' : params[:perimeter]
-    # params[:perimeter] = @initial_perimeter
-    # if @initial_perimeter == 'team'
-
-    #   @messages = Message.joins(:user)
-    #                      .where(perimeter: 'team')
-    #                      .where(users: { team_id: @team.id })
-    #                      .paginate(page: params[:page], per_page: 15)
-    #                      .order('created_at DESC')
-    #   # params[:anchor] = "message-#{@messages.last.anchor}"
-    # else
-    #   @messages = Message.where(perimeter: 'public')
-    #                      .paginate(page: params[:page], per_page: 15)
-    #                      .order('created_at DESC')
-    #   # params[:anchor] = "message-#{@messages.last.anchor}"
-    # end
-    # render json: @messages
   end
 
   def create
@@ -86,7 +68,7 @@ class MessagesController < ApplicationController
     @page = if params[:new_req].blank?
               1
             else
-              @page + 1
+              params[:page].to_i + 1
             end
   end
 end

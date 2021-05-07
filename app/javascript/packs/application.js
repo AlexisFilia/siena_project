@@ -41,7 +41,6 @@ import { draggables } from '../components/draggables';
 import { initCarousel } from '../components/initCarousel';
 import { handleValidationModal } from '../components/handleValidationModal';
 import { typeMission } from '../components/typeMission';
-import { loadMoreMessages } from '../components/loadMoreMessages';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -68,15 +67,5 @@ document.addEventListener('turbolinks:load', () => {
   initCarousel();
   typeMission();
 
-  loadMoreMessages();
-
 });
-
-if($('#with_button')) {
-  $('#with_button').hide()
-    $('#load_more_messages').show()
-    $('#load_more_messages form').after('')
-    $('#load_more_messages').click()
-      $('#load_more_messages').find('form').hide().siblings('button').show()
-}
 
