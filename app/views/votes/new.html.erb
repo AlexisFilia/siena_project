@@ -1,5 +1,6 @@
 <%= render 'shared/evolutive-top-bar' %>
 <%= render 'shared/validation-modal' %>
+<%= render 'shared/criteria-modal' unless @tql_to_vote.blank? %>
 <%#= render 'shared/top-bar' %>
 <%#= render 'shared/bottom-bar' %>
 
@@ -33,7 +34,7 @@
         <!-- <p>Quest level : <%#= @tql_to_vote.level.name %></p> -->
         <p class="title">CRITÈRES DE VALIDATION :</p>
         <ul>
-          <% JSON.parse(@tql_to_vote.quest.criteria).each do |c| %>
+          <% @criteria.each do |c| %>
             <li><%= c %> </li>
           <% end %>
         </ul>

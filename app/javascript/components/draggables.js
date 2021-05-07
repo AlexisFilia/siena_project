@@ -1,4 +1,5 @@
 import { fetchWithToken } from "../utils/fetchWithToken";
+import { handleCriteriaModal } from './handleCriteriaModal';
 
 const draggables = () => {
   const draggables = document.querySelectorAll('.draggable');
@@ -10,6 +11,7 @@ const draggables = () => {
   let mousePoint = new DOMPoint(0,0);
   let votePosition = 'middle';
   let vote = "";
+  let criteria = "";
   const palier = 70;
 
 
@@ -28,8 +30,9 @@ const draggables = () => {
         draggable.style.transform = `translate(0px) rotate(0deg)`;
         break;
       case 'left':
-        vote = false;
-        sendVote(draggable);
+        handleCriteriaModal();
+        // vote = false;
+        draggable.style.transform = `translate(0px) rotate(0deg)`;
         break;
       case 'right':
         vote = true;
@@ -79,7 +82,7 @@ const draggables = () => {
           "Content-Type": "application/json"
         },
 
-        body: JSON.stringify({ tql: draggable.dataset.id, vote: vote})
+        body: JSON.stringify({ tql: draggable.dataset.id, vote: vote, criteria: criteria })
       })
         .then(response => response.json())
         .then((data) => {

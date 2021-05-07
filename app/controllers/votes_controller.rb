@@ -18,15 +18,20 @@ class VotesController < ApplicationController
                                 .order('created_at ASC')
                                 .first
 
+
+    @criteria = JSON.parse(@tql_to_vote.quest.criteria) unless @tql_to_vote.blank?
+    @vote = Vote.new
+
     #Evolutive elements------------------
     @top_bar_title = 'VALIDATION'
   end
 
   def create
-    tql = TeamQuestLink.find(params[:tql])
+    tql = TeamQuestLink.find(params[:vote][:tql].to_i)
     vote = Vote.new(vote_params)
     vote.user = current_user
     vote.team_quest_link = tql
+    vote.criteria = Vote.define_criteria(params, tql)
 
     if vote.save!
       tql.check_and_update_tql_status_from_votes
@@ -39,11 +44,11 @@ class VotesController < ApplicationController
   end
 
   def swipe_vote
-
     tql = TeamQuestLink.find(params[:tql])
     vote = Vote.new(vote: params[:vote])
     vote.user = current_user
     vote.team_quest_link = tql
+
     if vote.save!
       tql.check_and_update_tql_status_from_votes
       @team.update_points('vote')
@@ -62,7 +67,7 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.permit(:criteria, :vote)
+    params[:vote].permit(:vote)
   end
 
 
