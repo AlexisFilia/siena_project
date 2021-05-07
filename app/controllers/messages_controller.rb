@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  respond_to :html, :json, :js
+  before_action :up_page, only: :index
 
   def show
   end
@@ -18,22 +20,47 @@ class MessagesController < ApplicationController
     if @initial_perimeter == 'team'
 
       @messages = Message.joins(:user)
-                              .where(perimeter: 'team')
-                              .where(users: { team_id: @team.id })
-                              .order('created_at ASC')
-                              .limit(50)
+                         .where(perimeter: 'team')
+                         .where(users: { team_id: @team.id })
+                         .paginate(page: @page, per_page: 15)
+                         .order('created_at DESC')
       # params[:anchor] = "message-#{@messages.last.anchor}"
     else
       @messages = Message.where(perimeter: 'public')
-                                 .order('created_at ASC')
-                                 .limit(50)
+                         .paginate(page: @page, per_page: 15)
+                         .order('created_at DESC')
       # params[:anchor] = "message-#{@messages.last.anchor}"
     end
-
 
     #Evolutive elements------------------
     @top_bar_title = 'TCHAT'
     @etb_class = 'perimeter-choices tchat'
+
+    @messages
+    respond_to do |f|
+      f.js { render layout: false, content_type: 'text/javascript' }
+      f.html
+    end
+  end
+
+  def load_more_messages
+    # @initial_perimeter = params[:perimeter].nil? ? 'team' : params[:perimeter]
+    # params[:perimeter] = @initial_perimeter
+    # if @initial_perimeter == 'team'
+
+    #   @messages = Message.joins(:user)
+    #                      .where(perimeter: 'team')
+    #                      .where(users: { team_id: @team.id })
+    #                      .paginate(page: params[:page], per_page: 15)
+    #                      .order('created_at DESC')
+    #   # params[:anchor] = "message-#{@messages.last.anchor}"
+    # else
+    #   @messages = Message.where(perimeter: 'public')
+    #                      .paginate(page: params[:page], per_page: 15)
+    #                      .order('created_at DESC')
+    #   # params[:anchor] = "message-#{@messages.last.anchor}"
+    # end
+    # render json: @messages
   end
 
   def create
@@ -53,8 +80,15 @@ class MessagesController < ApplicationController
     redirect_to messages_path(perimeter: perimeter)
   end
 
+  private
 
-
+  def up_page
+    @page = if params[:new_req].blank?
+              1
+            else
+              @page + 1
+            end
+  end
 end
 
 

@@ -1,0 +1,4 @@
+$('.messages').append('<%= j render @messages %>').siblings('#load_more_messages').find("button").hide().siblings('form').show();
+<% unless @messages.next_page %>
+    $('#load_more_messages').remove();
+<% end %>

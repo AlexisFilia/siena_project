@@ -134,6 +134,21 @@ message_1 = Message.create!({
                             value: "Premier message public les gars!"
                           })
 
+100.times do |i|
+  Message.create!({
+                    user: User.find(1),
+                    perimeter: "public",
+                    value: "On remplit le dialogue #{i}"
+                  })
+end
+
+100.times do |i|
+  Message.create!({
+                    user: User.find(1),
+                    perimeter: "team",
+                    value: "On remplit le dialogue #{i}"
+                  })
+end
 
 message_2 = Message.create!({
                             user: User.find(2),

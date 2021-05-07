@@ -32,9 +32,9 @@ Rails.application.routes.draw do
 
   get '/tim_tests', to: 'pages#tim_tests'
 
-
   # API CALLS
   post '/fetch_team_quest_link_content_for_modals', to: 'team_quest_links#fetch_team_quest_link_content_for_modals'
   post '/handle_roulette_result', to: 'roulettes#handle_roulette_result'
   post '/swipe_vote', to: 'votes#swipe_vote'
+  get '/load_more_messages', to: 'messages#load_more_messages'
 end
