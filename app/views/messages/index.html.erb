@@ -11,7 +11,6 @@
 
       <% if @messages.next_page %>
         <%= button_to 'More messages', { action: "index" }, params: {new_req: "true", perimeter: @initial_perimeter, page: @page}, method: :get, remote: true, format: 'js', class: "btn btn-primary btn-large", id: "load-more-messages"%>
-        <!-- <div id="load_more_messages" class='btn btn-primary btn-lg next_page' data-page='<%= @messages.current_page %>' data-perimeter='<%= @initial_perimeter %>' data-pagemax='<%= @messages.total_pages %>'>Load More</div> -->
       <% end %>
 
       <div id="my-messages">

@@ -36,8 +36,6 @@ class MessagesController < ApplicationController
     @top_bar_title = 'TCHAT'
     @etb_class = 'perimeter-choices tchat'
 
-    @remove_btn = true unless @messages.next_page
-
     @messages
     respond_to do |f|
       f.js { render layout: false, content_type: 'text/javascript' }
