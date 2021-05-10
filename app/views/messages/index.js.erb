@@ -1,0 +1,6 @@
+document.querySelector("#my-messages").innerHTML = '<%= j render @messages.reverse %>' + document.querySelector("#my-messages").innerHTML;
+<% unless @messages.next_page %>
+  document.querySelector('#load-more-messages').remove();
+<% end %>
+
+document.querySelector(".button_to").elements[2].value = '<%= @page %>'

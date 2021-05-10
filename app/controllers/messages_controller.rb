@@ -1,13 +1,15 @@
 class MessagesController < ApplicationController
+  respond_to :html, :json, :js
+  before_action :up_page, only: :index
 
   def show
   end
 
   def index
-    # raise
     # @sideNav_id = 7; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
     @initial_perimeter = params[:perimeter].nil? ? 'team' : params[:perimeter]
     params[:perimeter] = @initial_perimeter # pour l´avoir dans l´url
+
 
     # Question ouverte : pourquoi pas une fonction dans le modele messages pour choper un array de hash avec des infos plus poussées sur les messages
     # histoire de limiter les requetes dans la view?
@@ -18,22 +20,27 @@ class MessagesController < ApplicationController
     if @initial_perimeter == 'team'
 
       @messages = Message.joins(:user)
-                              .where(perimeter: 'team')
-                              .where(users: { team_id: @team.id })
-                              .order('created_at ASC')
-                              .limit(50)
+                         .where(perimeter: 'team')
+                         .where(users: { team_id: @team.id })
+                         .paginate(page: @page, per_page: 15)
+                         .order('created_at DESC')
       # params[:anchor] = "message-#{@messages.last.anchor}"
     else
       @messages = Message.where(perimeter: 'public')
-                                 .order('created_at ASC')
-                                 .limit(50)
+                         .paginate(page: @page, per_page: 15)
+                         .order('created_at DESC')
       # params[:anchor] = "message-#{@messages.last.anchor}"
     end
-
 
     #Evolutive elements------------------
     @top_bar_title = 'TCHAT'
     @etb_class = 'perimeter-choices tchat'
+
+    @messages
+    respond_to do |f|
+      f.js { render layout: false, content_type: 'text/javascript' }
+      f.html
+    end
   end
 
   def create
@@ -53,8 +60,15 @@ class MessagesController < ApplicationController
     redirect_to messages_path(perimeter: perimeter)
   end
 
+  private
 
-
+  def up_page
+    @page = if params[:new_req].blank?
+              1
+            else
+              params[:page].to_i + 1
+            end
+  end
 end
 
 

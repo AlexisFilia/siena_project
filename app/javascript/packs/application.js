@@ -70,3 +70,4 @@ document.addEventListener('turbolinks:load', () => {
   uploadQuestMedia();
 
 });
+
