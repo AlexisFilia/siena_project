@@ -1,0 +1,19 @@
+<div class="votes-results">
+  <p class="yes"><%= @votes_result[:yes] %> </p>
+  <p class="total"><%= @votes_result[:total] %><br>VOTES</p>
+  <p class="no"><%= @votes_result[:no] %> </p>
+</div>
+<% if @votes_result[:total].to_i > 0%>
+  <p>Details :</p>
+
+  <% @votes_result[:votes].each do |vote| %>
+    <div class="vote <%= vote.vote %>"><%= vote.user.team.name %></div>
+    <% if vote.criteria%>
+      <% JSON.parse(vote.criteria).keys.each do |criterium| %>
+        <div class="vote-criterium"> <i class="fas fa-angle-double-right"></i> Unrespected : <%= criterium %></div>
+      <% end %>
+
+    <% end %>
+  <% end %>
+<% end %>
+

@@ -21,7 +21,6 @@
   </div>
 
 
-
   <div class="quest-progression-container">
     <div class="title centered">TEAM PROGRESSION</div>
     <div class="quest-progression">
@@ -34,41 +33,7 @@
           <p>Upload the required documents to submit your quest validation.</p>
           <p class="secondary-color-title">UPLOAD DOCUMENTS :</p>
 
-          <%= simple_form_for @medium, :url => media_path, :method => :post, remote: true do |f| %>
-            <%= f.hidden_field :quest, value: @quest.id %>
-            <%= f.hidden_field :team_quest_link, value: @team_quest_link_id %>
-            <%= f.input :attached_file, as: :file, label: false%>
-
-            <div id="media-grid">
-
-              <% if !@team_quest_link.blank? && !@team_quest_link.media.blank? %>
-
-                  <% @team_quest_link.media.each do |medium| %>
-                    <div class="media-grid-item"
-
-                      <% if medium.type_of == "video/mp4" %>
-                        >
-                        <%= cl_video_tag(medium.attached_file.key, controls: true, fetch_format: :auto, width: '100%', height: '100%', transformation: [crop: "pad"]) %>
-
-                      <% else %>
-                        style="background-image: url('<%= cloudinary_url(medium.attached_file.key) %>')">
-                        <%#= cl_image_tag medium.attached_file.key%>
-
-                      <% end %>
-                      <%= link_to "-", medium_path(medium), method: :delete, data: { confirm: "Are you sure?" }, class: "remove-medium" %>
-                    </div>
-                  <% end %>
-
-              <% end %>
-
-              <div id="add-medium-to-tql">
-                <p>+</p>
-                <div id="upload-spinner" class="spinner-border text-success" role="status"></div>
-              </div>
-
-            </div>
-            <%= button_tag "CONFIRM", type: 'submit', id: "upload-medium" %>
-          <% end %>
+          <%= render 'shared/upload-quest-documents' %>
 
         <% when "pending" %>
           <p>Your quest is pending validation from the other teams and will be validated or not depending on their votes.</p>
@@ -77,24 +42,38 @@
           <p>In case of tie or zero votes, your quest will be completed.</p>
           <p>Check out the validation timeline to check out were your quest validation stands.</p>
           <p class="secondary-color-title">VALIDATION TIMELINE :</p>
+          <%#= render 'shared/validation-timeline' %>
+          <p>Votes cap : <%= @votes_result[:total] %> / 25</p>
+          <p>Max remaining time : ~ <%= (((@team_quest_link.updated_at + 24.hours).to_time - DateTime.now.to_time) / 1.hours).to_i %> hours</p>
+          <!-- .strftime('%I:%M%p') -->
+
           <p class="secondary-color-title">ONGOING VOTES :</p>
+          <%= render 'shared/votes-result' %>
 
         <% when "completed" %>
           <p>Nothing to do... your team has already completed this quest!</p>
-          <p>CHECK OUT TEAM GALLERY!</p>
+          <p>Check out your team gallery!</p>
+
           <p class="secondary-color-title">VOTES RESULT :</p>
+          <%= render 'shared/votes-result' %>
 
         <% when "rejected" %>
           <p>Your quest validation request has been rejected by the players.</p>
           <p>Check out the vote results to understand what went wrong and try again!</p>
           <p class="secondary-color-title">VOTES RESULT :</p>
+          <%= render 'shared/votes-result' %>
           <p class="secondary-color-title">UPLOAD DOCUMENTS :</p>
+          <%= render 'shared/upload-quest-documents' %>
+
         <% end %>
 
     </div>
 
-    <% if @quest_status == "draft" %>
+    <% case @quest_status %>
+      <% when "draft" %>
       <%= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put', class: "main-button", id: "submit-quest" %>
+      <% when "completed" %>
+      <%= link_to "GALLERY", team_quest_links_path(perimeter: "team"), class: "main-button" %>
     <% end %>
 
   </div>

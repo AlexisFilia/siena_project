@@ -26,8 +26,18 @@ class QuestsController < ApplicationController
     @level = @quest.level
     @criteria = JSON.parse(@quest.criteria)
 
+
     @team_quest_link = TeamQuestLink.find_by(team: current_user.team, quest: @quest)
-    @team_quest_link_id = @team_quest_link.blank? ? nil : @team_quest_link.id
+
+    if @team_quest_link.blank?
+      @team_quest_link_id =  nil
+    else
+      @team_quest_link_id = @team_quest_link.id
+      @votes_result = @team_quest_link.get_votes_result
+    end
+
+
+
 
     @medium = Medium.new()
 
