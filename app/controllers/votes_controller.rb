@@ -31,7 +31,7 @@ class VotesController < ApplicationController
     vote = Vote.new(vote_params)
     vote.user = current_user
     vote.team_quest_link = tql
-    vote.criteria = Vote.define_criteria(params, tql)
+    vote.criteria = Vote.define_criteria(params, tql).to_json
 
     if vote.save!
       tql.check_and_update_tql_status_from_votes

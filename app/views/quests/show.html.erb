@@ -88,7 +88,16 @@
             <p class="total"><%= @votes_result[:total] %><br>VOTES</p>
             <p class="no"><%= @votes_result[:no] %> </p>
           </div>
+          <p>Details :</p>
+          <% @votes_result[:votes].each do |vote| %>
+            <div class="vote <%= vote.vote %>"><%= vote.user.team.name %></div>
+            <% if vote.criteria%>
+              <% JSON.parse(vote.criteria).keys.each do |criterium| %>
+                <div class="vote-criterium"> X - Unrespected : <%= criterium %></div>
+              <% end %>
 
+            <% end %>
+          <% end %>
         <% when "rejected" %>
           <p>Your quest validation request has been rejected by the players.</p>
           <p>Check out the vote results to understand what went wrong and try again!</p>

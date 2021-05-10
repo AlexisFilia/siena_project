@@ -144,7 +144,27 @@
         border-radius: 4px;
       }
     }
+
+
+    .vote{
+
+      margin: 5px 0;
+      padding: 10px;
+      padding: 10px;
+      box-shadow: 1px 1px 3px rgba(0,0,0, 0.4);
+
+      // p{margin:0;}
+
+      &.true{background-color: #6FC240;}
+      &.false{background-color: #ED2B37;}
+    }
+
+    .vote-criterium{
+      margin-left: 20px;
+    }
   }
+
+
 
 
 }

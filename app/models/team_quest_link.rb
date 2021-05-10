@@ -45,7 +45,7 @@ class TeamQuestLink < ApplicationRecord
 
     votes = self.votes
 
-    return {total: votes.count, yes: votes.select{|v| v.vote == true}.count, no: votes.select{|v| v.vote == false}.count}
+    return {total: votes.count, yes: votes.select{|v| v.vote == true}.count, no: votes.select{|v| v.vote == false}.count, votes: votes}
   end
 
 end
