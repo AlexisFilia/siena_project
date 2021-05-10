@@ -19,6 +19,11 @@ class Medium < ApplicationRecord
   #   media.save!
   # end
 
+  def get_video_thumbnail
+    # Retourne l' url du thumbnail d' une video pour display une image représentant la video plutot que la video
+
+    return "#{Cloudinary::Utils.cloudinary_url(self.attached_file.key).gsub('image', 'video')}.jpg"
+  end
 
   def is_image?
 

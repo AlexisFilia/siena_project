@@ -20,13 +20,26 @@
     <div data-id="<%= @tql_to_vote.id %>" class="tql-to-vote draggable">
       <div class="tql-validation-text"></div>
 
-      <div data-id="<%= @tql_to_vote.id %>" class="tql-medium" style="background-image: url('<%= cl_image_path @tql_to_vote.media.first.attached_file.key if @tql_to_vote.media.first %>')">
-        <% if @tql_to_vote.media.length > 1 %>
-          <div class="tql-medium-indicator">1/<%= @tql_to_vote.media.length %></div>
-        <% else %>
-          <div class="tql-medium-indicator"><i class="fas fa-search"></i></div>
-        <% end %>
-      </div>
+      <% if @tql_to_vote.media.first && @tql_to_vote.media.first.type_of == "video/mp4" %>
+        <div data-id="<%= @tql_to_vote.id %>" class="tql-medium" style="background-image: url('<%= @tql_to_vote.media.first.get_video_thumbnail %>')">
+          <i class="fas fa-play video-ico"></i>
+          <% if @tql_to_vote.media.length > 1 %>
+            <div class="tql-medium-indicator">1/<%= @tql_to_vote.media.length %></div>
+          <% else %>
+            <div class="tql-medium-indicator"><i class="fas fa-search"></i></div>
+          <% end %>
+        </div>
+      <% else %>
+        <div data-id="<%= @tql_to_vote.id %>" class="tql-medium" style="background-image: url('<%= cl_image_path @tql_to_vote.media.first.attached_file.key if @tql_to_vote.media.first %>')">
+          <% if @tql_to_vote.media.length > 1 %>
+            <div class="tql-medium-indicator">1/<%= @tql_to_vote.media.length %></div>
+          <% else %>
+            <div class="tql-medium-indicator"><i class="fas fa-search"></i></div>
+          <% end %>
+        </div>
+      <% end %>
+
+
 
       <div class="tql-description">
         <p class="title"><%= @tql_to_vote.quest.name %></p>
@@ -49,6 +62,7 @@
   <% end %>
 
 </div>
+
 
 
 <!--     OLD CAROUSEL kept in case

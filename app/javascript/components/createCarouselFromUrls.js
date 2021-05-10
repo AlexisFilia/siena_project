@@ -15,7 +15,7 @@ const createCarouselFromUrls = (carouselId, media) => {
         <div class="carousel-item ${index == 0 ? 'active' : ''}">
           <video
           width="100%"
-          height="100%"
+          height="90%"
           controls="controls"
           poster="${medium.url}.jpg">
           <source src="${medium.url}.webm"
@@ -50,9 +50,30 @@ const createCarouselFromUrls = (carouselId, media) => {
 
   }else{
 
-    carouselItems += `
-    <div class="carousel-item active" style="background-image: url('${media[0].url}')"></div>
-    `;
+    if(media[0].type == "video"){
+      carouselItems += `
+      <div class="carousel-item active">
+        <video
+        width="100%"
+        height="90%"
+        controls="controls"
+        poster="${media[0].url}.jpg">
+        <source src="${media[0].url}.webm"
+        type="video/webm">
+        <source src="${media[0].url}.mp4"
+        type="video/mp4">
+        <source src="${media[0].url}.ogv"
+        type="video/ogg">
+        </video>
+      </div>
+      `;
+    }else{
+      carouselItems += `
+      <div class="carousel-item active" style="background-image: url('${media[0].url}')">
+      </div>
+      `;
+    }
+
   }
 
   carouselHTML = carouselIndicators + "<div class='carousel-inner'>" + carouselItems + "</div>";

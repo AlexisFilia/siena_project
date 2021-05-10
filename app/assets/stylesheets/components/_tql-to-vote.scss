@@ -23,6 +23,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .video-ico{
+      font-size: 4em;
+      color: rgba(255,255,255, 0.5);
+    }
 
     .tql-medium-indicator{
       position: absolute;
