@@ -17,13 +17,10 @@ const createCarouselFromUrls = (carouselId, media) => {
           width="100%"
           height="90%"
           controls="controls"
-          poster="${medium.url}.jpg">
-          <source src="${medium.url}.webm"
-          type="video/webm">
-          <source src="${medium.url}.mp4"
-          type="video/mp4">
-          <source src="${medium.url}.ogv"
-          type="video/ogg">
+          poster="${medium.thumbnail}">
+          <source src="${medium.url}.mp4" type="video/mp4">
+          <source src="${medium.url}.webm" type="video/webm">
+          <source src="${medium.url}.ogv" type="video/ogg">
           </video>
         </div>
         `;
@@ -57,13 +54,10 @@ const createCarouselFromUrls = (carouselId, media) => {
         width="100%"
         height="90%"
         controls="controls"
-        poster="${media[0].url}.jpg">
-        <source src="${media[0].url}.webm"
-        type="video/webm">
-        <source src="${media[0].url}.mp4"
-        type="video/mp4">
-        <source src="${media[0].url}.ogv"
-        type="video/ogg">
+        poster="${media[0].thumbnail}">
+        <source src="${media[0].url}.mp4" type="video/mp4">
+        <source src="${media[0].url}.webm" type="video/webm">
+        <source src="${media[0].url}.ogv" type="video/ogg">
         </video>
       </div>
       `;
