@@ -43,7 +43,7 @@ class TeamQuestLink < ApplicationRecord
 
   def get_votes_result
 
-    votes = self.votes
+    votes = self.votes.sort_by{|v| v.vote}
 
     return {total: votes.count, yes: votes.select{|v| v.vote == true}.count, no: votes.select{|v| v.vote == false}.count, votes: votes}
   end
