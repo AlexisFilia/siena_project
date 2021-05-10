@@ -19,11 +19,13 @@ const createCarouselFromUrls = (carouselId, media) => {
           controls="controls"
           poster="${medium.thumbnail}">
           <source src="${medium.url}.mp4" type="video/mp4">
-          <source src="${medium.url}.webm" type="video/webm">
-          <source src="${medium.url}.ogv" type="video/ogg">
           </video>
         </div>
         `;
+
+        // Si je force le mp4 est- ce que ca va bugger?
+        // <source src="${medium.url}.webm" type="video/webm">
+        // <source src="${medium.url}.ogv" type="video/ogg">
       }else{
         carouselItems += `
         <div class="carousel-item ${index == 0 ? 'active' : ''}" style="background-image: url('${medium.url}')">
@@ -56,11 +58,12 @@ const createCarouselFromUrls = (carouselId, media) => {
         controls="controls"
         poster="${media[0].thumbnail}">
         <source src="${media[0].url}.mp4" type="video/mp4">
-        <source src="${media[0].url}.webm" type="video/webm">
-        <source src="${media[0].url}.ogv" type="video/ogg">
         </video>
       </div>
       `;
+      // Si je force le mp4 est- ce que ca va bugger?
+      // <source src="${media[0].url}.webm" type="video/webm">
+      // <source src="${media[0].url}.ogv" type="video/ogg">
     }else{
       carouselItems += `
       <div class="carousel-item active" style="background-image: url('${media[0].url}')">

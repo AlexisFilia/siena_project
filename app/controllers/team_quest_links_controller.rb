@@ -59,7 +59,7 @@ class TeamQuestLinksController < ApplicationController
 
     tql.media.each do |medium|
       if medium.type_of == "video/mp4"
-        media << {url: Cloudinary::Utils.cloudinary_url(medium.attached_file.key).gsub('/image/upload/', '/video/upload/c_pad/f_auto/'),
+        media << {url: Cloudinary::Utils.cloudinary_url(medium.attached_file.key).gsub('/image/upload/', '/video/upload/c_pad/'), #f_auto/
          type: "video",
          thumbnail: medium.get_video_thumbnail
        }
