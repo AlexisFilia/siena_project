@@ -21,7 +21,6 @@
   </div>
 
 
-
   <div class="quest-progression-container">
     <div class="title centered">TEAM PROGRESSION</div>
     <div class="quest-progression">
@@ -43,12 +42,18 @@
           <p>In case of tie or zero votes, your quest will be completed.</p>
           <p>Check out the validation timeline to check out were your quest validation stands.</p>
           <p class="secondary-color-title">VALIDATION TIMELINE :</p>
+          <%#= render 'shared/validation-timeline' %>
+          <p>Votes cap : <%= @votes_result[:total] %> / 25</p>
+          <p>Max remaining time : ~ <%= (((@team_quest_link.updated_at + 24.hours).to_time - DateTime.now.to_time) / 1.hours).to_i %> hours</p>
+          <!-- .strftime('%I:%M%p') -->
+
           <p class="secondary-color-title">ONGOING VOTES :</p>
           <%= render 'shared/votes-result' %>
 
         <% when "completed" %>
           <p>Nothing to do... your team has already completed this quest!</p>
-          <p>CHECK OUT TEAM GALLERY!</p>
+          <p>Check out your team gallery!</p>
+
           <p class="secondary-color-title">VOTES RESULT :</p>
           <%= render 'shared/votes-result' %>
 
@@ -64,8 +69,11 @@
 
     </div>
 
-    <% if @quest_status == "draft" %>
+    <% case @quest_status %>
+      <% when "draft" %>
       <%= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put', class: "main-button", id: "submit-quest" %>
+      <% when "completed" %>
+      <%= link_to "GALLERY", team_quest_links_path(perimeter: "team"), class: "main-button" %>
     <% end %>
 
   </div>
