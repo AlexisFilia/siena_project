@@ -15,7 +15,13 @@
           <div class="gallery-item" data-id="<%= tql.id %>">
             <div class="gallery-item-medium">
               <%#= image_tag tql.media.first %>
-              <%= cl_image_tag tql.media.first.attached_file.key%>
+              <% if tql.media.first.type_of == "video/mp4"%>
+                <img src=" <%=tql.media.first.get_video_thumbnail %>">
+                <i class="fas fa-play video-ico"></i>
+              <% else %>
+                <%= cl_image_tag tql.media.first.attached_file.key%>
+              <% end %>
+
             </div>
             <div class="gallery-item-description"><%= tql.team.name %> : <%= tql.quest.name %></div>
           </div>

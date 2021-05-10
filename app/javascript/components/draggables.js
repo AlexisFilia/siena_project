@@ -52,14 +52,14 @@ const draggables = () => {
       const txt = draggable.querySelector('.tql-validation-text');
       const translation = mousePoint.x - refClick.x;
 
-      draggable.style.transform = `translate(${translation / 2}px) rotate(${translation / 10}deg)`;
-      if(translation / 2 >= palier){
+      draggable.style.transform = `translate(${translation / 1.5}px) rotate(${translation / 10}deg)`;
+      if(translation / 1.5 >= palier){
         votePosition = "right";
         draggable.classList.remove('reject');
         draggable.classList.add('validate');
         txt.innerText = "YES";
 
-      }else if(translation / 2 <= -palier){
+      }else if(translation / 1.5 <= -palier){
         votePosition = "left";
         draggable.classList.remove('validate');
         draggable.classList.add('reject');
