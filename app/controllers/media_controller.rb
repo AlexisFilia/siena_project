@@ -18,7 +18,14 @@ class MediaController < ApplicationController
             end
 
       tql.update(status: 'draft')
+
+
+      # optimize_medium_quality(params[:medium][:attached_file].tempfile.path)
+
       medium = Medium.new(team_quest_link: tql, attached_file: params[:medium][:attached_file], type_of: params[:medium][:attached_file].content_type)
+      # medium = Medium.new(team_quest_link: tql, attached_file: params[:medium][:attached_file], type_of: params[:medium][:attached_file].content_type)
+
+
       if medium.save!
         redirect_to quest_path(quest)
       end
@@ -49,5 +56,15 @@ class MediaController < ApplicationController
   def media_params
     params.require(:medium).permit(:perimeter, :attached_file)
 
+  end
+
+
+  def optimize_medium_quality(medium_path)
+    image = MiniMagick::Image.new(medium_path) # Ca overwrite direct le tempfile
+    # image.resize "10%"
+
+    # raise
+    image.strip
+    image.write(params[:medium][:attached_file].tempfile.path)
   end
 end
