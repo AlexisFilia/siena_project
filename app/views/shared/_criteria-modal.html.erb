@@ -1,0 +1,26 @@
+<div id="criteria-modal">
+  <div id="criteria-modal-content">
+
+    <%= form_with model: @vote do |form| %>
+      <% @criteria.each_with_index do |c, index| %>
+        <div>
+          <div class="criterion-label">
+            <%= form.label "why-#{index}", c %>
+          </div>
+          <div class="criterion-text">
+            <%= check_box_tag("valid-#{index}") %>
+            <%= label_tag("valid-#{index}", "criterion not met") %>
+          </div>
+          <div>
+            <%= form.text_area "why-#{index}" %>
+          </div>
+        </div>
+      <% end %>
+      <%= form.hidden_field :vote, value: false %>
+      <%= form.hidden_field :tql, value: @tql_to_vote.id %>
+      <%= form.submit %>
+    <% end %>
+
+  </div>
+  <div id="criteria-modal-close">CANCEL</div>
+</div>
