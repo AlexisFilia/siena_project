@@ -25,11 +25,23 @@
       margin-bottom: 10px;
 
       .gallery-item-medium{
+        position: relative;
         border-radius: 10px 10px 0 0;
         width: 100%;
+
         img{
           border-radius: 10px 10px 0 0;
           width: 100%;
+        }
+
+        .video-ico{
+          position: absolute;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          font-size: 2em;
+          text-align: center;
+          color: rgba(255,255,255, 0.5);
         }
       }
 
