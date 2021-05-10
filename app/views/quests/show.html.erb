@@ -83,6 +83,11 @@
           <p>Nothing to do... your team has already completed this quest!</p>
           <p>CHECK OUT TEAM GALLERY!</p>
           <p class="secondary-color-title">VOTES RESULT :</p>
+          <div class="votes-results">
+            <p class="yes"><%= @votes_result[:yes] %> </p>
+            <p class="total"><%= @votes_result[:total] %><br>VOTES</p>
+            <p class="no"><%= @votes_result[:no] %> </p>
+          </div>
 
         <% when "rejected" %>
           <p>Your quest validation request has been rejected by the players.</p>

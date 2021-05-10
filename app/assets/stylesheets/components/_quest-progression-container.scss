@@ -113,6 +113,37 @@
         }
       }
     }
+
+
+    .votes-results{
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(3, 1fr);
+
+      .yes{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #6FC240;
+        border-radius: 4px;
+      }
+
+      .total{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $menu-items-color;
+        text-align: center;
+      }
+
+      .no{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ED2B37;
+        border-radius: 4px;
+      }
+    }
   }
 
 

@@ -29,6 +29,8 @@ class QuestsController < ApplicationController
     @team_quest_link = TeamQuestLink.find_by(team: current_user.team, quest: @quest)
     @team_quest_link_id = @team_quest_link.blank? ? nil : @team_quest_link.id
 
+    @votes_result = @team_quest_link.get_votes_result
+
     @medium = Medium.new()
 
     #Evolutive elements------------------

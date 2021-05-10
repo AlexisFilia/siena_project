@@ -39,4 +39,13 @@ class TeamQuestLink < ApplicationRecord
       self.update!(status: 'rejected')
     end
   end
+
+
+  def get_votes_result
+
+    votes = self.votes
+
+    return {total: votes.count, yes: votes.select{|v| v.vote == true}.count, no: votes.select{|v| v.vote == false}.count}
+  end
+
 end
