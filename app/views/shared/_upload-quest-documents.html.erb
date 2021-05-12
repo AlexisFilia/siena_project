@@ -32,11 +32,11 @@
       <p>+</p>
       <div id="upload-spinner" class="spinner-border text-success" role="status"></div>
 
-      <div style="display: none;" data-upload-progress-target="progress">
-        <div>Uploading your media to our servers: <span id="progressText" data-upload-progress-target="progressText">Warming up...</span></div>
-          <div id="progress-bar" style="background: gray; position: relative; width: 200px; height: 20px;">
-          <div id="progressWidth" data-upload-progress-target="progressWidth" style="width: 0%; height: 100%; position: absolute; background: green;">
-          </div>
+      <div id="progress-bar-container" style="display: none;" data-upload-progress-target="progress">
+        <div id="progress-bar-text">Uploading your document to our servers: <span id="progressText" data-upload-progress-target="progressText">Warming up...</span></div>
+        <div id="progress-bar">
+          <div id="progressWidth" data-upload-progress-target="progressWidth">
+        </div>
         </div>
       </div>
 
