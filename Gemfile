@@ -5,6 +5,7 @@ ruby '2.6.5'
 
 # Gems pour transformer les images et videos (upload)
 gem "mini_magick"
+gem "streamio-ffmpeg", "~> 3.0"
 
 gem 'turbolinks_render'
 
@@ -70,3 +71,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
