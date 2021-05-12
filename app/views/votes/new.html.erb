@@ -20,7 +20,7 @@
     <div data-id="<%= @tql_to_vote.id %>" class="tql-to-vote draggable">
       <div class="tql-validation-text"></div>
 
-      <% if @tql_to_vote.media.first && @tql_to_vote.media.first.type_of == "video/mp4" %>
+      <% if @tql_to_vote.media.first && @tql_to_vote.media.first.attached_file.content_type.include? "video" %>
         <div data-id="<%= @tql_to_vote.id %>" class="tql-medium" style="background-image: url('<%= @tql_to_vote.media.first.get_video_thumbnail %>')">
           <i class="fas fa-play video-ico"></i>
           <% if @tql_to_vote.media.length > 1 %>
