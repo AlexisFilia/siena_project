@@ -20,10 +20,10 @@
       <div class="form-section-title">OPTIONS :</div>
       <% @poll_options.each do |option| %>
         <div class="poll-option-display <%= option[:best] %>">
-          <div class="poll-option-progress-bar-container">
-            <div class="poll-option-progress-bar" style="width: <%= (option[:percent]* 100).to_i  %>%"></div>
+          <div class="poll-option-text-container">
             <p><%= option[:description] %></p>
           </div>
+          <div class="poll-option-progress-bar" style="width: <%= (option[:percent]* 100 * 0.9).to_i  %>%"></div>
           <div class="poll-option-display-votes"><%= option[:votes].to_i %></div>
         </div>
       <% end %>
@@ -31,6 +31,6 @@
   </div>
 
 
-  <%= link_to "BACK TO TCHAT", messages_path(perimeter: @poll.message.perimeter), class: "main-button with-top-margin" %>
+  <%= link_to "BACK TO TCHAT", messages_path(perimeter: @poll.message.perimeter), class: "main-button with-top-margin", style: "width: 80%;" %>
 </div>
 
