@@ -13,7 +13,7 @@
         <% @team_quest_link.media.each do |medium| %>
           <div class="media-grid-item"
 
-            <% if medium.attached_file.content_type == "video/mp4" %>
+            <% if medium.attached_file.content_type.include? "video" %>
               >
               <%= cl_video_tag(medium.attached_file.key, controls: true, fetch_format: :auto, width: '100%', height: '100%', transformation: [crop: "pad"]) %>
 

@@ -15,7 +15,7 @@
           <div class="gallery-item" data-id="<%= tql.id %>">
             <div class="gallery-item-medium">
               <%#= image_tag tql.media.first %>
-              <% if tql.media.first.type_of == "video/mp4"%>
+              <% if tql.media.first.attached_file.content_type.include? "video"%>
 
                 <img src=" <%=tql.media.first.get_video_thumbnail %>">
                 <i class="fas fa-play video-ico"></i>
@@ -51,7 +51,7 @@
           <div class="gallery-item" data-id="<%= tql.id %>">
             <div class="gallery-item-medium">
               <%#= image_tag tql.media.first %>
-              <% if tql.media.first.type_of == "video/mp4"%>
+              <% if tql.media.first.attached_file.content_type.include? "video"%>
 
                 <img src=" <%=tql.media.first.get_video_thumbnail %>">
                 <i class="fas fa-play video-ico"></i>
