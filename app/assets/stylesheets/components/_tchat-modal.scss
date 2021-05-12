@@ -24,20 +24,24 @@
     padding: 10px;
     margin: 0 10px;
 
+    form{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      #medium_attached_file{
+        display: none;
+      }
+
+      #btn-send-media{
+        display: none;
+      }
+    }
 
     .main-button{
-      // width: 80%;
-
-      &#create-poll{
-        width: 100%;
-      }
-
-      &#btn-send-media{
-        display: none;
-        color: $secondary-color;
-        width: 100%;
-      }
-
+      width: 100%;
+      margin: 10px 0;
     }
   }
 

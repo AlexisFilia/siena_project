@@ -56,17 +56,18 @@ class MediaController < ApplicationController
   private
 
   def media_params
-    params.require(:medium).permit(:perimeter, :attached_file)
+    params.require(:medium).permit(:perimeter, :attached_file, :quest, :team_quest_link)
 
   end
 
 
-  def optimize_medium_quality(medium_path)
-    image = MiniMagick::Image.new(medium_path) # Ca overwrite direct le tempfile
-    # image.resize "10%"
+  # def optimize_medium_quality(medium_path)
+  #   on ne peut pas optimiser avant upload si on utilise "direct_upload" . On peut par contre créer un background job pour optimiser les media dans cloudinary
+  #   image = MiniMagick::Image.new(medium_path) # Ca overwrite direct le tempfile
+  #   # image.resize "10%"
 
-    # raise
-    image.strip
-    image.write(params[:medium][:attached_file].tempfile.path)
-  end
+  #   # raise
+  #   image.strip
+  #   image.write(params[:medium][:attached_file].tempfile.path)
+  # end
 end
