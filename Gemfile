@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+# Gems pour transformer les images et videos (upload)
 gem "mini_magick"
 
 gem 'turbolinks_render'
