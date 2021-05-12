@@ -22,7 +22,7 @@ class MediaController < ApplicationController
 
       # optimize_medium_quality(params[:medium][:attached_file].tempfile.path)
 
-      medium = Medium.new(team_quest_link: tql, attached_file: params[:medium][:attached_file], type_of: params[:medium][:attached_file].content_type)
+      medium = Medium.new(team_quest_link: tql, attached_file: params[:medium][:attached_file])
       # medium = Medium.new(team_quest_link: tql, attached_file: params[:medium][:attached_file], type_of: params[:medium][:attached_file].content_type)
 
 
