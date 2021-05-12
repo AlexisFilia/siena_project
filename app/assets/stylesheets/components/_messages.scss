@@ -82,6 +82,20 @@
           cursor: pointer;
         }
       }
+
+      &.with-medium{
+        position: relative;
+
+        .video-ico{
+          position: absolute;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          font-size: 2em;
+          text-align: center;
+          color: rgba(255,255,255, 0.5);
+        }
+      }
     }
 
     .message-date{

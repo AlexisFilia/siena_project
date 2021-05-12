@@ -22,9 +22,17 @@
   <% end %>
 
   <% if !message.media.blank? %>
-    <div class="message">
+    <div class="message with-medium">
       <p class="message-user-name"><%= "#{message.user == current_user ? 'Me' : message.user.get_full_name}" %></p>
-      <%= cl_image_tag message.media.last.attached_file.key%>
+
+      <% if message.media.last.attached_file.content_type.include? "video"%>
+
+        <img src="<%=message.media.last.get_video_thumbnail %>">
+        <i class="fas fa-play video-ico"></i>
+      <% else %>
+        <%= cl_image_tag message.media.last.attached_file.key%>
+      <% end %>
+
     </div>
   <% end %>
 
