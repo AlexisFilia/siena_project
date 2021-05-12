@@ -24,6 +24,8 @@ class VotesController < ApplicationController
 
     #Evolutive elements------------------
     @top_bar_title = 'VALIDATION'
+
+
   end
 
   def create
