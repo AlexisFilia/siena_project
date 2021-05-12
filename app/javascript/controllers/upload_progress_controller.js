@@ -19,7 +19,6 @@ export default class extends Controller {
 
   showProgress() {
     this.progressTarget.style.display = "block"
-    console.log("yoyoyoyoyoyooyo");
   }
 
   updateProgress() {
@@ -27,7 +26,6 @@ export default class extends Controller {
     const { id, progress } = event.detail
     this.progressWidthTarget.style.width = `${Math.round(progress)}%`
     this.progressTextTarget.innerHTML = `${Math.round(progress)}% complete`
-    console.log(progress);
   }
 
   disconnect() {
