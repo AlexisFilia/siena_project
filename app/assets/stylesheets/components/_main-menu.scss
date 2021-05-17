@@ -1,96 +1,7 @@
 #main-menu{
-
   // Display none in html
   display: none;
 
-  .feuille{
-    position: fixed;
-    z-index: 100;
-    height: 200px;
-  }
-
-  .fleur{
-    position: fixed;
-    z-index: 100;
-    height: 80px;
-  }
-
-  .lianes{
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-  }
-
-  #feuille-1{
-
-    top: 86%;
-    left: 92%;
-    transform: rotate(-29deg);
-  }
-
-  #feuille-2{
-    top: -79px;
-    left: 89%;
-    transform: rotate(212deg);
-  }
-
-  #feuille-3{
-    top: -100px;
-    left: 89%;
-    transform: rotate(228deg);
-  }
-
-  #feuille-4{
-    top: 90%;
-    left: -23px;
-    transform: rotate(30deg);
-  }
-
-  #feuille-5{
-    top: 90%;
-    left: -20px;
-  }
-
-  #feuille-6{
-    transform: rotate(-37deg);
-    right: -100px;
-    top: 15%;
-  }
-
-  #feuille-7{
-    transform: rotate(60deg);
-    left: -79px;
-    top: 5%;
-  }
-
-  #feuille-8{
-    transform: rotate(84deg);
-    left: -123px;
-    top: 20%;
-  }
-
-  #fleur-1{
-    top: 86%;
-    right: -39px;
-    transform: rotate(-57deg);
-  }
-
-  #fleur-2{
-    top: 94%;
-    left: -6px;
-    transform: rotate(23deg);
-  }
-
-  #fleur-3{
-    transform: rotate(71deg);
-    left: -20px;
-    top: 22%;
-  }
-
-  #lianes-1{
-    top: -15%;
-    left: 20%;
-  }
 
   &.active{
 
@@ -101,15 +12,8 @@
     z-index: 20;
     height: 100%;
     width: 100%;
-    background: url(image_path("mm-background.png"));
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 110%;
-
-    // background: url(image_path("main-menu-background.png"));
-    // background-repeat: no-repeat;
-    // background-position: center;
-    // background-size: 170%;
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
@@ -120,6 +24,7 @@
       top: 20px;
       // margin-top: 20px;
       width: 90%;
+      max-width: 1000px;
       // height: 95%;
       padding: 10%;
       // padding: 20px;
@@ -175,8 +80,13 @@
 
       #main-menu-links{
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         a{
           margin: 10px 0;
+          width: 100%;
 
 
         }
@@ -185,4 +95,209 @@
 
   }
 
+}
+
+
+// Déco
+
+
+@media (max-width: 800px){
+
+  #main-menu{
+    .feuille{
+      position: fixed;
+      z-index: 100;
+      height: 200px;
+    }
+
+    .fleur{
+      position: fixed;
+      z-index: 100;
+      height: 80px;
+    }
+
+    .lianes{
+      position: fixed;
+      z-index: 100;
+      width: 100%;
+    }
+
+    #feuille-1{
+
+      top: 86%;
+      left: 92%;
+      transform: rotate(-29deg);
+    }
+
+    #feuille-2{
+      top: -79px;
+      left: 89%;
+      transform: rotate(212deg);
+    }
+
+    #feuille-3{
+      top: -100px;
+      left: 89%;
+      transform: rotate(228deg);
+    }
+
+    #feuille-4{
+      top: 90%;
+      left: -23px;
+      transform: rotate(30deg);
+    }
+
+    #feuille-5{
+      top: 90%;
+      left: -20px;
+    }
+
+    #feuille-6{
+      transform: rotate(-37deg);
+      right: -100px;
+      top: 15%;
+    }
+
+    #feuille-7{
+      transform: rotate(60deg);
+      left: -79px;
+      top: 5%;
+    }
+
+    #feuille-8{
+      transform: rotate(84deg);
+      left: -123px;
+      top: 20%;
+    }
+
+    #fleur-1{
+      top: 86%;
+      right: -39px;
+      transform: rotate(-57deg);
+    }
+
+    #fleur-2{
+      top: 94%;
+      left: -6px;
+      transform: rotate(23deg);
+    }
+
+    #fleur-3{
+      transform: rotate(71deg);
+      left: -20px;
+      top: 22%;
+    }
+
+    #lianes-1{
+      top: -15%;
+      left: 20%;
+    }
+
+    &.active{
+      background-size: 110%;
+      background: url(image_path("mm-background.png"));
+
+    }
+
+  }
+}
+
+@media (min-width: 800px){
+  #main-menu{
+    // Display none in html
+    display: none;
+
+    .feuille{
+      position: fixed;
+      z-index: 100;
+      height: 300px;
+    }
+
+    .fleur{
+      position: fixed;
+      z-index: 100;
+      height: 80px;
+    }
+
+    .lianes{
+      position: fixed;
+      z-index: 100;
+      width: 100%;
+    }
+
+    #feuille-1{
+      top: 86%;
+      right: 20%;
+      transform: rotate(-29deg);
+    }
+
+    #feuille-2{
+      top: -79px;
+      right: 20%;
+      transform: rotate(212deg);
+    }
+
+    #feuille-3{
+      top: -100px;
+      right: 20%;
+      transform: rotate(228deg);
+    }
+
+    #feuille-4{
+      top: 90%;
+      left: 20%;
+      transform: rotate(30deg);
+    }
+
+    #feuille-5{
+      top: 90%;
+      left: -20%;
+    }
+
+    #feuille-6{
+      transform: rotate(185deg);
+      right: 25%;
+      top: -115px;
+    }
+
+    #feuille-7{
+      // transform: rotate(60deg);
+      right: 10%;
+      top: 86%;
+    }
+
+    #feuille-8{
+      transform: rotate(104deg);
+      left: -60px;
+      top: 20%;
+
+    }
+
+    #fleur-1{
+      top: 86%;
+      right: 20%;
+      // transform: rotate(-57deg);
+    }
+
+    #fleur-2{
+      top: 94%;
+      left: 20%;
+      transform: rotate(23deg);
+    }
+
+    #fleur-3{
+      transform: rotate(154deg);
+      right: 65%;
+      top: -10px;
+    }
+
+    #lianes-1{
+      display: none;
+    }
+
+    &.active{
+      background-size: cover;
+      background: url(image_path("mm-background-big.png"));
+    }
+  }
 }
