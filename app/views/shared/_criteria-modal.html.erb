@@ -7,11 +7,15 @@
           <div class="criterion-label">
             <%= form.label "why-#{index}", c %>
           </div>
-          <div class="criterion-text">
-            <%= check_box_tag("valid-#{index}") %>
-            <%= label_tag("valid-#{index}", "criterion not met") %>
+          <div class="criterion-text d-flex">
+            <div class="checkbox">
+              <%= check_box_tag("valid-#{index}") %>
+            </div>
+            <div>
+              <%= label_tag("valid-#{index}", "criterion not met") %>
+            </div>
           </div>
-          <div>
+          <div class="rejected-criteria-explaination">
             <%= form.text_area "why-#{index}" %>
           </div>
         </div>
