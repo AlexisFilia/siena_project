@@ -1,9 +1,9 @@
 <%= render 'shared/evolutive-top-bar' %>
 
 
-<div class="main-container with-top-margin with-bottom-margin">
+<div class="main-container aligned-horizontally with-top-margin with-bottom-margin">
 
-  <div class="quest-description-container">
+  <div class="quest-description-container max-1000">
       <div class="quest-title centered"><%= @quest.name.upcase %> </div>
 
       <div class="quest-description">
@@ -30,7 +30,7 @@
   </div>
 
 
-  <div class="quest-progression-container">
+  <div class="quest-progression-container max-1000">
     <div class="title centered">TEAM PROGRESSION</div>
     <div class="quest-progression">
         <div class="quest-status"><div class="quest-status-circle <%= @quest_status %>"></div><p><%=  @quest_status.upcase %></p></div>

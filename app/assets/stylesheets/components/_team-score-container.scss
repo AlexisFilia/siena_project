@@ -1,28 +1,59 @@
 .team-score-container{
 
+  position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: $background-color-lighter;
   width: 90%;
+  max-width: 500px;
   margin: 10px 0;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   text-decoration: none;
   transition: transform 0.5s;
 
+  .side-div-wrapper{
+    position: absolute;
+    left: 4vh;
+    transition: width 0.5s;
+    .side-div{
+      width: 6vh;
+      height: 7vh;
+      overflow: hidden;
+      position: relative;
+      transition: width 0.5s;
+      .rotated-div{
+        background-color: $secondary-color;
+        height: 15vh;
+        width: 15vh;
+        transform: rotate(15deg);
+        position: absolute;
+        top: -4vh;
+        left: -13vh;
+        box-shadow: 8px 1px 3px rgba(0,0,0,0.12);
+        transition: width 0.5s;
+      }
+    }
+  }
+
   .team-rank{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    color: $secondary-color;
+    background-color: $secondary-color;
+    color: white;
+    font-family: $special-font;
+    font-size: 1.5em;
 
-    padding: 20px;
+    width: 4vh;
+    height: 7vh;
   }
 
   .team-name-and-level{
     min-width: 50%;
     color: white;
-    padding: 10px;
+    // padding: 10px;
+    // height: 4vh;
     .team-name{
 
     }
