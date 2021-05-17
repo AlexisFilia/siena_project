@@ -54,16 +54,17 @@ puts "Uploading some quests"
 criteria_array = ["Validation criteria 1", "Validation criteria 2", "Validation criteria 3"]
 criteria_json = criteria_array.to_json
 
-quest_1 = Quest.create!(name: "Allumer la flamme", description: "5 membres de votre équipe doivent clicker sur le bateau!", type_of: "mandatory", roulette: "Non", level: level_1, criteria: criteria_json )
-quest_2 = Quest.create!(name: "Élire votre FeelGoodFellow", description: "Vous devez voter pour votre Capitaine d´équipe! Pour valider la quete...", type_of: "mandatory", roulette: "Non", level: level_2, criteria: criteria_json)
-quest_3 = Quest.create!(name: "Votre nom de tribu", description: "Vous devez voter pour votre nom de tribu! Pour valider la quete....", type_of: "mandatory", roulette: "Non", level: level_2, criteria: criteria_json )
-quest_4 = Quest.create!(name: "Votre territoire", description: "Vous devez définir votre territoire! Pour valider la quete....", type_of: "mandatory", roulette: "Non", level: level_3, criteria: criteria_json )
-quest_5 = Quest.create!(name: "Une petite collation", description: "Un membre de votre équipe doit amener le petit déjeuner pour les autres. Pour valider la quête, vous devez...", type_of: "mandatory", roulette: "Non", level: level_3, criteria: criteria_json )
-quest_6 = Quest.create!(name: "FeelGoodPhoto", description: "Poster une photo de votre FeelGoodFellow! Pour valider la quête, vous devez...", type_of: "optional", roulette: "Non", level: level_3, criteria: criteria_json )
-quest_7 = Quest.create!(name: "Qui es-tu", description: "Remplir votre profil en binome! Pour valider la quête, vous devez...", type_of: "optional", roulette: "Non", level: level_3, criteria: criteria_json )
-quest_8 = Quest.create!(name: "Roulette de bienveillance", description: "Lancez la roulette et offrez des fleurs à la personne tirée! Pour valider la quête, vous devez...", type_of: "optional", roulette: "Non", level: level_3, criteria: criteria_json )
-quest_9 = Quest.create!(name: "Photo Challenge", description: "Recréez un poster de film avec au moins 5 membres de votre équipe ! Pour valider la quête, vous devez...", type_of: "optional", roulette: "Non", level: level_3, criteria: criteria_json )
-quest_10 = Quest.create!(name: "Un squelette dans le placard", description: "Jouez au jeu des 2 vérités et 1 mensonge! Pour valider la quête, vous devez...", type_of: "optional", roulette: "Non", level: level_3, criteria: criteria_json )
+# Types de roulette : nil, teams, players, team_players : rien, 1 equipe parmis toutes, 1 player parmis les players des autres équipes, 1 player parmis les players de mon équipe
+quest_1 = Quest.create!(name: "Allumer la flamme", description: "5 membres de votre équipe doivent clicker sur le bateau!", type_of: "mandatory", level: level_1, criteria: criteria_json )
+quest_2 = Quest.create!(name: "Élire votre FeelGoodFellow", description: "Vous devez voter pour votre Capitaine d´équipe! Pour valider la quete...", type_of: "mandatory", level: level_2, criteria: criteria_json)
+quest_3 = Quest.create!(name: "Votre nom de tribu", description: "Vous devez voter pour votre nom de tribu! Pour valider la quete....", type_of: "mandatory", level: level_2, criteria: criteria_json )
+quest_4 = Quest.create!(name: "Votre territoire", description: "Vous devez définir votre territoire! Pour valider la quete....", type_of: "mandatory", level: level_3, criteria: criteria_json, roulette: "teams" )
+quest_5 = Quest.create!(name: "Une petite collation", description: "Un membre de votre équipe doit amener le petit déjeuner pour les autres. Pour valider la quête, vous devez...", type_of: "mandatory", level: level_3, criteria: criteria_json, roulette: "players" )
+quest_6 = Quest.create!(name: "FeelGoodPhoto", description: "Poster une photo de votre FeelGoodFellow! Pour valider la quête, vous devez...", type_of: "optional", level: level_3, criteria: criteria_json, roulette: "team_players" )
+quest_7 = Quest.create!(name: "Qui es-tu", description: "Remplir votre profil en binome! Pour valider la quête, vous devez...", type_of: "optional", level: level_3, criteria: criteria_json, roulette: "teams" )
+quest_8 = Quest.create!(name: "Roulette de bienveillance", description: "Lancez la roulette et offrez des fleurs à la personne tirée! Pour valider la quête, vous devez...", type_of: "optional", level: level_3, criteria: criteria_json, roulette: "players" )
+quest_9 = Quest.create!(name: "Photo Challenge", description: "Recréez un poster de film avec au moins 5 membres de votre équipe ! Pour valider la quête, vous devez...", type_of: "optional", level: level_3, criteria: criteria_json, roulette: "team_players" )
+quest_10 = Quest.create!(name: "Un squelette dans le placard", description: "Jouez au jeu des 2 vérités et 1 mensonge! Pour valider la quête, vous devez...", type_of: "optional", level: level_3, criteria: criteria_json )
 
 
 puts "Some quests uploaded"
@@ -78,7 +79,7 @@ tql_1 = TeamQuestLink.create!(team: team_1, quest: quest_1, status: "completed")
 tql_2 = TeamQuestLink.create!(team: team_1, quest: quest_2, status: "completed")
 tql_3 = TeamQuestLink.create!(team: team_1, quest: quest_3, status: "completed")
 tql_4 = TeamQuestLink.create!(team: team_1, quest: quest_4, status: "completed")
-tql_5 = TeamQuestLink.create!(team: team_1, quest: quest_5, status: "pending")
+tql_5 = TeamQuestLink.create!(team: team_1, quest: quest_5, status: "pending", roulette_result: "3")
 tql_6 = TeamQuestLink.create!(team: team_1, quest: quest_6, status: "rejected")
 tql_7 = TeamQuestLink.create!(team: team_1, quest: quest_7, status: "completed")
 tql_8 = TeamQuestLink.create!(team: team_1, quest: quest_8, status: "open")
@@ -88,8 +89,8 @@ puts "Team Quests Links for Team 1 have been created"
 
 puts "Creating some Team Quests Links for others teams"
 
-tql_9 = TeamQuestLink.create!(team: team_2, quest: quest_8, status: "pending")
-tql_10 = TeamQuestLink.create!(team: team_3, quest: quest_9, status: "pending")
+tql_9 = TeamQuestLink.create!(team: team_2, quest: quest_8, status: "pending", roulette_result: "10")
+tql_10 = TeamQuestLink.create!(team: team_3, quest: quest_9, status: "pending", roulette_result: "4")
 tql_11 = TeamQuestLink.create!(team: team_4, quest: quest_10, status: "pending")
 
 puts "Team Quests Links for others teams have been created"

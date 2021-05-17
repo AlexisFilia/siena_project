@@ -68,10 +68,15 @@ const roulette = () => {
           "Content-Type": "application/json"
         },
 
-        body: JSON.stringify({ roulette: rouletteList.dataset.list, index: winner.dataset.index})
+        body: JSON.stringify({ quest: rouletteList.dataset.quest, roulette: rouletteList.dataset.type, id: winner.dataset.objectId})
       })
         .then(response => response.json())
-        .then((data) => {console.log(data);});
+        .then((data) => {
+          console.log(data);
+          // setTimeout(window.location.reload(), 1000 );
+          // Enlever le bouton de "lancer"
+
+        });
 
   }
 
@@ -124,6 +129,7 @@ const roulette = () => {
   }
 
   const launchRoulette = (e) => {
+    rouletteBtn.style.display = "none";
     console.log(rouletteListItemsAmount);
     console.log(repositionAmount);
 

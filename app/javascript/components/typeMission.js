@@ -8,8 +8,18 @@ const typeMission = () => {
   const criteriaContainer = document.querySelector('.quest-criteria');
   const criteria = document.querySelectorAll('.criterium');
   const missionText = mission.innerText;
+  const roulette = document.querySelector('.roulette');
+
 
   criteriaContainer.style.display = "none";
+
+  if(roulette){
+    roulette.style.display = "none";
+    roulette.style.transform = "scale(0)";
+    roulette.style.transition = "transform 0.2s";
+  }
+
+
   criteria.forEach(criterium => {
     criterium.style.transform = "scale(0)";
     criterium.style.transition = "transform 0.2s";
@@ -18,6 +28,7 @@ const typeMission = () => {
 
   const animateCriterium = (index) => {
 
+    if(roulette) roulette.style.transform = "scale(1)";
 
     if(index != criteria.length - 1){
 
@@ -39,6 +50,7 @@ const typeMission = () => {
 
   typeOnce(mission, 20);
   criteriaContainer.style.display = "block";
+  if(roulette) roulette.style.display = "block";
   const timer = setInterval(animateCriteria, 500);
 
 

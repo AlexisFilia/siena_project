@@ -42,15 +42,22 @@
 
 
       <div class="tql-description">
-        <p class="title"><%= @tql_to_vote.quest.name %></p>
+        <p class="secondary-color-title"><%= @quest.name %></p>
         <p><i>Submitted by <%= @tql_to_vote.team.name %> at level "<%= @tql_to_vote.level.name %>"</i></p>
         <!-- <p>Quest level : <%#= @tql_to_vote.level.name %></p> -->
-        <p class="title">CRITÈRES DE VALIDATION :</p>
+        <p><%= @quest.description %></p>
+
+        <% if @roulette_result %>
+          <%= render 'shared/roulette-result' %>
+        <% end %>
+
+        <p class="secondary-color-title">CRITÈRES DE VALIDATION :</p>
         <ul>
           <% @criteria.each do |c| %>
             <li><%= c %> </li>
           <% end %>
         </ul>
+
 
       </div>
       <div class="tql-buttons">

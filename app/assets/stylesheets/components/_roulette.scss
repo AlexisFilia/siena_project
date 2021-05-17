@@ -1,9 +1,15 @@
+.roulette{
+  a{
+    color: $menu-items-color;
+  }
+}
+
 #roulette-container{
 
   background-color: $background-color-lighter;
   padding: 20px;
   width: 100%;
-  margin: 5em 0;
+  // margin: 5em 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
