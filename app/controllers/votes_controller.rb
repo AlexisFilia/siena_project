@@ -4,6 +4,8 @@ class VotesController < ApplicationController
   end
 
   def new
+    @vote = Vote.new
+
     @tql_to_vote = TeamQuestLink.joins(:team)
                                 .where(teams: { company_id: current_user.company.id })
                                 .where.not(team_id: current_user.team.id)
@@ -19,8 +21,19 @@ class VotesController < ApplicationController
                                 .first
 
 
-    @criteria = JSON.parse(@tql_to_vote.quest.criteria) unless @tql_to_vote.blank?
-    @vote = Vote.new
+    unless @tql_to_vote.blank?
+      @quest = @tql_to_vote.quest
+      @criteria = JSON.parse(@tql_to_vote.quest.criteria)
+      @roulette_type = @quest.roulette
+    end
+
+    case @roulette_type
+      when nil
+      when "teams"
+        @roulette_result = Team.find(@tql_to_vote.roulette_result)
+      else
+        @roulette_result = User.find(@tql_to_vote.roulette_result)
+    end
 
     #Evolutive elements------------------
     @top_bar_title = 'VALIDATION'

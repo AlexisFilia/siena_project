@@ -1,7 +1,12 @@
 <p class="secondary-color-title">ROULETTE RESULT:</p>
-<% if @roulette_type == "teams" %>
-  <p>The random team is : <%= Team.find(@roulette_result).name %></p>
-<% else %>
-  <p>The random player is : <%= User.find(@roulette_result).get_full_name %></p>
-<% end %>
-<p>La roulette a été lancée par ...</p>
+<div class="roulette">
+
+  <% if @roulette_type == "teams" %>
+    <p>The random team is : <%= link_to @roulette_result.name, team_path(@roulette_result)  %></p>
+
+  <% else %>
+    <p>The random player is : <%= link_to @roulette_result.get_full_name, user_path(@roulette_result)  %></p>
+
+  <% end %>
+
+</div>

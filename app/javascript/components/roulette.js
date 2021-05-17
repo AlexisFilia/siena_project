@@ -129,6 +129,7 @@ const roulette = () => {
   }
 
   const launchRoulette = (e) => {
+    rouletteBtn.style.display = "none";
     console.log(rouletteListItemsAmount);
     console.log(repositionAmount);
 

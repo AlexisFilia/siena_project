@@ -79,7 +79,7 @@ tql_1 = TeamQuestLink.create!(team: team_1, quest: quest_1, status: "completed")
 tql_2 = TeamQuestLink.create!(team: team_1, quest: quest_2, status: "completed")
 tql_3 = TeamQuestLink.create!(team: team_1, quest: quest_3, status: "completed")
 tql_4 = TeamQuestLink.create!(team: team_1, quest: quest_4, status: "completed")
-tql_5 = TeamQuestLink.create!(team: team_1, quest: quest_5, status: "pending")
+tql_5 = TeamQuestLink.create!(team: team_1, quest: quest_5, status: "pending", roulette_result: "3")
 tql_6 = TeamQuestLink.create!(team: team_1, quest: quest_6, status: "rejected")
 tql_7 = TeamQuestLink.create!(team: team_1, quest: quest_7, status: "completed")
 tql_8 = TeamQuestLink.create!(team: team_1, quest: quest_8, status: "open")
@@ -89,8 +89,8 @@ puts "Team Quests Links for Team 1 have been created"
 
 puts "Creating some Team Quests Links for others teams"
 
-tql_9 = TeamQuestLink.create!(team: team_2, quest: quest_8, status: "pending")
-tql_10 = TeamQuestLink.create!(team: team_3, quest: quest_9, status: "pending")
+tql_9 = TeamQuestLink.create!(team: team_2, quest: quest_8, status: "pending", roulette_result: "10")
+tql_10 = TeamQuestLink.create!(team: team_3, quest: quest_9, status: "pending", roulette_result: "4")
 tql_11 = TeamQuestLink.create!(team: team_4, quest: quest_10, status: "pending")
 
 puts "Team Quests Links for others teams have been created"

@@ -1,20 +1,24 @@
+
 <p class="secondary-color-title">ROULETTE :</p>
 
-<div id="roulette-container">
-  <div id="roulette-visible">
-    <div id="background-selector"></div>
-    <ul id="roulette-list" data-type= "<%= @quest.roulette %>" data-quest= "<%= @quest.id %>">
-      <% @roulette_array.each_with_index do |item, index|%>
-        <li data-object-id="<%= item.id %>" data-id="<%= index * 2 %>">
-          <% if @quest.roulette == "teams" %>
-            <%= item.name %>
-          <% else %>
-            <%= item.get_full_name %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+<div class="roulette">
 
-  <div id="roulette-btn" class="main-button">LANCER !</div>
+  <div id="roulette-container">
+    <div id="roulette-visible">
+      <div id="background-selector"></div>
+      <ul id="roulette-list" data-type= "<%= @quest.roulette %>" data-quest= "<%= @quest.id %>">
+        <% @roulette_array.each_with_index do |item, index|%>
+          <li data-object-id="<%= item.id %>" data-id="<%= index * 2 %>">
+            <% if @quest.roulette == "teams" %>
+              <%= item.name %>
+            <% else %>
+              <%= item.get_full_name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="roulette-btn" class="main-button">LANCER !</div>
+  </div>
 </div>

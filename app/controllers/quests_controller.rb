@@ -25,7 +25,7 @@ class QuestsController < ApplicationController
     @quest_status = @team.get_quest_status(@quest)
     @level = @quest.level
     @criteria = JSON.parse(@quest.criteria)
-
+    @roulette_type = @quest.roulette
 
     @team_quest_link = TeamQuestLink.find_by(team: @team, quest: @quest)
 
@@ -34,11 +34,16 @@ class QuestsController < ApplicationController
     else
       @team_quest_link_id = @team_quest_link.id
       @votes_result = @team_quest_link.get_votes_result
-      @roulette_result = @team_quest_link.roulette_result
+
+      if @team_quest_link.roulette_result
+        if @roulette_type == "teams"
+            @roulette_result = Team.find(@team_quest_link.roulette_result)
+          else
+            @roulette_result = User.find(@team_quest_link.roulette_result)
+        end
+      end
     end
 
-
-    @roulette_type = @quest.roulette
 
 
     unless @roulette_result
