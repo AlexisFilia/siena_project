@@ -4,6 +4,7 @@
   <% @teams.each do |team| %>
 
     <%= link_to team_path(team[:id]), class: "team-score-container" do %>
+      <div class="side-div-wrapper"><div class="side-div"><div class="rotated-div"></div></div></div>
       <div class="team-rank"><%= team[:rank] %></div>
       <div class="team-name-and-level">
         <div class="team-name"><%= team[:name] %></div>
