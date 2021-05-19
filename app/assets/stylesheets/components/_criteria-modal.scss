@@ -47,4 +47,21 @@
   .criterion-text{
     color: white;
   }
+
+  .checkbox{
+    padding-right: 10px;
+  }
+
+  .test{
+    max-height: 100%;
+  }
+
+  .rejected-criteria-explaination{
+    padding-bottom: 10px;
+    display: none;
+
+      &.active{
+      max-height: 10vh;
+    }
+  }
 }
