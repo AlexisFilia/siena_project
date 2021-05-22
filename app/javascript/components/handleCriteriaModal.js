@@ -18,18 +18,18 @@ const handleCriteriaModal = () => {
 
   criteriaModal.classList.add('active');
 
-  const checkboxs = document.querySelectorAll('.checkbox');
-  checkboxs.forEach((checkbox) => {
-    checkbox.addEventListener('click', () => {
-      let checkboxIdex = checkbox.firstElementChild.id.replace(/valid-/,"");
-      let textArea = document.getElementById("vote_why-" + checkboxIdex).parentNode;
-      if (textArea.style.display === "block") {
-        textArea.style.display = "none";
-      } else {
-        textArea.style.display = "block";
-      }
-    });
-  })
+  // const checkboxs = document.querySelectorAll('.checkbox');
+  // checkboxs.forEach((checkbox) => {
+  //   checkbox.addEventListener('click', () => {
+  //     let checkboxIdex = checkbox.firstElementChild.id.replace(/valid-/,"");
+  //     let textArea = document.getElementById("vote_why-" + checkboxIdex).parentNode;
+  //     if (textArea.style.display === "block") {
+  //       textArea.style.display = "none";
+  //     } else {
+  //       textArea.style.display = "block";
+  //     }
+  //   });
+  // })
 }
 
 export{ handleCriteriaModal };
