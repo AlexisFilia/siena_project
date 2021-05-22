@@ -1,6 +1,7 @@
 class QuestsController < ApplicationController
 
   def index
+    redirect_to level_quests_path(@team_current_level) if params[:level_id].to_i > @team_current_level.id
     # @sideNav_id = 1; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
     @level = Level.find(params[:level_id])
     # @team = current_user.team : déjà dans le application controller
