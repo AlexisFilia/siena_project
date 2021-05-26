@@ -15,26 +15,26 @@
 
         <div class="level-container locked">
             <div class="upper-part centered">
-              <div class="mandatory-indication centered-vertically">
-                <% if l[:mandatory_completion] == "-" %>
+              <!-- <div class="mandatory-indication centered-vertically">
+                <%# if l[:mandatory_completion] == "-" %>
                   <p class="percent">-</p>
-                <% else %>
-                  <p class="percent"><%= (l[:mandatory_completion] * 100).to_i %>%</p>
-                <% end %>
+                <%# else %>
+                  <p class="percent"><%#= (l[:mandatory_completion] * 100).to_i %>%</p>
+                <%# end %>
                 <p>MANDATORY</p>
-              </div>
+              </div> -->
               <div class="level-index centered">
                 <p><%= l[:level].id %></p>
                 <i class="fas fa-lock"></i>
               </div>
-              <div class="optional-indication centered-vertically">
-                <% if l[:optional_completion] == "-" %>
+              <!-- <div class="optional-indication centered-vertically">
+                <%# if l[:optional_completion] == "-" %>
                   <p class="percent">-</p>
-                <% else %>
-                  <p class="percent"><%= (l[:optional_completion] * 100).to_i %>%</p>
-                <% end %>
+                <%# else %>
+                  <p class="percent"><%#= (l[:optional_completion] * 100).to_i %>%</p>
+                <%# end %>
                 <p>OPTIONAL</p>
-              </div>
+              </div> -->
             </div>
             <div class="level-name-part centered"><%= l[:level].name.upcase %></div>
         </div>
@@ -68,7 +68,30 @@
                 <p>OPTIONAL</p>
               </div>
             </div>
-            <div class="level-name-part centered"><%= l[:level].name.upcase %></div>
+            <div class="level-name-part centered-vertically">
+              <p><%= l[:level].name.upcase %></p>
+              <div class="stars">
+                <% case l[:stars] %>
+                <% when 3 %>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                <% when 2 %>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                <% when 1 %>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                <% else %>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                <% end %>
+              </div>
+
+            </div>
           <!-- </div> -->
         <% end %>
 
