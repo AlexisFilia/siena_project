@@ -105,9 +105,26 @@ class Team < ApplicationRecord
     team_mandatory_percentage_of_level_completion = team_completed_level_mandatory_quests.count.to_f / level_mandatory_quests.count.to_f unless level_mandatory_quests.empty?
     team_optional_percentage_of_level_completion = team_completed_level_optional_quests.count.to_f / level_optional_quests.count.to_f unless level_optional_quests.empty?
 
+    # 3 stars = All Quests done
+    # 2 stars = All mandatory quests done
+    # 1 star = 1 Quest done
+    if team_percentage_of_level_completion == 1
+      stars_amount = 3
+    elsif team_mandatory_percentage_of_level_completion == 1
+      stars_amount = 2
+    elsif team_percentage_of_level_completion > 0
+      stars_amount = 1
+    else
+      stars_amount = 0
+    end
+
     returned_hash = {total: team_percentage_of_level_completion,
                       mandatory: team_mandatory_percentage_of_level_completion,
-                      optional: team_optional_percentage_of_level_completion}
+                      optional: team_optional_percentage_of_level_completion,
+                      stars: stars_amount
+                    }
+
+
 
     return returned_hash
 
