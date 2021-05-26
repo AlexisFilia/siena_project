@@ -61,7 +61,7 @@ class Team < ApplicationRecord
     team_completed_quests = self.get_completed_quests
 
     if !team_completed_quests.empty?
-      levels = Level.all
+      # levels = Level.all
 
       #determine highest level of quest achieved by the team
       highest_level = team_completed_quests.max {|a,b| a.level.id <=> b.level.id }.level # pb de la logique avec next_level_id
@@ -69,8 +69,9 @@ class Team < ApplicationRecord
       #check if all mandatory are done in this level and allocate team_level accordingly
       highest_level_quests = highest_level.quests
       team_level = highest_level
+      highest_level_mandatory_quests = highest_level_quests.select{|q| q.type_of == "mandatory"}
 
-      highest_level_quests.each do |quest|
+      highest_level_mandatory_quests.each do |quest|
         return team_level if !self.has_completed_quest?(quest)
       end
 
