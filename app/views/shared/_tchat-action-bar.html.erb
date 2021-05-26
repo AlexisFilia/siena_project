@@ -21,15 +21,13 @@
     <%= f.hidden_field :message_ref, id: "message-ref" %>
     <%= f.hidden_field :perimeter, value: @initial_perimeter %>
     <%= f.input :message_ref, as: :hidden %>
-      <%= f.input :value, label: false, placeholder: "Type something..." %>
+    <%= f.hidden_field :message_ref, id: "message-ref" %>
+    <%= f.input :value, label: false, placeholder: "Type something..." %>
 
-      <%= button_tag type: 'submit', id: "tchat-action-bar-btn-send" do %>
-        <i class="far fa-paper-plane"></i>
-      <% end %>
-    </div>
+    <%= button_tag type: 'submit', id: "tchat-action-bar-btn-send", data: { disable_with: "Sending..." } do %>
+      <i class="far fa-paper-plane"></i>
+    <% end %>
   <% end %>
-
-
 </div>
 
 <%= render 'shared/tchat-modal' %>

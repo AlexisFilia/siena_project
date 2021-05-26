@@ -46,6 +46,9 @@ class MessagesController < ApplicationController
   def create
 
     perimeter = params.require(:message).permit(:perimeter)[:perimeter]
+    if params.require(:message).permit(:value)[:value].blank?
+      redirect_to messages_path(perimeter: perimeter) and return
+    end
 
     message = Message.create!({
                             user: current_user,

@@ -61,7 +61,7 @@ class Team < ApplicationRecord
     team_completed_quests = self.get_completed_quests
 
     if !team_completed_quests.empty?
-      levels = Level.all
+      # levels = Level.all
 
       #determine highest level of quest achieved by the team
       highest_level = team_completed_quests.max {|a,b| a.level.id <=> b.level.id }.level # pb de la logique avec next_level_id
@@ -69,8 +69,9 @@ class Team < ApplicationRecord
       #check if all mandatory are done in this level and allocate team_level accordingly
       highest_level_quests = highest_level.quests
       team_level = highest_level
+      highest_level_mandatory_quests = highest_level_quests.select{|q| q.type_of == "mandatory"}
 
-      highest_level_quests.each do |quest|
+      highest_level_mandatory_quests.each do |quest|
         return team_level if !self.has_completed_quest?(quest)
       end
 
@@ -105,9 +106,26 @@ class Team < ApplicationRecord
     team_mandatory_percentage_of_level_completion = team_completed_level_mandatory_quests.count.to_f / level_mandatory_quests.count.to_f unless level_mandatory_quests.empty?
     team_optional_percentage_of_level_completion = team_completed_level_optional_quests.count.to_f / level_optional_quests.count.to_f unless level_optional_quests.empty?
 
+    # 3 stars = All Quests done
+    # 2 stars = All mandatory quests done
+    # 1 star = 1 Quest done
+    if team_percentage_of_level_completion == 1
+      stars_amount = 3
+    elsif team_mandatory_percentage_of_level_completion == 1
+      stars_amount = 2
+    elsif team_percentage_of_level_completion > 0
+      stars_amount = 1
+    else
+      stars_amount = 0
+    end
+
     returned_hash = {total: team_percentage_of_level_completion,
                       mandatory: team_mandatory_percentage_of_level_completion,
-                      optional: team_optional_percentage_of_level_completion}
+                      optional: team_optional_percentage_of_level_completion,
+                      stars: stars_amount
+                    }
+
+
 
     return returned_hash
 
