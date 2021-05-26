@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root to: 'levels#index'
+  # root to: 'levels#index'
+  root to: 'pages#home'
 
   resources :teams, only: [:index, :show]
 

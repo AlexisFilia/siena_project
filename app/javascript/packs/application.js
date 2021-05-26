@@ -42,6 +42,7 @@ import { initCarousel } from '../components/initCarousel';
 import { handleValidationModal } from '../components/handleValidationModal';
 import { typeMission } from '../components/typeMission';
 import { uploadQuestMedia } from '../components/uploadQuestMedia';
+import { particlesHome } from '../components/particlesHome';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -51,6 +52,7 @@ document.addEventListener('turbolinks:load', () => {
   // stolenCode();
   // sideNav();
   // sideNavLinks();
+  particlesHome();
   publicTeamChoiceToggle();
 
   handlePollOptions();
@@ -73,3 +75,4 @@ document.addEventListener('turbolinks:load', () => {
 
 
 import "controllers"
+

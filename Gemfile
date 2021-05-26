@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+# Pour faire joli
+# gem 'particles-js-rails'
+
 # Gems pour transformer les images et videos (upload)
 gem "mini_magick"
 gem "streamio-ffmpeg", "~> 3.0"
