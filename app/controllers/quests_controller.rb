@@ -21,6 +21,7 @@ class QuestsController < ApplicationController
 
   def show
     # @sideNav_id = 1; # utilise ca pour ajouter la classe "active" au lien de la navbar correspondant - voir le sideNav.html.erb et le js
+    redirect_to level_quests_path(@team_current_level) unless Quest.accessible_quest?(params[:id], @team_current_level)
 
     @quest = Quest.find(params[:id])
     @quest_status = @team.get_quest_status(@quest)

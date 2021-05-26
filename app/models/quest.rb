@@ -11,4 +11,13 @@ class Quest < ApplicationRecord
   # validates :map_position, presence: true
   # validates :validation_type, presence: true
 
+  def self.accessible_quest?(level_id, team_current_level)
+    available_quests = []
+    Level.all.each do |l|
+      if l.id <= team_current_level.id
+        available_quests += l.quests
+      end
+    end
+    !available_quests.select { |quest| quest.id == level_id.to_i }.blank?
+  end
 end
