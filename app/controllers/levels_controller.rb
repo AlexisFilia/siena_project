@@ -13,7 +13,6 @@ class LevelsController < ApplicationController
       end
     end
 
-
     #Evolutive elements------------------
     @top_bar_title = 'LEVELS'
 
