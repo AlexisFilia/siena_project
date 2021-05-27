@@ -43,6 +43,7 @@ import { handleValidationModal } from '../components/handleValidationModal';
 import { typeMission } from '../components/typeMission';
 import { uploadQuestMedia } from '../components/uploadQuestMedia';
 import { particlesHome } from '../components/particlesHome';
+import { voteNoBtn } from '../components/voteNoBtn';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -70,6 +71,7 @@ document.addEventListener('turbolinks:load', () => {
   initCarousel();
   typeMission();
   uploadQuestMedia();
+  voteNoBtn();
 
 });
 

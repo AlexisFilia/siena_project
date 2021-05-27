@@ -61,8 +61,8 @@
 
       </div>
       <div class="tql-buttons">
-        <%= link_to "Vote NO", votes_path(vote: false, tql: @tql_to_vote), method: :post, class: "vote-no" %>
-        <%= link_to "Vote YES", votes_path(vote: true, tql: @tql_to_vote), method: :post, class: "vote-yes" %>
+        <a href="" class="vote-no">Vote NO</a>
+        <%= link_to "Vote YES", votes_path(vote: { vote: true, tql: @tql_to_vote }), method: :post, class: "vote-yes" %>
       </div>
 
     </div>

@@ -42,7 +42,7 @@ class VotesController < ApplicationController
   end
 
   def create
-    tql = TeamQuestLink.find(params[:tql])
+    tql = TeamQuestLink.find(params[:vote][:tql].to_i)
     vote = Vote.new(vote_params)
     vote.user = current_user
     vote.team_quest_link = tql

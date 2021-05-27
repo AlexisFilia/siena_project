@@ -31,7 +31,6 @@ const draggables = () => {
         break;
       case 'left':
         handleCriteriaModal();
-        // vote = false;
         draggable.style.transform = `translate(0px) rotate(0deg)`;
         break;
       case 'right':
