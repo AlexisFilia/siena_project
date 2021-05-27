@@ -29,7 +29,7 @@ class VotesController < ApplicationController
 
     case @roulette_type
       when nil
-      when "teams"
+      when 'teams'
         @roulette_result = Team.find(@tql_to_vote.roulette_result)
       else
         @roulette_result = User.find(@tql_to_vote.roulette_result)
@@ -42,7 +42,7 @@ class VotesController < ApplicationController
   end
 
   def create
-    tql = TeamQuestLink.find(params[:vote][:tql].to_i)
+    tql = TeamQuestLink.find(params[:tql])
     vote = Vote.new(vote_params)
     vote.user = current_user
     vote.team_quest_link = tql
@@ -82,7 +82,7 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params[:vote].permit(:vote)
+    params.permit(:vote)
   end
 
 
