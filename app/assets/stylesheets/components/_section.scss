@@ -1,0 +1,12 @@
+section{
+  background-color: white;
+  padding: 10%;
+
+  h2{
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  .secondary-color{color: $secondary-color;}
+  .primary-color{color: $menu-items-color;}
+}
