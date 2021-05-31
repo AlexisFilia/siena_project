@@ -17,6 +17,7 @@ class MediaController < ApplicationController
               TeamQuestLink.find(params[:medium][:team_quest_link].to_i)
             end
 
+      tql.votes.destroy_all if tql.status == 'rejected'
       tql.update(status: 'draft')
 
 
