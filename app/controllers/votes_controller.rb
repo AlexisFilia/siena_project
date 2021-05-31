@@ -42,6 +42,7 @@ class VotesController < ApplicationController
   end
 
   def create
+    # raise
     tql = TeamQuestLink.find(params[:vote][:tql].to_i)
     vote = Vote.new(vote_params)
     vote.user = current_user
@@ -82,7 +83,7 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.permit(:vote)
+    params.require(:vote).permit(:vote)
   end
 
 
