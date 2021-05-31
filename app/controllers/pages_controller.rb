@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :tim_tests ]
+  skip_before_action :authenticate_user!, only: [ :home, :contact, :tim_tests ]
 
   def home
 
@@ -7,6 +7,12 @@ class PagesController < ApplicationController
       redirect_to levels_path
     end
 
+    @primary = 1
+  end
+
+  def contact
+
+    @primary = 2
   end
 
   def tim_tests
