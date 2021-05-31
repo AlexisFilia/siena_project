@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   # root to: 'levels#index'
   root to: 'pages#home'
+  get '/contact', to: 'pages#contact'
 
   resources :teams, only: [:index, :show]
 

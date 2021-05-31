@@ -11,31 +11,51 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 
+  .call-to-action{
+    // position:
+    margin-top: 2em;
+  }
+
   #slogan{
+    margin-top: 10vh;
     text-align: center;
-    // color: white;
     font-family: $special-font;
-    font-size: 3em;
-
-
-    h1{
-      line-height: 2.5em;
-    }
 
   }
 
   .secondary-color{
     background-color: $secondary-color;
     color: white;
-    font-size: 2em;
-    padding: 0 5px;
-    line-height: 2em;
+
   }
   .primary-color{
     background-color: $menu-items-color;
     color: white;
+  }
+}
+
+@media (max-width: 800px){
+
+
+
+}
+
+@media (min-width: 800px){
+
+  #banner{
+    #slogan{
+      font-size: 3em;
+      h1{
+        line-height: 2.5em;
+      }
+
+    }
+  }
+
+  .secondary-color, .primary-color{
     font-size: 2em;
     padding: 2px 5px;
     line-height: 2em;
   }
+
 }

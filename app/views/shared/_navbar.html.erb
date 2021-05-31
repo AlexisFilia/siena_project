@@ -1,4 +1,11 @@
 <div id="navbar">
-  <%= link_to "LOG IN", new_user_session_path %>
-
+  <%= link_to root_path  do %>
+    <p class= "highlighted <%= @primary == 1 ? 'primary' : 'secondary' %>">HOME</p>
+  <% end %>
+  <%= link_to contact_path do %>
+    <p class= "highlighted <%= @primary == 2 ? 'primary' : 'secondary' %>">CONTACT</p>
+  <% end %>
+  <%= link_to new_user_session_path do %>
+    <p class= "highlighted <%= @primary == 3 ? 'primary' : 'secondary' %>">LOG IN</p>
+  <% end %>
 </div>
