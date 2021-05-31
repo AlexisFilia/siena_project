@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_191543) do
     t.bigint "quest_id", null: false
     t.string "status", default: "draft"
     t.text "roulette_result"
+    t.datetime "date_submission"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["quest_id"], name: "index_team_quest_links_on_quest_id"
