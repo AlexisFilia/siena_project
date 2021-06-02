@@ -9,7 +9,8 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      ContactMailer.contact_mail(@contact).deliver
+      ContactMailer.contact_mail(@contact, 'Alexis Filia <filia.alexis@gmail.com>').deliver
+      ContactMailer.contact_mail(@contact, 'Tim Boing <timboing@icloud.com>').deliver
       ContactMailer.thank_you(@contact).deliver
       redirect_to root_path, :alert => 'Thank you for your message !'
     else
