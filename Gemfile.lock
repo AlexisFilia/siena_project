@@ -102,6 +102,8 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    email_validator (2.2.3)
+      activemodel
     erubi (1.10.0)
     execjs (2.7.0)
     ffi (1.15.0)
@@ -116,6 +118,10 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -283,8 +289,10 @@ DEPENDENCIES
   cloudinary (~> 1.19)
   devise
   dotenv-rails
+  email_validator
   font-awesome-sass
   jbuilder (~> 2.7)
+  letter_opener
   listen (~> 3.3)
   mini_magick
   pg (~> 1.1)

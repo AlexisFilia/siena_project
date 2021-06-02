@@ -23,8 +23,11 @@ class User < ApplicationRecord
     message: 'This email already exists in the DB.'
   }
 
-  has_one_attached :photo
+  unless :email.blank?
+    validate :email_is_valid
+  end
 
+  has_one_attached :photo
 
   def get_full_name
     "#{self.first_name} #{self.last_name}"
