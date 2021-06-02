@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   # root to: 'levels#index'
   root to: 'pages#home'
-  resources :contacts, only: [:new, :create]
 
   resources :teams, only: [:index, :show]
 
@@ -28,7 +27,7 @@ Rails.application.routes.draw do
     resources :user_role_links, only: [:index, :show]
   end
 
-
+  resources :contacts, only: [:new, :create]
 
   resources :tinder_quests, only: [:index]
 
