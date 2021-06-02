@@ -1,7 +1,7 @@
 class ContactMailer < ApplicationMailer
-  def contact_mail(contact)
+  def contact_mail(contact, admin)
     @contact = contact
-    mail to: 'Alexis Filia <filia.alexis@gmail.com>', subject: "Siena Project - Nous contacter"
+    mail to: admin, subject: "Siena Project - Nous contacter"
   end
 
   def thank_you(contact)
