@@ -25,7 +25,7 @@ Team.all.each do |team|
   puts "Users for team #{team.id}"
   for i in 1..8 do
     User.create!(first_name: "Player#{i}", last_name: " for team #{team.id}", email: "#{team.id}player#{i}@airbus.com", password: "123456", team: team)
-    User.create!(first_name: "Player#{i}test", last_name: " for team #{team.id}", email: "#{team.id}player#{i}@airbus.com2", password: "123456", team: team)
+    User.create!(first_name: "Player#{i}test", last_name: " for team #{team.id}", email: "#{team.id}player#{i}2@airbus.com", password: "123456", team: team)
   end
 end
 puts "Some users have been created"
