@@ -41,6 +41,7 @@ gem 'devise'
 gem 'bootstrap', '~> 4.0'
 gem 'cloudinary', '~> 1.19'
 gem 'will_paginate'
+gem 'rack-attack'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
