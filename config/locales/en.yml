@@ -30,4 +30,22 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  languages:
+    select: 'Select your language'
+    en: 'English'
+    fr: 'French'
+  pages:
+    home:
+      play: 'PLAY'
+      you: 'YOU ARE'
+      us: 'WE ARE'
+      game: 'GAME PLAN'
+      more: 'MORE DETAILS'
+      slogan1: 'REACH THE '
+      slogan2: 'NEXT LEVEL'
+      slogan3: 'OF'
+      slogan4: 'TEAM SPIRIT'
+  nav_bar:
+    home: 'HOME'
+    contact: 'CONTACT'
+    login: 'LOG IN'

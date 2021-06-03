@@ -43,6 +43,7 @@ gem 'cloudinary', '~> 1.19'
 gem 'will_paginate'
 gem 'rack-attack'
 gem 'email_validator'
+gem 'rails-i18n'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
