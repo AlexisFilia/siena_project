@@ -1,0 +1,20 @@
+fr:
+  languages:
+    select: 'Choisiez votre langue'
+    en: 'Anglais'
+    fr: 'Français'
+  pages:
+    home:
+      play: 'JOUER'
+      you: 'VOUS ETES'
+      us: 'NOUS SOMMES'
+      game: 'LE PLAN DE JEU'
+      more: 'PLUS DE DÉTAILS'
+      slogan1: 'ATTEIGNEZ LE '
+      slogan2: 'NIVEAU SUPERIEUR'
+      slogan3: 'DE'
+      slogan4: "L' ESPRIT D' EQUIPE"
+  nav_bar:
+    home: 'ACCUEIL'
+    contact: 'CONTACT'
+    login: 'SE CONNECTER'
