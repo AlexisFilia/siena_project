@@ -26,7 +26,7 @@ class TeamsController < ApplicationController
     teams = Team.all
     indexed_teams = []
     teams.each do |team|
-      indexed_teams << {id: team.id, name: team.name, level: team.get_level.id, points: team.get_total_points.to_i}
+      indexed_teams << {id: team.id, name: team.name, level: team.get_level.id, level_name: team.get_level.name, points: team.get_total_points.to_i}
     end
 
     indexed_teams.sort_by!{|team| team[:points]}.reverse!
