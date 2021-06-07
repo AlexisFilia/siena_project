@@ -54,6 +54,12 @@
     justify-content: center;
     color: white;
     margin: 10px;
+
+    &:hover{
+      cursor: pointer;
+      transform: scale(0.9);
+    }
+
   }
 
   &.active{

@@ -21,6 +21,10 @@
     border: 1px solid white;
     border-radius: 50%;
 
+    &:hover{
+      cursor: pointer;
+      transform: scale(1.1);
+    }
   }
 
   #new_message{

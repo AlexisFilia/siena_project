@@ -45,6 +45,10 @@
         color: $secondary-color;
       }
 
+      &:hover{
+        cursor: pointer;
+      }
+
     }
     .poll-option-selectable{
       padding: 10px;
