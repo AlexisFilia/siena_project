@@ -38,6 +38,11 @@
         left: 20px;
         color: white;
         z-index: 200;
+
+        &:hover{
+          cursor: pointer;
+          transform: scale(1.1);
+        }
       }
 
       #main-menu-team-name{
