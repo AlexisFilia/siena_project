@@ -44,6 +44,7 @@ import { typeMission } from '../components/typeMission';
 import { uploadQuestMedia } from '../components/uploadQuestMedia';
 import { particlesHome } from '../components/particlesHome';
 import { voteNoBtn } from '../components/voteNoBtn';
+import { fadeAlert } from '../utils/fadeAlert';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -72,9 +73,9 @@ document.addEventListener('turbolinks:load', () => {
   typeMission();
   uploadQuestMedia();
   voteNoBtn();
+  fadeAlert();
 
 });
-
 
 import "controllers"
 

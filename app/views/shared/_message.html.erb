@@ -1,6 +1,6 @@
 <div id="message-<%= message.id %>" class="message-container <%= 'c-user' if message.user == current_user %>">
 
-  <div class="message-user-picture" style="background-image: url('<%= cloudinary_url(message.user.photo.key) %>')"></div>
+  <div class="message-user-picture" style="background-image: url(<%= message.user.photo.blank? ? asset_path('user_image.png') : cl_image_path(message.user.photo.key) %>)"></div>
 
   <% if !message.poll.nil? %>
       <div class="message">

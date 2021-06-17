@@ -3,7 +3,7 @@
 <div class="main-container centered-vertically with-top-margin with-bottom-margin">
 
   <div id="user-container">
-    <div id="user-picture" style="background-image: url(<%= @user.photo.blank? ? asset_path('user_image.png') : cl_image_path(@user.photo.key)  %>);"></div>
+    <div id="user-picture" style="background-image: url(<%= @user.photo.blank? ? asset_path('user_image.png') : cl_image_path(@user.photo.key) %>);"></div>
     <div id="user-info">
       <p><span>Surname : </span> <%= @user.first_name.capitalize %></p>
       <p><span>Name : </span> <%= @user.last_name.capitalize %></p>

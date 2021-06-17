@@ -3,15 +3,12 @@
 <!-- <div id="particles-container" style="height: 100vh; width: 100vw;"></div> -->
 
 <div id="banner">
-  <h1 id="slogan">REACH THE <span class="secondary-color">NEXT LEVEL</span><br>OF<br><span class="primary-color">TEAM SPIRIT</span></h1>
-  <%= link_to "PLAY", contact_path,class: "call-to-action"  %>
+  <h1 id="slogan"><%= t '.slogan1' %><span class="secondary-color"><%= t '.slogan2' %></span><br><%= t '.slogan3' %><br><span class="primary-color"><%= t '.slogan4' %></span></h1>
+  <%= link_to (t '.play'), new_contact_path,class: "call-to-action"  %>
 </div>
 
-
 <div id="landing-checkboxes" >
-
-  <h2>VOUS</h2>
-
+  <h2><%= t '.you' %></h2>
   <div class="landing-page-card-white-check">
     <div class="check-container">
       <i class="fas fa-check"></i>
@@ -87,10 +84,11 @@
 
 <!-- </section> -->
 
+</section>
 
 
 <section >
-  <h2>NOUS</h2>
+  <h2><%= t '.us' %></h2>
 
   <div class="section-text frame">
     <p>Entre 2004 et 2011 le Wall Street journal estime que les joueurs de World of Warcraft ont collectivement passé près de <span class="highlighted secondary big">6 millions d’années</span> à résoudre les problèmes du monde fictif d’Azeroth!</p>
@@ -98,12 +96,12 @@
     <p>La « <span class="highlighted primary big">gamification</span> » ou « ludification », est l’utilisation, l’adaptation des mécanismes du jeu pour des actions ou applications qui ne sont pas à l'origine des jeux.</p>
     <p class="special-text">La mission des FeelGoodFellows est de devenir maîtres dans l’art de la gamification, pour résoudre des problématiques sérieuses… en s’amusant!</p>
   </div>
-  <%= link_to "PLAY", contact_path,class: "call-to-action"  %>
+  <%= link_to (t '.play'), new_contact_path,class: "call-to-action"  %>
 </section>
 
 
 <section class="colored">
-  <h2>LE PLAN DE JEU</h2>
+  <h2><%= t '.game' %></h2>
 
 
   <!-- <div class="section-text"> -->
@@ -137,11 +135,11 @@
       </ul>
     </div>
   </div>
-  <%= link_to "PLAY", contact_path,class: "call-to-action"  %>
+  <%= link_to (t '.play'), new_contact_path,class: "call-to-action"  %>
 </section>
 
 <section >
-  <h2>PLUS DE DÉTAILS</h2>
+  <h2><%= t '.more' %></h2>
 
   <div class="section-text frame">
     <p>Nous proposons de vous donner les outils et de vous guider pas à pas dans une expérience unique pendant laquelle vos équipes prendront du plaisir à améliorer elles-mêmes leur environnement de travail. </p>
@@ -163,5 +161,5 @@
     <p>Pendant et à la fin du jeu, nous vous fournirons des données concrètes sur l’impact du programme.</p>
     <p>À la fin du jeu, nous vous proposerons des solutions simples pour capitaliser sur l’ expérience vécue et en tirer un maximum de bénéfices sur le long-terme.</p>
   </div>
-  <%= link_to "PLAY", contact_path,class: "call-to-action"  %>
+  <%= link_to (t '.play'), new_contact_path,class: "call-to-action"  %>
 </section>

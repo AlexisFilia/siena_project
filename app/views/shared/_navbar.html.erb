@@ -1,11 +1,18 @@
 <div id="navbar">
+
+  <select onchange="location = this.value;">
+    <option value="" disabled selected><%= t 'languages.select' %></option>
+    <option value="/fr/<%= request.env['PATH_INFO'].gsub(/\/\w{2}\//, '').gsub(/\/\w{2}\z/, '') %>"><%= t 'languages.fr' %></option>
+    <option value="/en/<%= request.env['PATH_INFO'].gsub(/\/\w{2}\//, '').gsub(/\/\w{2}\z/, '') %>"><%= t 'languages.en' %></option>
+  </select>
+
   <%= link_to root_path  do %>
-    <p class= "highlighted <%= @primary == 1 ? 'primary' : 'secondary' %>">HOME</p>
+    <p class= "highlighted <%= @primary == 1 ? 'primary' : 'secondary' %>"><%= t 'nav_bar.home' %></p>
   <% end %>
-  <%= link_to contact_path do %>
-    <p class= "highlighted <%= @primary == 2 ? 'primary' : 'secondary' %>">CONTACT</p>
+  <%= link_to new_contact_path do %>
+    <p class= "highlighted <%= @primary == 2 ? 'primary' : 'secondary' %>"><%= t 'nav_bar.contact' %></p>
   <% end %>
   <%= link_to new_user_session_path do %>
-    <p class= "highlighted <%= @primary == 3 ? 'primary' : 'secondary' %>">LOG IN</p>
+    <p class= "highlighted <%= @primary == 3 ? 'primary' : 'secondary' %>"><%= t 'nav_bar.login' %></p>
   <% end %>
 </div>
