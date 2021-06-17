@@ -21,6 +21,27 @@ section{
     padding: 40px;
     background-color: white;
 
+    // .flex-container{
+    //   display: flex;
+
+    //   .part-1{
+    //     width: 40%;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+
+    //     i{
+    //       font-size: 15em;
+    //       color: $background-color;
+    //       // color: #7DDDC7;
+    //     }
+    //   }
+
+    //   .part-2{
+    //     text-align: justify;
+    //   }
+    // }
+
     &.frame{
        box-shadow: none;
        background-color: transparent;
@@ -42,6 +63,7 @@ section{
     text-align: center;
     font-size: 2em;
     // background-color: rgba(250,250,250, 0.5);
+
   }
 
   .secondary-color{color: $secondary-color;}
@@ -49,10 +71,15 @@ section{
 
 
   &.colored{
-    background-color: #4158D0;
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-image: none;
+    // background-color: #4158D0;
+    // background-color: $background-color-lighter;
+    // background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
     // color: white;
     background-attachment: fixed;
+
+    .special-text{color: #7DDDC7;}
+    h2{color: white;}
 
   }
 }
