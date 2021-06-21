@@ -6,7 +6,7 @@
 
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 20px;
   // justify-content: space-around;
 
@@ -23,20 +23,35 @@
     p{
       margin: 0;
     }
+  }
 
+  .navbar-links{
+    display: flex;
 
   }
 
-  .highlighted{
+  // .highlighted{
 
-    color: white;
-    padding: 2px 10px;
+  //   color: white;
+  //   padding: 2px 10px;
 
-    &.primary{background-color: $menu-items-color;}
-    &.secondary{background-color: $secondary-color;
-      &:hover{background-color: $menu-items-color;}
+  //   &.primary{background-color: $menu-items-color;}
+  //   &.secondary{background-color: $secondary-color;
+  //     &:hover{background-color: $menu-items-color;}
+  //   }
+  // }
+
+}
+
+
+@media (max-width: 800px){
+  #navbar{
+    a{
+      font-size: 0.8em;
     }
   }
+}
 
+@media (min-width: 800px){
 
 }
