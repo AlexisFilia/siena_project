@@ -1,37 +1,35 @@
 <%= render 'shared/navbar' %>
 
-<div class="container bg-light">
-  <div class="row p-4">
-    <div class="col col-12">
+<div class="main-container centered-vertically" style="margin-top: 5vh;">
+  <h2 class="big-title-special-font">Nous contacter :</h2>
+  <div class="form-container max-1000">
 
-      <h2>Nous contacter :</h2>
 
-      <%= simple_form_for(@contact) do |f| %>
-        <div class="form-inputs">
-          <%= f.input :first_name,
-                      required: false,
-                      autofocus: true %>
-          <%= f.input :last_name,
-                      required: false,
-                      autofocus: true %>
-          <%= f.input :email,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" } %>
-          <%= f.input :company,
-                      required: false,
-                      autofocus: true %>
-          <%= f.input :message,
-                      required: false,
-                      autofocus: true %>
-        </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Envoyer", class: "main-button" %>
-        </div>
+    <%= simple_form_for(@contact) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :first_name,
+                    required: false,
+                    autofocus: true %>
+        <%= f.input :last_name,
+                    required: false,
+                    autofocus: true %>
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :company,
+                    required: false,
+                    autofocus: true %>
+        <%= f.input :message,
+                    required: false,
+                    autofocus: true %>
+      </div>
 
-      <% end %>
+      <div class="centered-vertically">
+        <%= f.button :submit, "Envoyer", class: "call-to-action" %>
+      </div>
 
-    </div>
+    <% end %>
   </div>
 </div>
