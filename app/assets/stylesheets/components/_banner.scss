@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.4)), url(image_path("fire_camp_stars.png"));
   background-position: center;
   background-size: cover;
@@ -17,7 +17,7 @@
   }
 
   #slogan{
-    margin-top: 10vh;
+    margin-bottom: 10vh;
     text-align: center;
     font-family: $special-font;
 
@@ -25,18 +25,18 @@
 
   .secondary-color{
     background-color: $secondary-color;
+    // background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
     color: white;
 
   }
   .primary-color{
     background-color: $menu-items-color;
+    // background-image: linear-gradient(to right, #FF8008 0%, #FFC837  51%, #FF8008  100%);
     color: white;
   }
 }
 
 @media (max-width: 800px){
-
-
 
 }
 
@@ -59,3 +59,5 @@
   }
 
 }
+
+
