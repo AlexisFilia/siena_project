@@ -38,6 +38,15 @@ en:
     home:
       play: 'PLAY'
       you: 'YOU ARE'
+      you-1: You are a company of more than 100 employees.
+      you-2: You seek to improve the <span class="highlighted primary">MOTIVATION</span>, <span class="highlighted secondary">COHESION</span>, <span class="highlighted primary">COLLABORATION</span> and <span class="highlighted secondary">WELL-BEING</span> of your teams.
+      you-3: You are convinced that your success depends on your ability to act on these elements as well as <span class="highlighted secondary">ATTRACTING AND RETAINING « TALENTS »</span>.
+      you-4: The size of your organization and/or your rapid growth make these tasks challenging.
+      you-5: You would like to find solutions without systematically having to play on the "salary" or "promotion" dimensions.
+      you-6: You might already have undertaken actions to improve your work environment, invested in evenements such as "Team Buidings" and worked on developing a corporate culture/identity.
+      you-7: You are struggling to estimate the concrete and persistent return on investment of these actions and might feel a bit overwhelmed.
+      you-8: We have designed a solution specifically for companies like you.
+
       us: 'WE ARE'
       game: 'GAME PLAN'
       more: 'MORE DETAILS'
