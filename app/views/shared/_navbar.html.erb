@@ -6,6 +6,14 @@
     <option value="/en/<%= request.env['PATH_INFO'].gsub(/\/\w{2}\//, '').gsub(/\/\w{2}\z/, '') %>"><%= t 'languages.en' %></option>
   </select>
 
+
+  <div class="language-selection">
+    <%= link_to 'EN', url_for( :locale => 'en' ), id: "en-selection" %>
+    <%= link_to 'FR', url_for( :locale => 'fr' ), id: "fr-selection" %>
+  </div>
+
+
+
   <%= link_to root_path  do %>
     <p class= "highlighted <%= @primary == 1 ? 'primary' : 'secondary' %>"><%= t 'nav_bar.home' %></p>
   <% end %>
