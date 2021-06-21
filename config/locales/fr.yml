@@ -7,6 +7,15 @@ fr:
     home:
       play: 'JOUER'
       you: 'VOUS ETES'
+      you-1: Vous êtes une entreprise de plus de 100 employés.
+      you-2: Vous cherchez à améliorer la <span class="highlighted primary">MOTIVATION</span>, la <span class="highlighted secondary">COHÉSION</span>, la <span class="highlighted primary">COLLABORATION</span> et le <span class="highlighted secondary">BIEN-ÊTRE</span> de vos équipes.
+      you-3: Vous êtes convaincus que votre succès dépend de votre capacité à agir sur ces éléments ainsi que d’ <span class="highlighted secondary">ATTIRER ET RETENIR DES « TALENTS »</span>.
+      you-4: La taille de votre entreprise et/ou votre forte croissance rendent ces tâches difficiles.
+      you-5: Vous aimeriez trouver des solutions sans agir systématiquement sur les dimensions « salaires » ou « promotions ».
+      you-6: Vous avez peut-être déjà entrepris des actions pour améliorer l' environnement de travail, investi dans des événements de type « Team Building » et cherché à développer une culture et une identité d' entreprise.
+      you-7: Vous avez du mal à estimer le retour sur investissement durable et concret de ces actions et vous vous sentez peut-être un peu dépassés.
+      you-8: Nous avons créé une solution spécifiquement pour les entreprises comme vous.
+
       us: 'NOUS SOMMES'
       game: 'LE PLAN DE JEU'
       more: 'PLUS DE DÉTAILS'
@@ -22,4 +31,5 @@ fr:
     home: 'ACCUEIL'
     contact: 'CONTACT'
     login: 'CONNEXION'
+
 
