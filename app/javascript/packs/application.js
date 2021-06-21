@@ -44,6 +44,7 @@ import { typeMission } from '../components/typeMission';
 import { uploadQuestMedia } from '../components/uploadQuestMedia';
 import { particlesHome } from '../components/particlesHome';
 import { voteNoBtn } from '../components/voteNoBtn';
+import { checkLanguage } from '../components/checkLanguage';
 import { fadeAlert } from '../utils/fadeAlert';
 
 document.addEventListener('turbolinks:load', () => {
@@ -74,6 +75,7 @@ document.addEventListener('turbolinks:load', () => {
   uploadQuestMedia();
   voteNoBtn();
   fadeAlert();
+  checkLanguage();
 
 });
 

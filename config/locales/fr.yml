@@ -10,11 +10,16 @@ fr:
       us: 'NOUS SOMMES'
       game: 'LE PLAN DE JEU'
       more: 'PLUS DE DÉTAILS'
-      slogan1: 'ATTEIGNEZ LE '
-      slogan2: 'NIVEAU SUPERIEUR'
-      slogan3: 'DE'
-      slogan4: "L' ESPRIT D' EQUIPE"
+      # slogan1: 'ATTEIGNEZ LE '
+      # slogan2: 'NIVEAU SUPERIEUR'
+      # slogan3: 'DE'
+      # slogan4: "L' ESPRIT D' EQUIPE"
+      slogan1: 'REACH THE '
+      slogan2: 'NEXT LEVEL'
+      slogan3: 'OF'
+      slogan4: 'TEAM SPIRIT'
   nav_bar:
     home: 'ACCUEIL'
     contact: 'CONTACT'
     login: 'SE CONNECTER'
+
