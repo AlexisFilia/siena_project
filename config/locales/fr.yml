@@ -67,6 +67,12 @@ fr:
       slogan2: 'NEXT LEVEL'
       slogan3: 'OF'
       slogan4: 'TEAM SPIRIT'
+
+  contacts:
+    new:
+      contact-us: "Contactez nous :"
+      send: "ENVOYER"
+
   nav_bar:
     home: 'ACCUEIL'
     contact: 'CONTACT'

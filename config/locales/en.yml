@@ -94,6 +94,12 @@ en:
       slogan2: 'NEXT LEVEL'
       slogan3: 'OF'
       slogan4: 'TEAM SPIRIT'
+
+  contacts:
+    new:
+      contact-us: "Contact us :"
+      send: "SEND"
+
   nav_bar:
     home: 'HOME'
     contact: 'CONTACT'
