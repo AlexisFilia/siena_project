@@ -1,7 +1,7 @@
 <%= render 'shared/navbar' %>
 
 <div class="main-container centered-vertically" style="margin-top: 5vh;">
-  <h2 class="big-title-special-font">Nous contacter :</h2>
+  <h2 class="big-title-special-font"><%= t '.contact-us' %></h2>
   <div class="form-container max-1000">
 
 
@@ -27,7 +27,7 @@
       </div>
 
       <div class="centered-vertically">
-        <%= f.button :submit, "Envoyer", class: "call-to-action" %>
+        <%= f.button :submit, t(".send"), class: "call-to-action" %>
       </div>
 
     <% end %>
