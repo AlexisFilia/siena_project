@@ -58,8 +58,8 @@
       }
 
       .level-index{
-        // background-color: $secondary-color;
-        background-image: linear-gradient( 135deg, #FF6FD8 10%, #3813C2 100%);
+        background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
+        background-size: 200% auto;
         box-shadow: 1px 1px 3px rgba(0,0,0, 0.4);
         color: white;
         font-family: $special-font;
@@ -68,6 +68,9 @@
         // padding: 0.5em;
         width: 2em;
         height: 2em;
+        transition: 0.5s;
+
+
 
         p{
           margin: 0;
@@ -75,6 +78,11 @@
 
         i{
           display: none;
+        }
+
+        &:hover {
+          background-position: right center; /* change the direction of the change here */
+          text-decoration: none;
         }
 
       }
