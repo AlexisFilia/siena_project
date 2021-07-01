@@ -78,4 +78,11 @@ fr:
     contact: 'CONTACT'
     login: 'CONNEXION'
 
-
+  activerecord:
+    attributes:
+      contact:
+        first_name: 'Prenom'
+        last_name: 'Nom'
+        email: 'Adresse email'
+        company: 'Votre société'
+        message: 'Votre message'
