@@ -55,25 +55,23 @@ class TeamQuestLink < ApplicationRecord
     team = self.team
     roulette_type = quest.roulette_type
 
-    # Détermine si la roulette a déjà été tirée
-    if self.roulette_result
-      # Si déjà tirée retourne le résultat
-      if roulette_type == "teams"
-        roulette_result = Team.find(@team_quest_link.roulette_result)
-      else
-        roulette_result = User.find(@team_quest_link.roulette_result)
-      end
-
-    else
-      # Si pas déjà tirée, la tire, stock le résultat et retourne le résultat
-      roulette_result = self.launch_roulette(quest, team, roulette_type)
+    # Si pas déjà tirée, la tire, stock le résultat et retourne le résultat
+    unless self.roulette_result
+      roulette_result = self.launch_roulette(team, roulette_type)
       self.update!(roulette_result: roulette_result)
+    end
+
+    # Détermine l' objet à retourner en fonction du roulette_type et de son id
+    if roulette_type == "teams"
+      roulette_result = Team.find(@team_quest_link.roulette_result)
+    else
+      roulette_result = User.find(@team_quest_link.roulette_result)
     end
 
     return roulette_result
   end
 
-  def launch_roulette(quest, team, roulette_type)
+  def launch_roulette(team, roulette_type)
     # retourne l' id d' une equipe ou d' un user en fonction du roulette_type
     # on ne prend pas en compte ce qui a déjà été obtenu comme résultat des quetes précédentes (à discuter, option 1 : on peut lancer la roulette à l' infini, option 2: on a plus de diversité)
 

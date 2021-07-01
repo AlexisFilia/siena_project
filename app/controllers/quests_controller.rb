@@ -39,33 +39,12 @@ class QuestsController < ApplicationController
     end
 
 
-
     if @team_quest_link.blank?
       @team_quest_link_id =  nil
     else
       @team_quest_link_id = @team_quest_link.id
       @votes_result = @team_quest_link.get_votes_result
-
-      # if @team_quest_link.roulette_result
-      #   if @roulette_type == "teams"
-      #     @roulette_result = Team.find(@team_quest_link.roulette_result)
-      #   else
-      #     @roulette_result = User.find(@team_quest_link.roulette_result)
-      #   end
-      # end
     end
-
-    # unless @roulette_result
-    #   case @roulette_type
-    #   when nil
-    #   when "teams"
-    #     @roulette_array = Team.all # enlever ma team
-    #   when "players"
-    #     @roulette_array = User.all # enlever ceux deja tirés
-    #   when "team_players"
-    #     @roulette_array = User.all.select{|u| u.team != @team} # tous les joueurs des autres équipes !!! les admins qui jouent pas sont inclus pour l' instant!
-    #   end
-    # end
 
 
     @medium = Medium.new()
