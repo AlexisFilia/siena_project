@@ -27,7 +27,7 @@ class VotesController < ApplicationController
       @roulette_type = @quest.roulette
     end
 
-    if !roulette_type.nil?
+    if !@roulette_type.nil?
       @roulette_result = @tql_to_vote.get_roulette_result
     end
 
