@@ -20,4 +20,6 @@ class Quest < ApplicationRecord
     end
     !available_quests.select { |quest| quest.id == level_id.to_i }.blank?
   end
+
+
 end

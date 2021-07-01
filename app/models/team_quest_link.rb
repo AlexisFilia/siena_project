@@ -48,4 +48,50 @@ class TeamQuestLink < ApplicationRecord
     return {total: votes.count, yes: votes.select{|v| v.vote == true}.count, no: votes.select{|v| v.vote == false}.count, votes: votes}
   end
 
+
+  def get_roulette_result
+    # n' est appelé que sur les quêtes qui ont un roulette_type
+    quest = self.quest
+    team = self.team
+    roulette_type = quest.roulette_type
+
+    # Détermine si la roulette a déjà été tirée
+    if self.roulette_result
+      # Si déjà tirée retourne le résultat
+      if roulette_type == "teams"
+        roulette_result = Team.find(@team_quest_link.roulette_result)
+      else
+        roulette_result = User.find(@team_quest_link.roulette_result)
+      end
+
+    else
+      # Si pas déjà tirée, la tire, stock le résultat et retourne le résultat
+      roulette_result = self.launch_roulette(quest, team, roulette_type)
+      self.update!(roulette_result: roulette_result)
+    end
+
+    return roulette_result
+  end
+
+  def launch_roulette(quest, team, roulette_type)
+    # retourne l' id d' une equipe ou d' un user en fonction du roulette_type
+    # on ne prend pas en compte ce qui a déjà été obtenu comme résultat des quetes précédentes (à discuter, option 1 : on peut lancer la roulette à l' infini, option 2: on a plus de diversité)
+
+    case roulette_type
+      when "teams"
+        # array avec toutes les équipes sauf la mienne
+        teams = Team.all
+        roulette_array = teams.select{|t| t != team}
+      when "players"
+        # Un array avec touls les joueurs des autres équipes
+        roulette_array = User.where.not(team: team) #les admins qui jouent pas sont inclus pour l' instant!
+      when "team_players"
+        # Un des joueurs de mon équipe
+        roulette_array =  User.where(team: team)
+    end
+
+    roulette_result = roulette_array.sample.id
+    return roulette_result
+  end
+
 end
