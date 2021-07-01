@@ -27,13 +27,10 @@ class VotesController < ApplicationController
       @roulette_type = @quest.roulette
     end
 
-    case @roulette_type
-      when nil
-      when 'teams'
-        @roulette_result = Team.find(@tql_to_vote.roulette_result)
-      else
-        @roulette_result = User.find(@tql_to_vote.roulette_result)
+    if !@roulette_type.nil?
+      @roulette_result = @tql_to_vote.get_roulette_result
     end
+
 
     #Evolutive elements------------------
     @top_bar_title = 'VALIDATION'

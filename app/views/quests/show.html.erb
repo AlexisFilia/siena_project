@@ -12,10 +12,6 @@
           <p class="mission" data-status="<%= @quest_status %>"><%= @quest.description %></p>
         </div>
 
-        <% if @roulette_array%>
-          <%= render 'shared/roulette' %>
-        <% end %>
-
         <% if @roulette_result %>
           <%= render 'shared/roulette-result' %>
         <% end %>
@@ -129,3 +125,4 @@
       <div class="main-button"><%#= link_to "SUBMIT QUEST", team_quest_link_path(@team_quest_link), method: 'put' %></div>
     <%# end %>
  -->
+
