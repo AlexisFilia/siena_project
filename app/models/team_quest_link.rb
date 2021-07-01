@@ -53,7 +53,7 @@ class TeamQuestLink < ApplicationRecord
     # n' est appelé que sur les quêtes qui ont un roulette_type
     quest = self.quest
     team = self.team
-    roulette_type = quest.roulette_type
+    roulette_type = quest.roulette
 
     # Si pas déjà tirée, la tire, stock le résultat et retourne le résultat
     unless self.roulette_result
@@ -63,9 +63,9 @@ class TeamQuestLink < ApplicationRecord
 
     # Détermine l' objet à retourner en fonction du roulette_type et de son id
     if roulette_type == "teams"
-      roulette_result = Team.find(@team_quest_link.roulette_result)
+      roulette_result = Team.find(self.roulette_result)
     else
-      roulette_result = User.find(@team_quest_link.roulette_result)
+      roulette_result = User.find(self.roulette_result)
     end
 
     return roulette_result

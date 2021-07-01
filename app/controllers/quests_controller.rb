@@ -31,7 +31,7 @@ class QuestsController < ApplicationController
 
     @team_quest_link = TeamQuestLink.find_by(team: @team, quest: @quest)
 
-    if !roulette_type.nil?
+    if !@roulette_type.nil?
       # si j' ai un roulette_type mais pas de TQL je suis oblogé d' en créer un pour stocker le roulette_result
       @team_quest_link = TeamQuestLink.create!(team: @team, quest: @quest, status: "open") if @team_quest_link.blank?
       # demande le résultat de la roulette
