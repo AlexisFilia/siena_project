@@ -72,5 +72,29 @@ class TeamQuestLinksController < ApplicationController
 
     render json: tql_data_hash.to_json
   end
+
+
+  def fetch_amount_of_tql_to_vote
+
+    user = User.find(params[:user_id])
+
+    all_tql_to_vote = TeamQuestLink.joins(:team)
+                      .where(teams: { company_id: user.company.id })
+                      .where.not(team_id: user.team.id)
+                      .where(status: 'pending')
+                      .where.not(id: TeamQuestLink.joins(:team)
+                                                  .where(teams: { company_id: user.company.id })
+                                                  .where.not(team_id: user.team.id)
+                                                  .where(status: 'pending')
+                                                  .joins(:votes)
+                                                  .where(votes: { user_id: user.id })
+                                                  .pluck('team_quest_links.id'))
+                      .order('created_at ASC')
+
+    tql_data_hash = {amount: all_tql_to_vote.count}
+    render json: tql_data_hash.to_json
+  end
+
+
 end
 
