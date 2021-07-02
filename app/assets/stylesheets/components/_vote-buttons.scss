@@ -1,0 +1,32 @@
+#vote-buttons{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 20px;
+
+
+  .vote-button{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+
+    &:hover{
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+
+  #vote-yes{
+    background-color: #6FC240;
+  }
+
+  #vote-no{
+    background-color: #ED2B37;
+  }
+}
