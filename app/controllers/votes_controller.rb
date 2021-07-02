@@ -6,7 +6,7 @@ class VotesController < ApplicationController
   def new
     @vote = Vote.new
 
-    @tql_to_vote = TeamQuestLink.joins(:team)
+    @all_tql_to_vote = TeamQuestLink.joins(:team)
                                 .where(teams: { company_id: current_user.company.id })
                                 .where.not(team_id: current_user.team.id)
                                 .where(status: 'pending')
@@ -18,7 +18,11 @@ class VotesController < ApplicationController
                                                             .where(votes: { user_id: current_user.id })
                                                             .pluck('team_quest_links.id'))
                                 .order('created_at ASC')
-                                .first
+
+
+
+    @tql_to_vote_amount = @all_tql_to_vote.count
+    @tql_to_vote = @all_tql_to_vote.first
 
 
     unless @tql_to_vote.blank?

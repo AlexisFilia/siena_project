@@ -57,54 +57,24 @@
             <li><%= c %> </li>
           <% end %>
         </ul>
-
-
       </div>
-      <div class="tql-buttons">
-        <a href="" class="vote-no">Vote NO</a>
-        <%= link_to "Vote YES", votes_path(vote: { vote: true, tql: @tql_to_vote }), method: :post, class: "vote-yes" %>
+    </div>
+
+    <div id="vote-buttons">
+      <div id="vote-no" class="vote-button">
+        <i class="fas fa-times"></i>
       </div>
+
+      <%= link_to votes_path(vote: { vote: true, tql: @tql_to_vote }), method: :post, class: "vote-button", id: "vote-yes" do %>
+        <i class="fas fa-check"></i>
+      <% end %>
 
     </div>
   <% end %>
 
+
+
 </div>
-
-
-
-<!--     OLD CAROUSEL kept in case
-
-  <div id="tql-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
-
-        <%# if @tql_to_vote.media.length > 1 %>
-
-          <ol data-target='#tql-carousel' class="carousel-indicators">
-            <%# @tql_to_vote.media.each_with_index do |medium, index| %>
-              <li data-slide-to="<%#= index %>" class="<%#= 'active' if index == 0 %>"></li>
-            <%# end %>
-          </ol>
-
-          <a class="carousel-control-prev carousel-control" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-
-          <a class="carousel-control-next carousel-control" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-
-        <%# end %>
-
-        <div class="carousel-inner">
-          <%# @tql_to_vote.media.each_with_index do |medium, index| %>
-            <div class="carousel-item <%#= 'active' if index == 0 %>">
-              <div class="tql-medium" style="background-image: url('<%#= cl_image_path medium.attached_file.key %>')"></div>
-            </div>
-          <%# end %>
-        </div>
-
-      </div> -->
 
 
 
